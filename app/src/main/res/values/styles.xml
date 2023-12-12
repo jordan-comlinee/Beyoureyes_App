@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="title1">
+        <item name="android:fontFamily">@font/pretendard900</item>
+        <item name="android:textSize">36sp</item>
+    </style>
+
+    <style name="title2">
+        <item name="android:fontFamily">@font/pretendard700</item>
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="title3">
+        <item name="android:fontFamily">@font/pretendard600</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="text1">
+        <item name="android:fontFamily">@font/pretendard500</item>
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="text2">
+        <item name="android:fontFamily">@font/pretendard500</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+</resources>

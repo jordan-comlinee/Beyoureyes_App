@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodInfoAllergyActivity">
+
+    <!-- 1. 상단 바 -->
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_dafault"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- 2. 스크롤 영역 -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 알레르기 -->
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/aller_round"
+                android:gravity="center"
+                android:text="식품 알러지 정보"
+                style="@style/title3"  />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/allergyChipGroup1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="12dp"
+                app:chipSpacingHorizontal="12dp"
+                app:singleLine="false">
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <!-- 식품의 영양정보(인식 실패) -->
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="250dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:background="@drawable/nutri_background"
+                android:gravity="center"
+                android:text="영양성분표 인식에\n실패했어요"
+                style="@style/title3"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button8"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="180dp"
+                android:layout_weight="0"
+                android:background="@drawable/button_default"
+                android:gravity="center"
+                android:text="다시 찍기"
+                style="@style/title3" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 3. 하단 버튼 영역 -->
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_background"
+        android:orientation="vertical"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <Button
+            android:id="@+id/buttonPersonalized"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="#161616"
+            android:gravity="center"
+            android:text="나의 맞춤 정보 확인하기"
+            style="@style/title3"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonVoice"
+                android:layout_width="wrap_content"
+                android:layout_height="64sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:gravity="center"
+                android:text="설명듣기"
+                style="@style/title3"
+                />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="wrap_content"
+                android:layout_height="64sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:backgroundTint="#FF0000"
+                android:gravity="center"
+                android:text="먹기"
+                style="@style/title3"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
