@@ -96,7 +96,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttoncamera"
         android:layout_width="200dp"
         android:layout_height="60dp"
@@ -104,7 +104,8 @@
         android:gravity="center"
         android:text="촬영 시작하기"
         style="@style/title3"
-        android:backgroundTint="@color/highlight"
+        android:background="@drawable/button_highlight"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/gradientView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"

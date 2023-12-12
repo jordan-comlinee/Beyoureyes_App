@@ -65,12 +65,14 @@
         android:layout_weight="0.1"
         android:orientation="vertical">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttoncamera"
             android:layout_width="200dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
             style="@style/title3"
+            android:background="@drawable/button_highlight"
+            android:textColor="@color/white"
             android:backgroundTint="@color/highlight"
             android:text="다시 찍기" />
     </LinearLayout>
