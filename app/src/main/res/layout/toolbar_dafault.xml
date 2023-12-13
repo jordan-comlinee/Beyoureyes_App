@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbarDefault"
+    android:layout_width="match_parent"
+    android:layout_height="72sp"
+    android:background="@color/transparent">
+
+    <!-- 뒤로가기 버튼 -->
+    <ImageButton
+        android:id="@+id/toolbarBackBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="뒤로가기"
+        android:padding="10dp"
+        android:src="@drawable/arrow_back" />
+
+    <!-- 제목 -->
+    <TextView
+        android:id="@+id/toolbarTitle"
+        style="@style/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="제목입니다"
+        android:textColor="@color/black" />
+
+</androidx.appcompat.widget.Toolbar>

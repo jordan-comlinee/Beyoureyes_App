@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- 바탕의 색상 -->
+    <solid android:color="#FFD400" />
+
+    <!-- 테두리의 색상과 너비 -->
+    <stroke
+        android:color="#FFD400"
+        android:width="2dp" />
+
+    <!-- 코너의 반지름 -->
+    <corners android:radius="20dp" />
+
+</shape>
