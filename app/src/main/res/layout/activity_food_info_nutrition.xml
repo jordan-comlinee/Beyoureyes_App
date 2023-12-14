@@ -356,7 +356,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonPersonalized"
+            android:id="@+id/buttonPersonalized_nutri"
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:layout_marginLeft="5dp"

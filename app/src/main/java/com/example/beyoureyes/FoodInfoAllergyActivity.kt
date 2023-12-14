@@ -10,6 +10,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -20,6 +21,7 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
 
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,10 +31,14 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
         val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
         val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
+
+
+
         setSupportActionBar(toolBar)
         //Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("영양 분석 결과")
+
 
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
@@ -82,7 +88,7 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
 
                 // Chip 뷰의 크기 및 여백 설정
                 val params = ChipGroup.LayoutParams(
-                    200, // 넓이 80
+                    220, // 넓이 80
                     150  // 높이 50
                 )
                 params.setMargins(8, 8, 8, 8) // 여백을 8로..
@@ -103,6 +109,7 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
             val textToSpeak = "안녕하세요! 영양 정보를 분석해드리겠습니다. 해당 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다. 다른 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시찍기 버튼을 눌러주세요."
             speak(textToSpeak)
         }
+
     }
 
     override fun onDestroy() {

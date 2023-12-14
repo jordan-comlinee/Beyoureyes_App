@@ -10,10 +10,12 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.play.integrity.internal.e
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
@@ -57,49 +59,60 @@ class LoadingActivity : AppCompatActivity() {
         val filePath = intent.getStringExtra("bitmapPath")
 
         if (filePath != null) {
+            Log.d("YourTag", "File path: $filePath") // 파일 경로 로깅
+
             val f = File(filePath)
             val bitmap = BitmapFactory.decodeFile(filePath)
             if (bitmap != null) {
                 detectTextInBitmap(bitmap) // 필터링 알고리즘
+            } else {
+                Log.e("bitmap", "Bitmap is null") // 비트맵이 null일 때
             }
             f.delete()
+        } else {
+            Log.e("bitmap", "File path is null") // 파일 경로가 null일 때
         }
 
 
-        // 필터링 변형한 데이터 intent 전달 알고리즘
         btn.setOnClickListener {
+
             val isValidData = isValidData()
-            val isValidAlergyData = isValidData_alergy()
+            val isValidAllergyData = isValidData_alergy()
             val hasValidKeywordOrder = checkKeywordOrder(koreanCharactersSet)
             val isValidPercentData = isValidData_per()
 
             when {
-                isValidData && isValidAlergyData && hasValidKeywordOrder && isValidPercentData -> { // 알레르기 & 영양성분
+                hasValidKeywordOrder && isValidData &&  isValidPercentData && isValidAllergyData  -> {
                     startFoodInfoAllActivity()
                 }
-                isValidData && hasValidKeywordOrder && isValidPercentData -> { // 영양성분
+                hasValidKeywordOrder && isValidData && isValidPercentData -> {
                     startFoodInfoNutritionActivity()
                 }
-                isValidAlergyData -> { // 알레르기
+                isValidAllergyData -> {
                     startFoodInfoAllergyActivity()
                 }
                 else -> {
-                    showAlertDialog("Camera Activity로 이동") // 인식 실패 시 Alert 창
+                    val intent = Intent(this, CameraOcrproblemActivity::class.java)
+                    startActivity(intent)
                 }
             }
+
         }
 
 
         handler.postDelayed({
             btn.performClick() // 버튼을 자동으로 클릭
-        }, 5000) // 5초
+        }, 3000) // 3초
 
     }
     private fun startFoodInfoAllActivity() {
         val intent = Intent(this, FoodInfoAllActivity::class.java)
-        configureIntent(intent)
+        intent.putExtra("modifiedPercentList", ArrayList(moPercentList))
+        intent.putExtra("PercentList", ArrayList(percentList))
+        intent.putStringArrayListExtra("modifiedKcalListText", ArrayList(kcalList))
         intent.putStringArrayListExtra("allergyList", ArrayList(extractedWords.toList()))
         startActivity(intent)
+
     }
 
     private fun startFoodInfoNutritionActivity() {
@@ -150,7 +163,7 @@ class LoadingActivity : AppCompatActivity() {
 
     private fun isValidData(): Boolean { // 퍼센트와 칼로리 유효성 판단
 
-        return percentList.isNotEmpty() && kcalList.isNotEmpty() && percentList.size == 7
+        return percentList.size == 7 && kcalList.size == 1 && percentList.all { it.isNotEmpty() } && kcalList.all { it.isNotEmpty() } && koreanCharactersSet.all { it.isNotEmpty() }
     }
 
     private fun isValidData_alergy(): Boolean { // 알레르기 유효성 판단
@@ -244,9 +257,9 @@ class LoadingActivity : AppCompatActivity() {
                             }
                             val lineText = line.text
                             val lineInfo = "라인 텍스트: $lineText" // 전체 인식한 라인 텍스트 출력
-                            runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
-                                textView.append("$lineInfo\n")
-                            }
+//                            runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
+//                                textView.append("$lineInfo\n")
+//                            }
 
                             // "숫자 g" 형태 확인
                             extractNumberG(lineText)
@@ -264,14 +277,21 @@ class LoadingActivity : AppCompatActivity() {
                     }
                     // 이미지 처리 후에 결과를 출력
                     showResults()
+                    runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
+                        textView.append("$koreanCharactersSet\n")
+                        textView.append("$percentList\n")
+                    }
 
                 }
                 .addOnFailureListener { e ->
 
                     e.printStackTrace()
+                    showAlertDialog("OCR 처리 중 오류가 발생")
                 }
         } catch (e: Exception) {
             e.printStackTrace()
+            // 추가로 예외 정보를 로그에 출력
+            Log.e("wrong", "Exception occurred: ${e.message}", e)
         }
     }
 

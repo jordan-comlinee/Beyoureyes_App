@@ -15,9 +15,12 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -70,6 +73,21 @@ class CameraFirstActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_first)
+
+        //toolBar
+        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
+        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
+        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
+        setSupportActionBar(toolBar)
+        //Toolbar에 앱 이름 표시 제거!!
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbarTitle.setText("영양 정보 촬영하기")
+
+        toolbarBackButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
+        }
 
         // 카메라
         val camera = findViewById<Button>(R.id.buttoncamera)
@@ -172,7 +190,9 @@ class CameraFirstActivity : AppCompatActivity()  {
                         val blur_score = getBlurScore(bitmap)
                         if ( blur_score < BLUR_SCORE_THRESH) {
                             // 재촬영 요구 - intent 연결
-                            intent = Intent(this, CameraFocusProblemActivity::class.java)
+
+                            val intent = Intent(this, CameraFocusProblemActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
+                            startActivity(intent) // 수진 수정 합칠때 이부분 수정해야함
 
                         }else{
 
