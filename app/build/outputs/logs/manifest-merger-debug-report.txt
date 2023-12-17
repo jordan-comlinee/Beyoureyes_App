@@ -1,0 +1,884 @@
+-- Merging decision tree log ---
+provider#androidx.core.content.FileProvider
+INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:88:9-96:20
+	android:grantUriPermissions
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:92:13-47
+	android:authorities
+		INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:90:13-64
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:91:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:89:13-62
+manifest
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:2:1-104:12
+INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:2:1-104:12
+INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:2:1-104:12
+INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:2:1-104:12
+MERGED from [:opencv] C:\Users\leeso\Desktop\OpenCV-android-sdk\sdk\build\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:2:1-20:12
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:2:1-20:12
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:2:1-17:12
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:2:1-20:12
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:17:1-75:12
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\leeso\.gradle\caches\transforms-3\3d047ba4de9dbaaccbe45ae1517fa40f\transformed\recaptcha-18.1.2\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.android.material:material:1.8.0] C:\Users\leeso\.gradle\caches\transforms-3\94fb6213c4890b1b38827bdc6fcbe43d\transformed\material-1.8.0\AndroidManifest.xml:17:1-26:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\leeso\.gradle\caches\transforms-3\a130018d1a4760fed5984354da1ac60c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.camera:camera-view:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\a88384348e48ce3db6a3e5e60e915ae4\transformed\camera-view-1.2.0-alpha01\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\leeso\.gradle\caches\transforms-3\d08294ee81b2aa0c826b065048450914\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\leeso\.gradle\caches\transforms-3\09308e8c3ace60f87b501a22cb954664\transformed\appcompat-1.6.1\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:17:1-40:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\3a9ee82eb53795482c28ab42de446098\transformed\viewpager2-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f7ee717600df0f5aa21dbd2d0b4b48b6\transformed\play-services-mlkit-text-recognition-korean-16.0.0\AndroidManifest.xml:2:1-8:12
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:2:1-23:12
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:15:1-37:12
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] C:\Users\leeso\.gradle\caches\transforms-3\617e335c4fdc99dc7c239089bb3f69a2\transformed\play-services-auth-base-17.0.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:2:1-18:12
+MERGED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:2:1-26:12
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\leeso\.gradle\caches\transforms-3\8fe49528bd528ba73a8e142523a6a7a2\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\leeso\.gradle\caches\transforms-3\b7b100cd3a0031dfada19b230b487f10\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:15:1-25:12
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\leeso\.gradle\caches\transforms-3\9a3fc0912132c8051ed3a14aebdc005d\transformed\play-services-auth-api-phone-17.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\leeso\.gradle\caches\transforms-3\0bf1b7110815c72fdefc71651b889f5e\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:2:1-10:12
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:15:1-39:12
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] C:\Users\leeso\.gradle\caches\transforms-3\6b772c34762cc2250cac607d96776a7a\transformed\vision-interfaces-16.2.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\91eb6643f08972c9b0b6cde244bb40c7\transformed\integrity-1.1.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\leeso\.gradle\caches\transforms-3\6bdaa61ffadaa977626e68ca3babe10d\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:2:1-6:12
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\67dcc41300f07dfa576e761b4416a20c\transformed\play-services-basement-18.1.0\AndroidManifest.xml:16:1-26:12
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\leeso\.gradle\caches\transforms-3\aa82c1c28f7f814776ac3fcf0164a72e\transformed\fragment-1.3.6\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\leeso\.gradle\caches\transforms-3\0fcee882352ce3aefbdad2e53a0d2e42\transformed\activity-1.6.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\e0c7eb523d99b268cf7af8465de7fd0e\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\730b0d71385cdd45dab6b5d48a83e415\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\68a14409c4b0c89ef7fcfc6b8e99ee7b\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\77b61f5786515c5d48d453b14f6df01c\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\394a5f39aca18421247faebf2b610fc5\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:17:1-38:12
+MERGED from [androidx.camera:camera-lifecycle:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\faebf1f111ebdc03442beb173de36fbc\transformed\camera-lifecycle-1.2.0-alpha01\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.camera:camera-video:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\efe929b1a53160433e10fb5accfc68eb\transformed\camera-video-1.2.0-alpha01\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.camera:camera-core:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\b4c60426822a743509aad10f995888ac\transformed\camera-core-1.2.0-alpha01\AndroidManifest.xml:17:1-38:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\033f48c81f243156f958815706fce687\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\a730edf4417fc017be65f997b9f3f569\transformed\drawerlayout-1.1.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\e5164ccaed03c2d3d96113dbdb69877c\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\c81a5fb338e89f4af85565474e2475bc\transformed\transition-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\0cad7ff364be0da03f9f101c80c357e4\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\dbdd96373c05a4aedd69028587312186\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f4906682cfef9b77860b662628aacd15\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\be576b9e0a0f597db103002f0230dab8\transformed\recyclerview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\5736a8f80441c262b2564f1fcbe5cf1b\transformed\customview-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\leeso\.gradle\caches\transforms-3\449f5381a3fb6184be81ff35783e16ca\transformed\browser-1.4.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\43d4805d357d429cf4af672f537b4f40\transformed\core-ktx-1.9.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.github.PhilJay:MpAndroidChart:v3.1.0] C:\Users\leeso\.gradle\caches\transforms-3\c1bd9ac3a31e883c178e56bea6d0f200\transformed\MpAndroidChart-v3.1.0\AndroidManifest.xml:2:1-20:12
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:15:1-38:12
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] C:\Users\leeso\.gradle\caches\transforms-3\77c5919f49b2962f2fd7495cf0122f6c\transformed\firebase-encoders-json-17.1.0\AndroidManifest.xml:15:1-23:12
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\f1b46111f8bbe04ef8d9183af6b45f55\transformed\savedstate-1.2.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6b31593a0e155291de9472247c617255\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:17:1-37:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\60b2e87fe6cd8cf821c3bed8e12ec9bd\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\0cf0786650610ecff91fba1d52250ad1\transformed\cardview-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\leeso\.gradle\caches\transforms-3\059fa561d2c6a3b140ad7e17a912b200\transformed\firebase-components-17.1.0\AndroidManifest.xml:15:1-22:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] C:\Users\leeso\.gradle\caches\transforms-3\586df2e599dab220997da10b8938f225\transformed\exifinterface-1.3.2\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\aefd4f65afd896c4864644f2e19283ae\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\1bd697285ae9bd1ef88a679989134622\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\611a96320e4ca82598aadccbac17dfeb\transformed\tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a80221f22df65acca09c7aea78429ce0\transformed\lifecycle-livedata-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\98b906f1f8bf7062e7c6e5a9edb6b5ca\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\leeso\.gradle\caches\transforms-3\2df7e298800e57b6f7b5ea84d93c51cb\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:15:1-41:12
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] C:\Users\leeso\.gradle\caches\transforms-3\d042ab8bdbe2cbc40df7994a9ed97568\transformed\transport-api-2.2.1\AndroidManifest.xml:15:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\10651a2ded3a18f8379d54125ba4d395\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\caa6d068880f933bed89323b49f811ad\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\af1a8604d5222c1cf8ea0acd230f0bc1\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\22ff68ab7c438cea77a3acf3bee2515e\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\leeso\.gradle\caches\transforms-3\b4b9ea2ed490cd3348c8a1b4c9a4818d\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
+MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\leeso\.gradle\caches\transforms-3\e4eb2bc623ff53d82b272e10e4a98b8d\transformed\grpc-android-1.52.1\AndroidManifest.xml:2:1-11:12
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\leeso\.gradle\caches\transforms-3\689e39ddf6b17a385254eded26448d2f\transformed\image-1.0.0-beta1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f6e1f3334a4a34632b1cef9d04203d4a\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
+	package
+		INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:5:5-7:38
+	android:maxSdkVersion
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:7:9-35
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:6:9-65
+uses-feature#android.hardware.camera
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:8:5-10:35
+	android:required
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:10:9-32
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:9:9-47
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:12:5-67
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:25:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\leeso\.gradle\caches\transforms-3\3d047ba4de9dbaaccbe45ae1517fa40f\transformed\recaptcha-18.1.2\AndroidManifest.xml:7:5-67
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\leeso\.gradle\caches\transforms-3\3d047ba4de9dbaaccbe45ae1517fa40f\transformed\recaptcha-18.1.2\AndroidManifest.xml:7:5-67
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:11:5-67
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:25:5-67
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:26:5-67
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:26:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:26:5-67
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:26:5-67
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:12:22-64
+uses-permission#android.permission.CAMERA
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:13:5-65
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:13:22-62
+queries
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:15:5-20:15
+MERGED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:24:5-28:15
+MERGED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:24:5-28:15
+intent#action:name:android.media.action.IMAGE_CAPTURE
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:17:9-19:18
+action#android.media.action.IMAGE_CAPTURE
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:18:13-73
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:18:21-70
+application
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:22:5-102:19
+INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:22:5-102:19
+MERGED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:7:5-15:19
+MERGED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:7:5-15:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:10:5-18:19
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:28:5-73:19
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:28:5-73:19
+MERGED from [com.google.android.material:material:1.8.0] C:\Users\leeso\.gradle\caches\transforms-3\94fb6213c4890b1b38827bdc6fcbe43d\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
+MERGED from [com.google.android.material:material:1.8.0] C:\Users\leeso\.gradle\caches\transforms-3\94fb6213c4890b1b38827bdc6fcbe43d\transformed\material-1.8.0\AndroidManifest.xml:24:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\leeso\.gradle\caches\transforms-3\a130018d1a4760fed5984354da1ac60c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\leeso\.gradle\caches\transforms-3\a130018d1a4760fed5984354da1ac60c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:22:5-38:19
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:13:5-21:19
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:13:5-21:19
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:27:5-35:19
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:27:5-35:19
+MERGED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:8:5-16:19
+MERGED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:8:5-24:19
+MERGED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:8:5-24:19
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\leeso\.gradle\caches\transforms-3\b7b100cd3a0031dfada19b230b487f10\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:23:5-20
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\leeso\.gradle\caches\transforms-3\b7b100cd3a0031dfada19b230b487f10\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:23:5-20
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\leeso\.gradle\caches\transforms-3\0bf1b7110815c72fdefc71651b889f5e\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\leeso\.gradle\caches\transforms-3\0bf1b7110815c72fdefc71651b889f5e\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:7:5-8:19
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:24:5-37:19
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:24:5-37:19
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\91eb6643f08972c9b0b6cde244bb40c7\transformed\integrity-1.1.0\AndroidManifest.xml:5:5-6:19
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\91eb6643f08972c9b0b6cde244bb40c7\transformed\integrity-1.1.0\AndroidManifest.xml:5:5-6:19
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\leeso\.gradle\caches\transforms-3\6bdaa61ffadaa977626e68ca3babe10d\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\leeso\.gradle\caches\transforms-3\6bdaa61ffadaa977626e68ca3babe10d\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:5:5-20
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\67dcc41300f07dfa576e761b4416a20c\transformed\play-services-basement-18.1.0\AndroidManifest.xml:20:5-24:19
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\67dcc41300f07dfa576e761b4416a20c\transformed\play-services-basement-18.1.0\AndroidManifest.xml:20:5-24:19
+MERGED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:30:5-34:19
+MERGED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:30:5-34:19
+MERGED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:25:5-36:19
+MERGED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:25:5-36:19
+MERGED from [androidx.camera:camera-core:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\b4c60426822a743509aad10f995888ac\transformed\camera-core-1.2.0-alpha01\AndroidManifest.xml:25:5-36:19
+MERGED from [androidx.camera:camera-core:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\b4c60426822a743509aad10f995888ac\transformed\camera-core-1.2.0-alpha01\AndroidManifest.xml:25:5-36:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:28:5-89
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:28:5-36:19
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:28:5-36:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:25:5-35:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\aefd4f65afd896c4864644f2e19283ae\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\aefd4f65afd896c4864644f2e19283ae\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\1bd697285ae9bd1ef88a679989134622\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\1bd697285ae9bd1ef88a679989134622\transformed\startup-runtime-1.1.1\AndroidManifest.xml:25:5-31:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:25:5-39:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:25:5-39:19
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\leeso\.gradle\caches\transforms-3\689e39ddf6b17a385254eded26448d2f\transformed\image-1.0.0-beta1\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\leeso\.gradle\caches\transforms-3\689e39ddf6b17a385254eded26448d2f\transformed\image-1.0.0-beta1\AndroidManifest.xml:7:5-20
+	android:extractNativeLibs
+		INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:30:9-35
+	android:label
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:28:9-41
+	android:fullBackupContent
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:26:9-54
+	android:roundIcon
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:29:9-54
+	tools:targetApi
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:32:9-29
+	android:icon
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:27:9-43
+	android:allowBackup
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:24:9-35
+	android:theme
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:31:9-48
+	android:dataExtractionRules
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:25:9-65
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:23:9-31
+activity#com.example.beyoureyes.LoadingActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:33:9-35:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:35:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:34:13-44
+activity#com.example.beyoureyes.FoodInfoNutritionPersonalizedActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:36:9-38:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:38:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:37:13-66
+activity#com.example.beyoureyes.FoodInfoNutritionActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:39:9-41:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:41:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:40:13-54
+activity#com.example.beyoureyes.FoodInfoAllergyPersonalizedActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:42:9-44:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:44:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:43:13-64
+activity#com.example.beyoureyes.FoodInfoAllergyActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:45:9-47:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:47:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:46:13-52
+activity#com.example.beyoureyes.FoodInfoAllPersonalizedActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:48:9-50:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:50:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:49:13-60
+activity#com.example.beyoureyes.CameraOcrproblemActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:51:9-53:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:53:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:52:13-53
+activity#com.example.beyoureyes.CameraFocusProblemActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:54:9-56:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:56:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:55:13-55
+activity#com.example.beyoureyes.FoodInfoAllActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:57:9-59:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:59:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:58:13-48
+activity#com.example.beyoureyes.TodayIntakeActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:60:9-62:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:62:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:61:13-48
+activity#com.example.beyoureyes.CameraFirstActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:63:9-65:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:65:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:64:13-48
+activity#com.example.beyoureyes.TodayIntakePersonalizedActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:66:9-68:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:68:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:67:13-60
+activity#com.example.beyoureyes.UserInfoActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:69:9-71:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:71:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:70:13-45
+activity#com.example.beyoureyes.UserInfoRegisterActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:72:9-74:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:74:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:73:13-53
+activity#com.example.beyoureyes.SplashActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:75:9-83:20
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:77:13-36
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:76:13-43
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:78:13-82:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:79:17-69
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:79:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:81:17-77
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:81:27-74
+activity#com.example.beyoureyes.HomeActivity
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:84:9-86:40
+	android:exported
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:86:13-37
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:85:13-41
+meta-data#com.google.mlkit.vision.DEPENDENCIES
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:98:9-100:42
+	android:value
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:100:13-39
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:99:13-64
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:93:13-95:54
+	android:resource
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:95:17-51
+	android:name
+		ADDED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml:94:17-67
+uses-sdk
+INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+MERGED from [:opencv] C:\Users\leeso\Desktop\OpenCV-android-sdk\sdk\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:opencv] C:\Users\leeso\Desktop\OpenCV-android-sdk\sdk\build\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:21:5-23:64
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:21:5-23:64
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\leeso\.gradle\caches\transforms-3\3d047ba4de9dbaaccbe45ae1517fa40f\transformed\recaptcha-18.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\leeso\.gradle\caches\transforms-3\3d047ba4de9dbaaccbe45ae1517fa40f\transformed\recaptcha-18.1.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.material:material:1.8.0] C:\Users\leeso\.gradle\caches\transforms-3\94fb6213c4890b1b38827bdc6fcbe43d\transformed\material-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.material:material:1.8.0] C:\Users\leeso\.gradle\caches\transforms-3\94fb6213c4890b1b38827bdc6fcbe43d\transformed\material-1.8.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\leeso\.gradle\caches\transforms-3\a130018d1a4760fed5984354da1ac60c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\leeso\.gradle\caches\transforms-3\a130018d1a4760fed5984354da1ac60c\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.camera:camera-view:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\a88384348e48ce3db6a3e5e60e915ae4\transformed\camera-view-1.2.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-view:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\a88384348e48ce3db6a3e5e60e915ae4\transformed\camera-view-1.2.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\leeso\.gradle\caches\transforms-3\d08294ee81b2aa0c826b065048450914\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\leeso\.gradle\caches\transforms-3\d08294ee81b2aa0c826b065048450914\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\leeso\.gradle\caches\transforms-3\09308e8c3ace60f87b501a22cb954664\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] C:\Users\leeso\.gradle\caches\transforms-3\09308e8c3ace60f87b501a22cb954664\transformed\appcompat-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\3a9ee82eb53795482c28ab42de446098\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\3a9ee82eb53795482c28ab42de446098\transformed\viewpager2-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f7ee717600df0f5aa21dbd2d0b4b48b6\transformed\play-services-mlkit-text-recognition-korean-16.0.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f7ee717600df0f5aa21dbd2d0b4b48b6\transformed\play-services-mlkit-text-recognition-korean-16.0.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] C:\Users\leeso\.gradle\caches\transforms-3\617e335c4fdc99dc7c239089bb3f69a2\transformed\play-services-auth-base-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-base:17.0.0] C:\Users\leeso\.gradle\caches\transforms-3\617e335c4fdc99dc7c239089bb3f69a2\transformed\play-services-auth-base-17.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:6:5-44
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\leeso\.gradle\caches\transforms-3\8fe49528bd528ba73a8e142523a6a7a2\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-database-collection:18.0.1] C:\Users\leeso\.gradle\caches\transforms-3\8fe49528bd528ba73a8e142523a6a7a2\transformed\firebase-database-collection-18.0.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\leeso\.gradle\caches\transforms-3\b7b100cd3a0031dfada19b230b487f10\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-appcheck-interop:17.0.1] C:\Users\leeso\.gradle\caches\transforms-3\b7b100cd3a0031dfada19b230b487f10\transformed\firebase-appcheck-interop-17.0.1\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\leeso\.gradle\caches\transforms-3\9a3fc0912132c8051ed3a14aebdc005d\transformed\play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-auth-api-phone:17.4.0] C:\Users\leeso\.gradle\caches\transforms-3\9a3fc0912132c8051ed3a14aebdc005d\transformed\play-services-auth-api-phone-17.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\leeso\.gradle\caches\transforms-3\0bf1b7110815c72fdefc71651b889f5e\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-auth-interop:20.0.0] C:\Users\leeso\.gradle\caches\transforms-3\0bf1b7110815c72fdefc71651b889f5e\transformed\firebase-auth-interop-20.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] C:\Users\leeso\.gradle\caches\transforms-3\6b772c34762cc2250cac607d96776a7a\transformed\vision-interfaces-16.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.mlkit:vision-interfaces:16.2.0] C:\Users\leeso\.gradle\caches\transforms-3\6b772c34762cc2250cac607d96776a7a\transformed\vision-interfaces-16.2.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\91eb6643f08972c9b0b6cde244bb40c7\transformed\integrity-1.1.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.play:integrity:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\91eb6643f08972c9b0b6cde244bb40c7\transformed\integrity-1.1.0\AndroidManifest.xml:4:5-44
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\leeso\.gradle\caches\transforms-3\6bdaa61ffadaa977626e68ca3babe10d\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\leeso\.gradle\caches\transforms-3\6bdaa61ffadaa977626e68ca3babe10d\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:4:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\67dcc41300f07dfa576e761b4416a20c\transformed\play-services-basement-18.1.0\AndroidManifest.xml:18:5-43
+MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\67dcc41300f07dfa576e761b4416a20c\transformed\play-services-basement-18.1.0\AndroidManifest.xml:18:5-43
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\leeso\.gradle\caches\transforms-3\aa82c1c28f7f814776ac3fcf0164a72e\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] C:\Users\leeso\.gradle\caches\transforms-3\aa82c1c28f7f814776ac3fcf0164a72e\transformed\fragment-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\leeso\.gradle\caches\transforms-3\0fcee882352ce3aefbdad2e53a0d2e42\transformed\activity-1.6.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.6.0] C:\Users\leeso\.gradle\caches\transforms-3\0fcee882352ce3aefbdad2e53a0d2e42\transformed\activity-1.6.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\e0c7eb523d99b268cf7af8465de7fd0e\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\e0c7eb523d99b268cf7af8465de7fd0e\transformed\dynamicanimation-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\730b0d71385cdd45dab6b5d48a83e415\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\730b0d71385cdd45dab6b5d48a83e415\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\68a14409c4b0c89ef7fcfc6b8e99ee7b\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\68a14409c4b0c89ef7fcfc6b8e99ee7b\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\77b61f5786515c5d48d453b14f6df01c\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\77b61f5786515c5d48d453b14f6df01c\transformed\lifecycle-viewmodel-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\394a5f39aca18421247faebf2b610fc5\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\394a5f39aca18421247faebf2b610fc5\transformed\lifecycle-viewmodel-savedstate-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.camera:camera-lifecycle:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\faebf1f111ebdc03442beb173de36fbc\transformed\camera-lifecycle-1.2.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-lifecycle:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\faebf1f111ebdc03442beb173de36fbc\transformed\camera-lifecycle-1.2.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-video:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\efe929b1a53160433e10fb5accfc68eb\transformed\camera-video-1.2.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-video:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\efe929b1a53160433e10fb5accfc68eb\transformed\camera-video-1.2.0-alpha01\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.camera:camera-core:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\b4c60426822a743509aad10f995888ac\transformed\camera-core-1.2.0-alpha01\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.camera:camera-core:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\b4c60426822a743509aad10f995888ac\transformed\camera-core-1.2.0-alpha01\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\033f48c81f243156f958815706fce687\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\033f48c81f243156f958815706fce687\transformed\emoji2-views-helper-1.2.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:21:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\a730edf4417fc017be65f997b9f3f569\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\a730edf4417fc017be65f997b9f3f569\transformed\drawerlayout-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\e5164ccaed03c2d3d96113dbdb69877c\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\e5164ccaed03c2d3d96113dbdb69877c\transformed\coordinatorlayout-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\c81a5fb338e89f4af85565474e2475bc\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\c81a5fb338e89f4af85565474e2475bc\transformed\transition-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\0cad7ff364be0da03f9f101c80c357e4\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\0cad7ff364be0da03f9f101c80c357e4\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\dbdd96373c05a4aedd69028587312186\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\dbdd96373c05a4aedd69028587312186\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f4906682cfef9b77860b662628aacd15\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f4906682cfef9b77860b662628aacd15\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\be576b9e0a0f597db103002f0230dab8\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\be576b9e0a0f597db103002f0230dab8\transformed\recyclerview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\5736a8f80441c262b2564f1fcbe5cf1b\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] C:\Users\leeso\.gradle\caches\transforms-3\5736a8f80441c262b2564f1fcbe5cf1b\transformed\customview-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\leeso\.gradle\caches\transforms-3\449f5381a3fb6184be81ff35783e16ca\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.browser:browser:1.4.0] C:\Users\leeso\.gradle\caches\transforms-3\449f5381a3fb6184be81ff35783e16ca\transformed\browser-1.4.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\43d4805d357d429cf4af672f537b4f40\transformed\core-ktx-1.9.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\43d4805d357d429cf4af672f537b4f40\transformed\core-ktx-1.9.0\AndroidManifest.xml:5:5-44
+MERGED from [com.github.PhilJay:MpAndroidChart:v3.1.0] C:\Users\leeso\.gradle\caches\transforms-3\c1bd9ac3a31e883c178e56bea6d0f200\transformed\MpAndroidChart-v3.1.0\AndroidManifest.xml:16:5-18:41
+MERGED from [com.github.PhilJay:MpAndroidChart:v3.1.0] C:\Users\leeso\.gradle\caches\transforms-3\c1bd9ac3a31e883c178e56bea6d0f200\transformed\MpAndroidChart-v3.1.0\AndroidManifest.xml:16:5-18:41
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] C:\Users\leeso\.gradle\caches\transforms-3\77c5919f49b2962f2fd7495cf0122f6c\transformed\firebase-encoders-json-17.1.0\AndroidManifest.xml:19:5-21:41
+MERGED from [com.google.firebase:firebase-encoders-json:17.1.0] C:\Users\leeso\.gradle\caches\transforms-3\77c5919f49b2962f2fd7495cf0122f6c\transformed\firebase-encoders-json-17.1.0\AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\f1b46111f8bbe04ef8d9183af6b45f55\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.savedstate:savedstate:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\f1b46111f8bbe04ef8d9183af6b45f55\transformed\savedstate-1.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6b31593a0e155291de9472247c617255\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6b31593a0e155291de9472247c617255\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\60b2e87fe6cd8cf821c3bed8e12ec9bd\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\60b2e87fe6cd8cf821c3bed8e12ec9bd\transformed\lifecycle-runtime-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\0cf0786650610ecff91fba1d52250ad1\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\0cf0786650610ecff91fba1d52250ad1\transformed\cardview-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\leeso\.gradle\caches\transforms-3\059fa561d2c6a3b140ad7e17a912b200\transformed\firebase-components-17.1.0\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\leeso\.gradle\caches\transforms-3\059fa561d2c6a3b140ad7e17a912b200\transformed\firebase-components-17.1.0\AndroidManifest.xml:18:5-20:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] C:\Users\leeso\.gradle\caches\transforms-3\586df2e599dab220997da10b8938f225\transformed\exifinterface-1.3.2\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.2] C:\Users\leeso\.gradle\caches\transforms-3\586df2e599dab220997da10b8938f225\transformed\exifinterface-1.3.2\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\aefd4f65afd896c4864644f2e19283ae\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\aefd4f65afd896c4864644f2e19283ae\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\1bd697285ae9bd1ef88a679989134622\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\1bd697285ae9bd1ef88a679989134622\transformed\startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\611a96320e4ca82598aadccbac17dfeb\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\611a96320e4ca82598aadccbac17dfeb\transformed\tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a80221f22df65acca09c7aea78429ce0\transformed\lifecycle-livedata-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a80221f22df65acca09c7aea78429ce0\transformed\lifecycle-livedata-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\98b906f1f8bf7062e7c6e5a9edb6b5ca\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.5.1] C:\Users\leeso\.gradle\caches\transforms-3\98b906f1f8bf7062e7c6e5a9edb6b5ca\transformed\lifecycle-livedata-core-2.5.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\leeso\.gradle\caches\transforms-3\2df7e298800e57b6f7b5ea84d93c51cb\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\leeso\.gradle\caches\transforms-3\2df7e298800e57b6f7b5ea84d93c51cb\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] C:\Users\leeso\.gradle\caches\transforms-3\d042ab8bdbe2cbc40df7994a9ed97568\transformed\transport-api-2.2.1\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.android.datatransport:transport-api:2.2.1] C:\Users\leeso\.gradle\caches\transforms-3\d042ab8bdbe2cbc40df7994a9ed97568\transformed\transport-api-2.2.1\AndroidManifest.xml:18:5-20:41
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\10651a2ded3a18f8379d54125ba4d395\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\10651a2ded3a18f8379d54125ba4d395\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\caa6d068880f933bed89323b49f811ad\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\caa6d068880f933bed89323b49f811ad\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\af1a8604d5222c1cf8ea0acd230f0bc1\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\af1a8604d5222c1cf8ea0acd230f0bc1\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\22ff68ab7c438cea77a3acf3bee2515e\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] C:\Users\leeso\.gradle\caches\transforms-3\22ff68ab7c438cea77a3acf3bee2515e\transformed\print-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\leeso\.gradle\caches\transforms-3\b4b9ea2ed490cd3348c8a1b4c9a4818d\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\leeso\.gradle\caches\transforms-3\b4b9ea2ed490cd3348c8a1b4c9a4818d\transformed\annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
+MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\leeso\.gradle\caches\transforms-3\e4eb2bc623ff53d82b272e10e4a98b8d\transformed\grpc-android-1.52.1\AndroidManifest.xml:5:5-7:41
+MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\leeso\.gradle\caches\transforms-3\e4eb2bc623ff53d82b272e10e4a98b8d\transformed\grpc-android-1.52.1\AndroidManifest.xml:5:5-7:41
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\leeso\.gradle\caches\transforms-3\689e39ddf6b17a385254eded26448d2f\transformed\image-1.0.0-beta1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.odml:image:1.0.0-beta1] C:\Users\leeso\.gradle\caches\transforms-3\689e39ddf6b17a385254eded26448d2f\transformed\image-1.0.0-beta1\AndroidManifest.xml:5:5-44
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f6e1f3334a4a34632b1cef9d04203d4a\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\leeso\.gradle\caches\transforms-3\f6e1f3334a4a34632b1cef9d04203d4a\transformed\protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
+	tools:overrideLibrary
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:23:9-61
+	android:targetSdkVersion
+		INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\leeso\Desktop\barrier_free\Beyoureyes_App\app\src\main\AndroidManifest.xml
+service#com.google.firebase.components.ComponentDiscoveryService
+ADDED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:8:9-14:19
+MERGED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:8:9-14:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:11:9-17:19
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:66:9-72:19
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:14:9-20:19
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:28:9-34:19
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:28:9-34:19
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:32:9-36:35
+MERGED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:32:9-36:35
+	android:exported
+		ADDED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:13:13-37
+	tools:targetApi
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:36:13-32
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:34:13-43
+	android:name
+		ADDED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:12:13-84
+meta-data#com.google.firebase.components:com.google.firebase.database.ktx.FirebaseDatabaseKtxRegistrar
+ADDED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:14:13-16:85
+	android:value
+		ADDED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:16:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-database-ktx:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\e6d99f82dc95c872625ba5afab0382f9\transformed\firebase-database-ktx-20.2.2\AndroidManifest.xml:15:17-124
+meta-data#com.google.firebase.components:com.google.firebase.storage.ktx.FirebaseStorageKtxRegistrar
+ADDED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:14:13-16:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:16:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage-ktx:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\036dff13f37819704e909ea5661510af\transformed\firebase-storage-ktx-20.2.1\AndroidManifest.xml:15:17-122
+meta-data#com.google.firebase.components:com.google.firebase.firestore.ktx.FirebaseFirestoreKtxRegistrar
+ADDED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore-ktx:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\495127017fa8329a18c8b161228fc0a5\transformed\firebase-firestore-ktx-24.8.1\AndroidManifest.xml:13:17-126
+meta-data#com.google.firebase.components:com.google.firebase.auth.ktx.FirebaseAuthKtxRegistrar
+ADDED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:11:13-13:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:13:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth-ktx:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\a0d1a163e4eed50d3552433b02c5cbec\transformed\firebase-auth-ktx-22.1.2\AndroidManifest.xml:12:17-116
+meta-data#com.google.firebase.components:com.google.firebase.ktx.FirebaseCommonKtxRegistrar
+ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:14:13-16:85
+	android:value
+		ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:16:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-common-ktx:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\841e6a01ae8a884f03c6e4d068303f64\transformed\firebase-common-ktx-20.3.3\AndroidManifest.xml:15:17-113
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:26:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\leeso\.gradle\caches\transforms-3\3d047ba4de9dbaaccbe45ae1517fa40f\transformed\recaptcha-18.1.2\AndroidManifest.xml:8:5-79
+MERGED from [com.google.android.recaptcha:recaptcha:18.1.2] C:\Users\leeso\.gradle\caches\transforms-3\3d047ba4de9dbaaccbe45ae1517fa40f\transformed\recaptcha-18.1.2\AndroidManifest.xml:8:5-79
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:10:5-79
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:24:5-79
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:25:5-79
+MERGED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:25:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:22:5-79
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:22:5-79
+MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\leeso\.gradle\caches\transforms-3\e4eb2bc623ff53d82b272e10e4a98b8d\transformed\grpc-android-1.52.1\AndroidManifest.xml:9:5-79
+MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\leeso\.gradle\caches\transforms-3\e4eb2bc623ff53d82b272e10e4a98b8d\transformed\grpc-android-1.52.1\AndroidManifest.xml:9:5-79
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:26:22-76
+activity#com.google.firebase.auth.internal.GenericIdpActivity
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:29:9-46:20
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:31:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:33:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:32:13-36
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:34:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:30:13-80
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:genericidp
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:35:13-45:29
+action#android.intent.action.VIEW
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:36:17-69
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:36:25-66
+category#android.intent.category.DEFAULT
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:38:17-76
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:38:27-73
+category#android.intent.category.BROWSABLE
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:39:17-78
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:39:27-75
+data
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:41:17-44:51
+	android:path
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:43:21-37
+	android:host
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:42:21-49
+	android:scheme
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:44:21-48
+activity#com.google.firebase.auth.internal.RecaptchaActivity
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:47:9-64:20
+	android:excludeFromRecents
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:49:13-46
+	android:launchMode
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:51:13-44
+	android:exported
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:50:13-36
+	android:theme
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:52:13-72
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:48:13-79
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:firebase.auth+data:path:/+data:scheme:recaptcha
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:53:13-63:29
+meta-data#com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar
+ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:69:13-71:85
+	android:value
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:71:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-auth:22.1.2] C:\Users\leeso\.gradle\caches\transforms-3\6421ad8331d5a2809adea7c154592e4b\transformed\firebase-auth-22.1.2\AndroidManifest.xml:70:17-109
+activity#com.google.android.gms.auth.api.signin.internal.SignInHubActivity
+ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:23:9-27:75
+	android:excludeFromRecents
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:25:13-46
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:26:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:27:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:24:13-93
+service#com.google.android.gms.auth.api.signin.RevocationBoundService
+ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:33:9-37:51
+	android:exported
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:35:13-36
+	android:visibleToInstantApps
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:37:13-48
+	android:permission
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:36:13-107
+	android:name
+		ADDED from [com.google.android.gms:play-services-auth:19.2.0] C:\Users\leeso\.gradle\caches\transforms-3\78253436e27a30f0c532901f751de7f7\transformed\play-services-auth-19.2.0\AndroidManifest.xml:34:13-89
+meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
+ADDED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:17:13-19:85
+	android:value
+		ADDED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:19:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-firestore:24.8.1] C:\Users\leeso\.gradle\caches\transforms-3\e6d99dde525dc77257a215e2e7a33c00\transformed\firebase-firestore-24.8.1\AndroidManifest.xml:18:17-111
+meta-data#com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar
+ADDED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:31:13-33:85
+	android:value
+		ADDED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:33:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-database:20.2.2] C:\Users\leeso\.gradle\caches\transforms-3\9a080f445f8977358ce52e871261d4d3\transformed\firebase-database-20.2.2\AndroidManifest.xml:32:17-109
+service#com.google.mlkit.common.internal.MlKitComponentDiscoveryService
+ADDED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:9:9-15:19
+MERGED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:15:9-23:19
+MERGED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:15:9-23:19
+	android:exported
+		ADDED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:11:13-37
+	tools:targetApi
+		ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:19:13-32
+	android:directBootAware
+		ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:17:13-43
+	android:name
+		ADDED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:10:13-91
+meta-data#com.google.firebase.components:com.google.mlkit.vision.text.internal.TextRegistrar
+ADDED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\leeso\.gradle\caches\transforms-3\6823faa989841f68fdce401ccfa3aa6b\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:13:17-114
+meta-data#com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar
+ADDED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:12:13-14:85
+	android:value
+		ADDED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:14:17-82
+	android:name
+		ADDED from [com.google.mlkit:vision-common:17.3.0] C:\Users\leeso\.gradle\caches\transforms-3\3230e9a0bf7576f995255919a91494e0\transformed\vision-common-17.3.0\AndroidManifest.xml:13:17-124
+provider#com.google.mlkit.common.internal.MlKitInitProvider
+ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:9:9-13:38
+	android:authorities
+		ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:11:13-69
+	android:exported
+		ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:12:13-37
+	android:initOrder
+		ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:13:13-35
+	android:name
+		ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:10:13-78
+meta-data#com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar
+ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:20:13-22:85
+	android:value
+		ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:22:17-82
+	android:name
+		ADDED from [com.google.mlkit:common:18.8.0] C:\Users\leeso\.gradle\caches\transforms-3\c6c3a419b325b67483ee494df0a9b688\transformed\common-18.8.0\AndroidManifest.xml:21:17-120
+meta-data#com.google.firebase.components:com.google.firebase.storage.StorageRegistrar
+ADDED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:32:13-34:85
+	android:value
+		ADDED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:34:17-82
+	android:name
+		ADDED from [com.google.firebase:firebase-storage:20.2.1] C:\Users\leeso\.gradle\caches\transforms-3\62305b577f1d4de2225e897cadd341bf\transformed\firebase-storage-20.2.1\AndroidManifest.xml:33:17-107
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\a8605e7f44b6660ce8180a10917172fe\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+provider#com.google.firebase.provider.FirebaseInitProvider
+ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:25:9-30:39
+	android:authorities
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:27:13-72
+	android:exported
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:29:13-37
+	android:directBootAware
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:28:13-43
+	android:initOrder
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:30:13-36
+	android:name
+		ADDED from [com.google.firebase:firebase-common:20.3.3] C:\Users\leeso\.gradle\caches\transforms-3\cbc567d1aedc068016f283746166d330\transformed\firebase-common-20.3.3\AndroidManifest.xml:26:13-77
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\67dcc41300f07dfa576e761b4416a20c\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\67dcc41300f07dfa576e761b4416a20c\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\leeso\.gradle\caches\transforms-3\67dcc41300f07dfa576e761b4416a20c\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+intent#action:name:androidx.camera.extensions.action.VENDOR_ACTION
+ADDED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:25:9-27:18
+action#androidx.camera.extensions.action.VENDOR_ACTION
+ADDED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:26:13-86
+	android:name
+		ADDED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:26:21-83
+uses-library#androidx.camera.extensions.impl
+ADDED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:31:9-33:40
+	android:required
+		ADDED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:33:13-37
+	android:name
+		ADDED from [androidx.camera:camera-extensions:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\e16f753ce7f1fb5c21dc8764057f4fe2\transformed\camera-extensions-1.2.0-alpha01\AndroidManifest.xml:32:13-59
+service#androidx.camera.core.impl.MetadataHolderService
+ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:26:9-35:19
+MERGED from [androidx.camera:camera-core:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\b4c60426822a743509aad10f995888ac\transformed\camera-core-1.2.0-alpha01\AndroidManifest.xml:31:9-35:78
+MERGED from [androidx.camera:camera-core:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\b4c60426822a743509aad10f995888ac\transformed\camera-core-1.2.0-alpha01\AndroidManifest.xml:31:9-35:78
+	tools:node
+		ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:31:13-31
+	android:enabled
+		ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:28:13-36
+	android:exported
+		ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:29:13-37
+	tools:ignore
+		ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:30:13-75
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:27:13-75
+meta-data#androidx.camera.core.impl.MetadataHolderService.DEFAULT_CONFIG_PROVIDER
+ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:32:13-34:89
+	android:value
+		ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:34:17-86
+	android:name
+		ADDED from [androidx.camera:camera-camera2:1.2.0-alpha01] C:\Users\leeso\.gradle\caches\transforms-3\8ab93f51356abb95a11846a2652f0476\transformed\camera-camera2-1.2.0-alpha01\AndroidManifest.xml:33:17-103
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:26:9-34:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\1bd697285ae9bd1ef88a679989134622\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\leeso\.gradle\caches\transforms-3\1bd697285ae9bd1ef88a679989134622\transformed\startup-runtime-1.1.1\AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] C:\Users\leeso\.gradle\caches\transforms-3\b1515e96981e106d84cc4f3d2f44a069\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+permission#com.example.beyoureyes.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+uses-permission#com.example.beyoureyes.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.9.0] C:\Users\leeso\.gradle\caches\transforms-3\95eb58e48ea837fc1104f4fd0bcdc47c\transformed\core-1.9.0\AndroidManifest.xml:26:22-94
+service#com.google.android.datatransport.runtime.backends.TransportBackendDiscovery
+ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:36:9-38:40
+MERGED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:36:9-38:40
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
+	android:name
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
+meta-data#backend:com.google.android.datatransport.cct.CctBackendFactory
+ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
+	android:value
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
+	android:name
+		ADDED from [com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\leeso\.gradle\caches\transforms-3\864027e95b81336c4511a1a29ef1e1b2\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\leeso\.gradle\caches\transforms-3\7d840e3e7e7b312e3afa218cd6d1919b\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+service#com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService
+ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:26:9-30:19
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:28:13-37
+	android:permission
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:29:13-69
+	android:name
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:27:13-117
+receiver#com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver
+ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:32:9-34:40
+	android:exported
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:34:13-37
+	android:name
+		ADDED from [com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\leeso\.gradle\caches\transforms-3\965333af8f77df8e20634dc4e0af25e6\transformed\transport-runtime-2.2.6\AndroidManifest.xml:33:13-132
