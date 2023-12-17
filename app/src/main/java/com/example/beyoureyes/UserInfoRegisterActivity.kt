@@ -12,7 +12,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.android.material.chip.Chip
 import android.content.Intent
+import android.widget.CompoundButton
 import android.widget.ImageButton
+import android.widget.Switch
 import android.widget.TextView
 import java.io.Serializable
 
@@ -25,6 +27,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
     private var clickedAllergic : MutableList<Boolean> = MutableList(21) { false }
     private val userDiseaseList : ArrayList<String> = arrayListOf()
     private val userAllergyList : ArrayList<String> = arrayListOf()
+    var userSex : Int = 0;
 
     private var userInfoCheck : Int = 0;
 
@@ -37,10 +40,13 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
         val age : EditText = findViewById(R.id.editAge)
 
+        val sexSwitch : Switch = findViewById(R.id.sexSwitch)
+
+        // 질환 칩
         val chip0 = findViewById<Chip>(R.id.chip0)
         val chip1 = findViewById<Chip>(R.id.chip1)
         val chip2 = findViewById<Chip>(R.id.chip2)
-
+        // 알러지 칩
         val chip00 = findViewById<Chip>(R.id.chip2_0)
         val chip01 = findViewById<Chip>(R.id.chip2_1)
         val chip02 = findViewById<Chip>(R.id.chip2_2)
@@ -119,6 +125,18 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 }
             }
 
+
+        //성별 정보 클릭 로직
+        sexSwitch.setOnCheckedChangeListener{ buttonView, isChecked ->
+            if(isChecked) {
+                //Toast.makeText(this@UserInfoRegisterActivity, "woman", Toast.LENGTH_LONG).show()
+                userSex == 0
+            }
+            else {
+                //Toast.makeText(this@UserInfoRegisterActivity, "man", Toast.LENGTH_LONG).show()
+                userSex == 1
+            }
+        }
 
         // 질환 정보 클릭 로직
         for (i in diseaseChips.indices) {
@@ -204,6 +222,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                         val userInfo = hashMapOf(
                             "userID" to userId,
                             "userAge" to age.text.toString().toInt(),
+                            "userSex" to userSex,
                             "userDisease" to userDiseaseList,
                             "userAllergic" to userAllergyList
                         )
@@ -220,6 +239,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                     val userInfo = hashMapOf(
                         "userID" to userId!!,
                         "userAge" to age.text.toString().toInt(),
+                        "userSex" to userSex,
                         "userDisease" to userDiseaseList,
                         "userAllergic" to userAllergyList
                     )

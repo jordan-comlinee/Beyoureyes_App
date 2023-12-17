@@ -41,8 +41,10 @@ class UserInfoActivity : AppCompatActivity() {
 
         val diseaseChipGroup = findViewById<ChipGroup> (R.id.diseaseChipGroup)
         val allergicChipGroup  = findViewById<ChipGroup>(R.id.allergyChipGroup)
+        var sex : Int = 2
 
         val infoAge = findViewById<TextView>(R.id.infoAge)
+        val infoSex = findViewById<TextView>(R.id.infoSex)
 
         val userInfoChangeButton = findViewById<Button>(R.id.userInfoChangeButton)
         val googleConnectButton = findViewById<Button>(R.id.googleConnectButton)
@@ -75,6 +77,12 @@ class UserInfoActivity : AppCompatActivity() {
                     Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
                     // Firestore에서 가져온 나이 정보 입력
                     infoAge.text = document.data.get("userAge").toString() + "세"
+                    sex = document.data.get("userSex").toString().toInt()
+                    when(sex) {
+                        0 -> infoSex.setText("여성")
+                        1 -> infoSex.setText("남성")
+                        2 -> infoSex.setText("정보가 없습니다. 추가해주세요!")
+                    }
                     val userDisease = document.data.get("userDisease") as ArrayList<String>
                     val userAllergic = document.data.get("userAllergic") as ArrayList<String>
                     // Firestore에서 가져온 질환 정보 입력
