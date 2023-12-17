@@ -192,7 +192,7 @@ class CameraFirstActivity : AppCompatActivity()  {
                             // 재촬영 요구 - intent 연결
 
                             val intent = Intent(this, CameraFocusProblemActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
-                            startActivity(intent) // 수진 수정함 - 합칠때 이부분 수정해야함
+                            startActivity(intent) // 수진 수정 합칠때 이부분 수정해야함
 
                         }else{
 

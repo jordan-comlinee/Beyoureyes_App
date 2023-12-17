@@ -25,6 +25,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
+    private lateinit var personalButton: Button
     val nutri = listOf("나트륨", "탄수화물", "ㄴ당류", "지방", "ㄴ포화지방", "콜레스테롤", "단백질")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -151,14 +152,14 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             val calorieText = "칼로리는 $modifiedKcalList 입니다."
             val nutrientsText = buildString {
                 for (i in koreanCharacterList.indices) {
-                    append("${koreanCharacterList[i]}은 ${moPercentList?.get(i)}g")
+                    append("${koreanCharacterList[i]}은 ${Percent?.get(i)}%")
                     if (i < koreanCharacterList.size - 1) {
                         append(", ")
                     }
                 }
             }
 
-            val textToSpeak = "안녕하세요! 영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 $nutrientsText 입니다. 다른 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요."
+            val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 $nutrientsText 입니다. 알레르기 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요."
             speak(textToSpeak)
         }
 
@@ -178,6 +179,12 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             val nutriTextView = findViewById<TextView>(resources.getIdentifier("line${i + 1}_label", "id", packageName))
             val nutriValue = nutri?.get(i) ?: "N/A"
             nutriTextView.text = "$nutriValue"
+        }
+
+        personalButton = findViewById(R.id.buttonPersonalized_nutri)
+        personalButton.setOnClickListener {
+            val intent = Intent(this, FoodInfoNutritionPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
+            startActivity(intent)
         }
 
     }
