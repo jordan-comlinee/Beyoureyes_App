@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -14,9 +15,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.ktx.firestore
@@ -32,12 +35,16 @@ class UserInfoActivity : AppCompatActivity() {
     private val userDiseaseList : ArrayList<String> = arrayListOf()
     private val userAllergyList : ArrayList<String> = arrayListOf()
 
-    private lateinit var mGoogleSignInClient: GoogleSignInClient
+    //google login을 위한 동작
+    private lateinit var client: GoogleSignInClient
+    private lateinit var auth: FirebaseAuth
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_info)
-        overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)
+        overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
 
         val diseaseChipGroup = findViewById<ChipGroup> (R.id.diseaseChipGroup)
         val allergicChipGroup  = findViewById<ChipGroup>(R.id.allergyChipGroup)
@@ -120,69 +127,57 @@ class UserInfoActivity : AppCompatActivity() {
             startActivity(intent)
         }
         //구글 계정 연동 버튼 클릭 시 적용
-         googleConnectButton.setOnClickListener {
 
-             // GoogleSignInOptions 설정
-             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                 .requestIdToken(getString(R.string.default_web_client_id))
-                 .requestEmail()
-                 .build()
+        auth = FirebaseAuth.getInstance()
 
-             // GoogleSignInClient 설정
-             mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        // Google 로그인 설정 초기화
+        setGoogleLogin()
 
-             // 구글 연동 버튼 초기화
-             val googleConnectButton: Button = findViewById(R.id.googleConnectButton)
-
-             // 구글 연동 버튼 클릭 리스너 설정
-             googleConnectButton.setOnClickListener {
-                 Log.d("INFO : ", "Google Connect Button Clicked")
-
-                 // 이미 익명 로그인이 성공한 상태에서 구글 로그인 시작
-                 startGoogleSignIn()
-             }
-         }
+        // Google 로그인 버튼 클릭 이벤트 처리
+        googleConnectButton.setOnClickListener {
+            // 로그인 요청
+            startActivityForResult(client.signInIntent, 1)
+        }
 
     }
-
-    private fun startGoogleSignIn() {
-        // 구글 로그인 인텐트 설정
-        val signInIntent = mGoogleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+    fun setGoogleLogin(){
+        // 요청 정보 옵션
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail().build()
+        client = GoogleSignIn.getClient(this, options)
     }
+
+    private fun firebaseAuthWithGoogle(idToken: String?) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this,
+                OnCompleteListener<AuthResult?> { task ->
+                    if (task.isSuccessful) {
+                        // 로그인 성공 시 여기에서 추가적인 작업 수행
+                        val user = auth.currentUser
+                        val email = user?.email
+                        val name = user?.displayName
+                        val photoUrl = user?.photoUrl
+                    }
+                })
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == 1) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleGoogleSignInResult(task)
+            var account: GoogleSignInAccount? = null
+            try {
+                account = task.getResult(ApiException::class.java)
+                firebaseAuthWithGoogle(account!!.idToken)
+            } catch (e: ApiException) {
+                Log.e("GoogleSignIn", "Google sign in failed", e)
+                Toast.makeText(this, "Failed Google Login", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
-    private fun handleGoogleSignInResult(completedTask: Task<GoogleSignInAccount>) {
-        try {
-            val account = completedTask.getResult(ApiException::class.java)
-            // Firebase 인증 객체 초기화
-            val auth = FirebaseAuth.getInstance()
-            // Firebase에 Google 로그인 정보로 인증
-            val credential = GoogleAuthProvider.getCredential(account.idToken, null)
-            auth.signInWithCredential(credential)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        Log.d("INFO : ", "Google 로그인 성공")
-                    } else {
-                        Log.e("ERROR : ", "Google 로그인 실패", task.exception)
-                    }
-                }
-
-        } catch (e: ApiException) {
-            Log.e("ERROR : ", "Google 로그인 실패", e)
-        }
-    }
-
-    companion object {
-        private const val RC_SIGN_IN = 9001
-    }
 
 }

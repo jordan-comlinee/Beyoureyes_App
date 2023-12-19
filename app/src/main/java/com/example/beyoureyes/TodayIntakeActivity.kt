@@ -1,11 +1,14 @@
 package com.example.beyoureyes
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -23,6 +26,9 @@ class TodayIntakeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_today_intake)
+
+        overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
+
         Log.d("TODAYINTAKE", "START")
         Toast.makeText(this@TodayIntakeActivity, "START", Toast.LENGTH_SHORT).show()
 
@@ -39,6 +45,23 @@ class TodayIntakeActivity : AppCompatActivity() {
         val fatPer = findViewById<TextView>(R.id.fatPer)
         val satFatPer = findViewById<TextView>(R.id.satFatPer)
         val sugerPer = findViewById<TextView>(R.id.sugerPer)
+
+
+        //toolBar
+        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
+        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
+        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
+        setSupportActionBar(toolBar)
+        //Toolbar에 앱 이름 표시 제거!!
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbarTitle.setText("오늘의 영양소 확인")
+
+        toolbarBackButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
+        }
+
 
         db.collection("userIntakeNutrition")
             .whereEqualTo("userID", userId)
