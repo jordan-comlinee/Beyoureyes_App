@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UserInfoActivity">
+
+  <include layout="@layout/toolbar_dafault" />
+
+
+  <ScrollView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:padding="24sp"
+      android:layout_weight="1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+      <TextView
+          android:id="@+id/ageText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="34sp"
+          android:text="나이"
+          android:textColor="@color/black"
+          style="@style/title3"/>
+
+      <TextView
+          android:id="@+id/infoAge"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="12sp"
+          android:minHeight="48dp"
+          android:textAlignment="center"
+          android:text="OO세"
+          android:textColor="@color/black"
+          style="@style/title2"/>
+
+      <TextView
+          android:id="@+id/sexText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="34sp"
+          android:text="성별"
+          android:textColor="@color/black"
+          style="@style/title3"/>
+
+      <TextView
+          android:id="@+id/infoSex"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="12sp"
+          android:fontFamily="@font/pretendard500"
+          android:minHeight="48dp"
+          android:textAlignment="center"
+          android:textColor="@color/black"
+          android:textSize="24sp" />
+
+
+      <TextView
+          android:id="@+id/diseaseText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="12sp"
+          android:text="질환 정보"
+          android:textColor="@color/black"
+          style="@style/title3" />
+
+      <com.google.android.material.chip.ChipGroup
+          android:id="@+id/diseaseChipGroup"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="12sp"
+          app:chipSpacingHorizontal="12dp"
+          app:singleLine="true"
+          style="@style/title3">
+
+      </com.google.android.material.chip.ChipGroup>
+
+      <TextView
+          android:id="@+id/allergicText"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="12sp"
+          android:text="알레르기 정보"
+          android:textColor="@color/black"
+          style="@style/title3" />
+
+      <com.google.android.material.chip.ChipGroup
+          android:id="@+id/allergyChipGroup"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:layout_marginTop="12sp"
+          app:chipSpacingHorizontal="12dp"
+          app:singleLine="false"
+          style="@style/title3">
+
+      </com.google.android.material.chip.ChipGroup>
+
+    </LinearLayout>
+  </ScrollView>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      android:layout_marginBottom="16sp"
+      android:layout_marginLeft="16sp"
+      android:layout_marginRight="16sp">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/googleConnectButton"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        android:layout_weight="1"
+        android:layout_marginEnd="6sp"
+        android:background="@drawable/button_highlight"
+        android:fontFamily="@font/pretendard700"
+        android:text="계정 연동"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/userInfoChangeButton"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        android:layout_weight="1"
+        android:layout_marginStart="6sp"
+        android:background="@drawable/button_highlight"
+        android:fontFamily="@font/pretendard700"
+        android:text="수정하기"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+  </LinearLayout>
+
+</LinearLayout>

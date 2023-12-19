@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "39610226410",
+    "firebase_url": "https://beyoureyes-dna-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "beyoureyes-dna",
+    "storage_bucket": "beyoureyes-dna.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39610226410:android:e346d80fa34a9388ec6993",
+        "android_client_info": {
+          "package_name": "com.example.beyoureyes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39610226410-poi4c8cki6crklhes39dvc3kd41nnblj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.beyoureyes",
+            "certificate_hash": "8fc8204ef90b7d18d505f008c0a4853fc4431c44"
+          }
+        },
+        {
+          "client_id": "39610226410-qcs7as5q3jurlaqdk7gj5kilec2tj6u8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.beyoureyes",
+            "certificate_hash": "43b7c5d8ab11f0b6d0ad2e92fa0fdaf9ae8195ee"
+          }
+        },
+        {
+          "client_id": "39610226410-ole4b27oudmh6098eko824kldgn1rodu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWEROIVKU2AfaQyrrRtaSSxuak_nJ8YhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39610226410-ole4b27oudmh6098eko824kldgn1rodu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
