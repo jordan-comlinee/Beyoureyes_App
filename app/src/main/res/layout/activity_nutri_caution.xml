@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NutriCautionActivity">
+
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/toolbar_dafault" />
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/title3"
+                android:textColor="@color/black"
+                android:text="당신의 안식 1차 버전은\n다음 정보를 제공합니다." />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text2"
+                android:textColor="@color/highlight"
+                android:text="아래 유의 사항을 확인해주세요." />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text1"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:textColor="@color/black"
+                android:text="1. 영양성분 중 총 7가지의 정보를\n지원합니다." />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text2"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:textColor="@color/highlight"
+                android:text="-제공하는 영양성분-\n\n나트륨, 탄수화물, 당류, 지방, 포화지방, 콜레스테롤, 단백질" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text2"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:textColor="@color/black"
+                android:text="⚠ 해당 외의 영영성분이 표시되어있는 \n영양성분표는 인식되지 않습니다." />
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text2"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:textColor="@color/black"
+                android:text="2. 아래와 같은 (g당 + 총 내용량당)\n영양성분표는 현재 제공하지 않습니다." />
+
+            <ImageView
+                android:id="@+id/imageView24"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:src="@drawable/nutricaution1" />
+
+            <ImageView
+                android:id="@+id/imageView25"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:src="@drawable/nutricaution2"
+                android:layout_marginBottom="90dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/gradientView"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttoncamera"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="다음"
+        style="@style/title3"
+        android:background="@drawable/button_highlight"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/gradientView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

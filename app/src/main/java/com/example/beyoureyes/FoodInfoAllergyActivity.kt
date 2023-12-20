@@ -89,7 +89,7 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
 
                 // Chip 뷰의 크기 및 여백 설정
                 val params = ChipGroup.LayoutParams(
-                    220, // 넓이 80
+                    250, // 넓이 80
                     150  // 높이 50
                 )
                 params.setMargins(8, 8, 8, 8) // 여백을 8로..

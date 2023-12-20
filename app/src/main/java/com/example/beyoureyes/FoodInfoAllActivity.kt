@@ -94,7 +94,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
                 // Chip 뷰의 크기 및 여백 설정
                 val params = ChipGroup.LayoutParams(
-                    220, // 넓이 80
+                    250, // 넓이 80
                     150  // 높이 50
                 )
                 params.setMargins(8, 8, 8, 8) // 여백을 8로..
@@ -187,7 +187,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
             val allergyText = "이 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다."
 
-            val textToSpeak = "영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 $nutrientsText 입니다."
+            val textToSpeak = "영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다."
             speak(textToSpeak)
         }
 

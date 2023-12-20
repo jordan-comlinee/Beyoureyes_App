@@ -1,21 +1,16 @@
 package com.example.beyoureyes
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.play.integrity.internal.e
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
@@ -37,7 +32,8 @@ class LoadingActivity : AppCompatActivity() {
         KoreanTextRecognizerOptions.Builder().build()
     ) // 한글 텍스트 인식 인스턴스 생성
     private val pickImage = 100 // 이미지 선택 요청 코드
-    private val koreanCharactersSet = mutableSetOf<String>() // 한글 문자를 담을 Set, 중복 피하기 위해 Set 자료구조 활용
+    private val koreanCharactersList = mutableListOf<String>() // 한글 문자를 담을 Set, 중복 피하기 위해 Set 자료구조 활용
+    private var koreanCharactersListmodi = mutableListOf<String>()
     private val gList = mutableListOf<String>() // "숫자" + "g/mg" 를 담을 List
     private val percentList = mutableListOf<String>() // "숫자" + "%"를 담을 List
     private val kcalList = mutableListOf<String>() // "kcal"와 "g 당"을 담을 List
@@ -78,7 +74,7 @@ class LoadingActivity : AppCompatActivity() {
 
             val isValidData = isValidData()
             val isValidAllergyData = isValidData_alergy()
-            val hasValidKeywordOrder = checkKeywordOrder(koreanCharactersSet)
+            val hasValidKeywordOrder = checkKeywordOrder(koreanCharactersListmodi)
             val isValidPercentData = isValidData_per()
 
             when {
@@ -140,30 +136,31 @@ class LoadingActivity : AppCompatActivity() {
     }
 
     // 한글 키워드의 순서 확인하는 함수
-    private fun checkKeywordOrder(keywordSet: Set<String>): Boolean {
-        val targetKeywords = listOf("나트", "탄수화", "지방", "당류", "트랜스", "포화지방", "콜레스", "단백질")
-        val keywordList = keywordSet.toList()
+    private fun checkKeywordOrder(keywordList: List<String>): Boolean {
+        val targetKeywords = listOf("나트", "탄수화", "당류", "지방", "트랜스", "포화", "콜레스", "단백질")
+
+
+        textView.append(keywordList.toString())
 
         var targetIndex = 0
         for (keyword in keywordList) {
-            val partialMatch = targetKeywords.any { keyword.contains(it) }
-            if (partialMatch) {
+            val matchingKeyword = targetKeywords.getOrNull(targetIndex)
+            if (matchingKeyword != null && keyword.contains(matchingKeyword)) {
                 targetIndex++
             }
 
             if (targetIndex == targetKeywords.size) {
-                // 모든 키워드가 순서대로 나타났으면 true 반환
+                textView.append("true")
                 return true
             }
         }
 
-        // 여기까지 왔다면 순서가 일치하지 않음
         return false
     }
 
     private fun isValidData(): Boolean { // 퍼센트와 칼로리 유효성 판단
 
-        return percentList.size == 7 && kcalList.size == 1 && percentList.all { it.isNotEmpty() } && kcalList.all { it.isNotEmpty() } && koreanCharactersSet.all { it.isNotEmpty() }
+        return percentList.size == 7 && kcalList.size == 1 && percentList.all { it.isNotEmpty() } && kcalList.all { it.isNotEmpty() } && koreanCharactersListmodi.all { it.isNotEmpty() }
     }
 
     private fun isValidData_alergy(): Boolean { // 알레르기 유효성 판단
@@ -193,7 +190,8 @@ class LoadingActivity : AppCompatActivity() {
     private fun detectTextInBitmap(bitmap: Bitmap) {
         try {
             // 새 이미지를 처리하기 전에 세트와 리스트를 초기화!
-            koreanCharactersSet.clear()
+            koreanCharactersList.clear()
+            koreanCharactersListmodi.clear()
             gList.clear()
             percentList.clear()
 
@@ -250,7 +248,7 @@ class LoadingActivity : AppCompatActivity() {
                                 for (keyword in keywords) {
                                     if (elementText.contains(keyword)) {
                                         // 키워드를 한글 문자 Set에 추가
-                                        koreanCharactersSet.add(elementText)
+                                        koreanCharactersList.add(elementText)
                                         // replaceKoreanCharacters(koreanCharactersSet)
                                     }
                                 }
@@ -277,8 +275,10 @@ class LoadingActivity : AppCompatActivity() {
                     }
                     // 이미지 처리 후에 결과를 출력
                     showResults()
+                    koreanCharactersListmodi = koreanCharactersList.distinct().toMutableList()
+                    koreanCharactersListmodi = koreanCharactersListmodi.map { it.replace(Regex("[^가-힣]"), "") }.toMutableList()
                     runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
-                        textView.append("$koreanCharactersSet\n")
+                        textView.append("$koreanCharactersListmodi\n")
                         textView.append("$percentList\n")
                     }
 
