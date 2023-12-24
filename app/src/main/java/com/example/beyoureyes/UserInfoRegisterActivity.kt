@@ -256,7 +256,6 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
     }
 
-
     private fun sendData(userInfo : HashMap<String, Serializable>, collectionName : String){
         val db = Firebase.firestore
         db.collection(collectionName)
@@ -268,6 +267,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 Log.w("REGISTERFIRESTORE :", "Error adding document", e)
             }
     }
+
 
 
     private fun deleteData(userId: String, collectionName: String, onSuccess: () -> Unit) {

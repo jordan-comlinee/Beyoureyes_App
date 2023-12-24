@@ -52,14 +52,12 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-storage-ktx")
     implementation("com.google.firebase:firebase-firestore:24.7.1")
-    implementation ("com.google.android.gms:play-services-auth:19.0.0")
-
     // 익명 계정을 위한 dependency 추가
     // Import the BoM for the Firebase platform
-    implementation(platform("com.google.firebase:firebase-bom:27.1.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
     implementation("com.google.firebase:firebase-firestore-ktx")
     // google login
-    implementation ("com.google.android.gms:play-services-auth:19.0.0")
+    implementation ("com.google.android.gms:play-services-auth:19.2.0")
     // Add the dependency for the Firebase Authentication library
     // When using the BoM, you don't specify versions in Firebase library dependencies
     implementation("com.google.firebase:firebase-auth-ktx")
@@ -68,7 +66,7 @@ dependencies {
     implementation("com.github.PhilJay:MpAndroidChart:v3.1.0")
 
     //openCV
-    implementation(project(":opencv"))
+    //implementation(project(":opencv"))
 
     implementation ("com.google.android.gms:play-services-mlkit-text-recognition-common:17.0.0")
     implementation ("com.google.android.material:material:1.6.0")

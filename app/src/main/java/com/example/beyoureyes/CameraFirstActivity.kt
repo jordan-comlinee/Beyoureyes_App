@@ -21,13 +21,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+/*
 import org.opencv.android.OpenCVLoader
 import org.opencv.android.Utils
 import org.opencv.core.Core
 import org.opencv.core.CvType
 import org.opencv.core.Mat
-
 import org.opencv.imgproc.Imgproc
+*/
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -70,7 +71,7 @@ class CameraFirstActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_first)
-
+        /*
         // 카메라
         val camera = findViewById<Button>(R.id.buttoncamera)
         camera.setOnClickListener {
@@ -252,6 +253,7 @@ class CameraFirstActivity : AppCompatActivity()  {
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
             //Log.d(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]); }
         }
+    */
     }
 
 }

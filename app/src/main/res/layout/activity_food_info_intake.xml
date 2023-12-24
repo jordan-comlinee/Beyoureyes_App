@@ -4,10 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/alert_dialog_shape">
 
-    <com.github.mikephil.charting.charts.PieChart
-        android:id="@+id/pieChartScanSuccess2"
+    <com.github.mikephil.charting.charts.HorizontalBarChart
+        android:id="@+id/horizontalChartIntake"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="44dp"
@@ -18,7 +19,7 @@
         app:layout_constraintWidth_percent="0.4" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button1"
+        android:id="@+id/buttonAll"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
@@ -27,13 +28,13 @@
         android:background="@drawable/button_default"
         android:textColor="@color/black"
         style="@style/title3"
-        app:layout_constraintBottom_toTopOf="@id/button2"
-        app:layout_constraintStart_toEndOf="@id/pieChartScanSuccess2"
-        app:layout_constraintTop_toTopOf="@id/pieChartScanSuccess2"
+        app:layout_constraintBottom_toTopOf="@id/buttonLot"
+        app:layout_constraintStart_toEndOf="@id/horizontalChartIntake"
+        app:layout_constraintTop_toTopOf="@id/horizontalChartIntake"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button2"
+        android:id="@+id/buttonLot"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
@@ -42,14 +43,14 @@
         android:textColor="@color/black"
         style="@style/title3"
         android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toTopOf="@id/button3"
-        app:layout_constraintStart_toEndOf="@id/pieChartScanSuccess2"
-        app:layout_constraintTop_toBottomOf="@id/button1"
+        app:layout_constraintBottom_toTopOf="@id/buttonHalf"
+        app:layout_constraintStart_toEndOf="@id/horizontalChartIntake"
+        app:layout_constraintTop_toBottomOf="@id/buttonAll"
         app:layout_constraintVertical_chainStyle="packed" />
 
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button3"
+        android:id="@+id/buttonHalf"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
@@ -58,13 +59,13 @@
         android:background="@drawable/button_default"
         android:textColor="@color/black"
         style="@style/title3"
-        app:layout_constraintBottom_toTopOf="@id/button4"
-        app:layout_constraintStart_toEndOf="@id/pieChartScanSuccess2"
-        app:layout_constraintTop_toBottomOf="@id/button2"
+        app:layout_constraintBottom_toTopOf="@id/buttonLittle"
+        app:layout_constraintStart_toEndOf="@id/horizontalChartIntake"
+        app:layout_constraintTop_toBottomOf="@id/buttonLot"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button4"
+        android:id="@+id/buttonLittle"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
@@ -73,13 +74,13 @@
         android:textColor="@color/black"
         style="@style/title3"
         android:layout_marginTop="50dp"
-        app:layout_constraintBottom_toBottomOf="@id/pieChartScanSuccess2"
-        app:layout_constraintStart_toEndOf="@id/pieChartScanSuccess2"
-        app:layout_constraintTop_toBottomOf="@id/button3"
+        app:layout_constraintBottom_toBottomOf="@id/horizontalChartIntake"
+        app:layout_constraintStart_toEndOf="@id/horizontalChartIntake"
+        app:layout_constraintTop_toBottomOf="@id/buttonHalf"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button16"
+        android:id="@+id/buttonBack"
         android:layout_width="154sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
@@ -89,12 +90,12 @@
         android:textColor="@color/white"
         style="@style/title3"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button17"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSend"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button17"
+        android:id="@+id/buttonSend"
         android:layout_width="154sp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="40dp"
@@ -110,7 +111,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="24dp"
         android:text="얼마나 드셨나요?"
         style="@style/title2"
         android:textColor="@color/black"
