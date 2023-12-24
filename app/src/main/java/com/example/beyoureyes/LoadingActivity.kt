@@ -72,6 +72,8 @@ class LoadingActivity : AppCompatActivity() {
 
         btn.setOnClickListener {
 
+            textView.append(moPercentList.toString())
+
             val isValidData = isValidData()
             val isValidAllergyData = isValidData_alergy()
             val hasValidKeywordOrder = checkKeywordOrder(koreanCharactersListmodi)
@@ -391,7 +393,7 @@ class LoadingActivity : AppCompatActivity() {
 }
 
 
-// % 를 이용하여 g을 계산
+// % 를 이용하여 g으로 계산  -> mg으로 수정했는데 소영이한테 확인해보기!
 private fun modiPercentList(percentList: List<String>): List<String> {
     if (percentList.size != 7) {
         // 퍼센트 리스트의 길이가 7이 아니면 빈 리스트를 반환
@@ -401,12 +403,12 @@ private fun modiPercentList(percentList: List<String>): List<String> {
     val modifiedList = percentList.mapIndexed { index, percent ->
         val modifiedPercent = when (index) {
             0 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 2000).toInt().toString()
-            1 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 324).toInt().toString()
-            2 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 100).toInt().toString()
-            3 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 54).toInt().toString()
-            4 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 15).toInt().toString()
+            1 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 324 * 1000).toInt().toString()
+            2 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 100 * 1000).toInt().toString()
+            3 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 54 * 1000).toInt().toString()
+            4 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 15 * 1000).toInt().toString()
             5 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 300).toInt().toString()
-            6 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 55).toInt().toString()
+            6 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 55 * 1000).toInt().toString()
 
             else -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 2000).toInt().toString() // 그냥 한 값
         }

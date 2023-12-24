@@ -111,7 +111,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         filmButton.setOnClickListener {
-            val intent = Intent(this, CameraFirstActivity::class.java)
+           // val intent = Intent(this, CameraFirstActivity::class.java)
+            val intent = Intent(this, NutriCautionActivity::class.java)
             startActivity(intent)
         }
 
