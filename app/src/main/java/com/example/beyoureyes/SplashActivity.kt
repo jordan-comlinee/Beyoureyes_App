@@ -43,9 +43,8 @@ class SplashActivity : AppCompatActivity() {
         if (currentUser != null) {
             //Toast.makeText(this@SplashActivity, "이미 가입한 유저", Toast.LENGTH_LONG).show()
             userId = currentUser.uid
-            val userIdClass = application as userId
-            userIdClass.userId = userId
-            Log.d("USERID : ", userId)
+            userIdSingleton.userId = userId
+            Log.d("GOOGLE : ", userIdSingleton.userId.toString()+"  INIT")
             //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
         }
@@ -70,9 +69,8 @@ class SplashActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     // 과연 절대로 null이 아닐까?
                     userId = user!!.uid
-                    val userIdClass = application as userId
-                    userIdClass.userId = userId
-                    Log.d("USERID : ", userId)
+                    userIdSingleton.userId = userId
+                    Log.d("GOOGLE : ", userIdSingleton.userId.toString()+"  INIT")
                     //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
                     updateUI(user)
                 } else {

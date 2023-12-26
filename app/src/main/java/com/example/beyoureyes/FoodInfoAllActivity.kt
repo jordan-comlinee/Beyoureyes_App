@@ -18,6 +18,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -32,6 +33,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.io.Serializable
 import java.util.Locale
 
 class FoodInfoAllActivity : AppCompatActivity() {
@@ -56,6 +58,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
         //Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("영양 분석 결과")
+
 
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
@@ -220,7 +223,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
         //eatButton
 
         eatButton.setOnClickListener{
-            val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_food_info_intake, null)
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_intake, null)
 
             val builder = AlertDialog.Builder(this@FoodInfoAllActivity)
             var ratio : Double = 0.0
@@ -236,9 +239,16 @@ class FoodInfoAllActivity : AppCompatActivity() {
             val buttonBack : Button = dialogView.findViewById(R.id.buttonBack)
             val buttonSend : Button = dialogView.findViewById(R.id.buttonSend)
 
+            val horizontalChartIntake : BarChart = dialogView.findViewById(R.id.horizontalChartIntake)
+
             buttonBack.setOnClickListener {
                 alertDialog.dismiss()
             }
+
+            // 바 차트의 데이터 설정
+            val entries = arrayListOf<BarEntry>()
+            entries.add(BarEntry(0f, 0f))
+            applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
 
             moPercentList?.add("1")
             moPercentList?.add("2")
@@ -247,18 +257,26 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
             buttonAll.setOnClickListener {
                 ratio = 1.0
+                entries.add(BarEntry(0f, 100f))
+                applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
                 Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonLot.setOnClickListener {
                 ratio = 0.75
+                entries.add(BarEntry(0f, 75f))
+                applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
                 Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonHalf.setOnClickListener {
                 ratio = 0.5
+                entries.add(BarEntry(0f, 50f))
+                applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
                 Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonLittle.setOnClickListener {
                 ratio = 0.25
+                entries.add(BarEntry(0f, 25f))
+                applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
                 Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
 
@@ -279,12 +297,12 @@ class FoodInfoAllActivity : AppCompatActivity() {
                     )
 
                     Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
-                    //sendData(nutriData, "userIntakeNutrition")
+                    sendData(nutriData, "userIntakeNutrition")
                 }
             }
 
             alertDialog.show()
-        }
+        }//alertDialog
 
 
 
@@ -306,7 +324,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
         xAxis.valueFormatter = IndexAxisValueFormatter(labels)
         xAxis.setDrawGridLines(false)
         xAxis.setPosition(XAxis.XAxisPosition.TOP_INSIDE)
-        xAxis.setEnabled(true)
+        xAxis.setEnabled(false)
         xAxis.setDrawAxisLine(false)
 
         val yLeft = barChart.axisLeft
@@ -322,6 +340,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
         // 바 차트의 다양한 설정 (예시)
         //barChart.setOnChartValueSelectedListener(null) // 클릭 이벤트 비활성화
         barChart.description.isEnabled = false  // 설명 삭제
+        barChart.setPinchZoom(false)
         barChart.setDrawValueAboveBar(false) // 위에 값 표시 삭제
         barChart.legend.isEnabled = false // 레전드 삭제
         barChart.description.isEnabled = false // 차트의 설명 비활성화
@@ -351,10 +370,10 @@ class FoodInfoAllActivity : AppCompatActivity() {
         barChart.invalidate()
     } // applyBarChart
 
-    private fun sendData(userInfo: HashMap<String, Any>, collectionName: String){
+    private fun sendData(foodInfo: HashMap<String, Serializable>, collectionName: String){
         val db = Firebase.firestore
         db.collection(collectionName)
-            .add(userInfo)
+            .add(foodInfo)
             .addOnSuccessListener { documentReference ->
                 Log.d("REGISTERFIRESTORE :", "SUCCESS added with ID: ${documentReference.id}")
             }

@@ -92,14 +92,11 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                                     chip16, chip17, chip18, chip19, chip20)
 
 
-        val userIdClass: userId = application as userId
-        val userId = userIdClass.userId
-
         // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
         val db = Firebase.firestore
         // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
         db.collection("userInfo")
-            .whereEqualTo("userID", userId)
+            .whereEqualTo("userID", userIdSingleton.userId)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -212,15 +209,17 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
                 Log.d("LIST: ", userDiseaseList.toString())
                 Log.d("LIST: ", userAllergyList.toString())
+                Log.d("LIST: ", userIdSingleton.userId.toString())
+                Log.d("LIST: ", age.text.toString())
 
                 // 기존 유저 정보가 있다면 삭제
                 if(userInfoCheck == 1) {
                     Log.d("REGISTERFIRESTORE : ", "DELETE START")
-                    deleteData(userId!!, "userInfo") {
+                    deleteData(userIdSingleton.userId!!, "userInfo") {
                         // 삭제가 완료되면 이 블록이 실행됨
                         // 여기에서 sendData 함수 호출
                         val userInfo = hashMapOf(
-                            "userID" to userId,
+                            "userID" to userIdSingleton.userId!!,
                             "userAge" to age.text.toString().toInt(),
                             "userSex" to userSex,
                             "userDisease" to userDiseaseList,
@@ -237,7 +236,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 else {
                     // 유저 정보가 없는 경우에는 바로 sendData 함수 호출
                     val userInfo = hashMapOf(
-                        "userID" to userId!!,
+                        "userID" to userIdSingleton.userId!!,
                         "userAge" to age.text.toString().toInt(),
                         "userSex" to userSex,
                         "userDisease" to userDiseaseList,
@@ -252,6 +251,11 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 }
 
             }
+        }
+
+        // 취소 버튼 클릭 시
+        usrInfoRegiCancelButton.setOnClickListener {
+            onBackPressed()
         }
 
     }

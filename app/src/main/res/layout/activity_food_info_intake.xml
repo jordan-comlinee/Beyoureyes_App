@@ -4,12 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="600dp"
     android:background="@drawable/alert_dialog_shape">
 
-    <com.github.mikephil.charting.charts.HorizontalBarChart
+    <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/horizontalChartIntake"
-        android:layout_width="0dp"
+        android:layout_width="100dp"
         android:layout_height="0dp"
         android:layout_marginStart="44dp"
         app:layout_constraintBottom_toBottomOf="parent"

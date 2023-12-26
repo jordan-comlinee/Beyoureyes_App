@@ -5,3 +5,7 @@ import android.app.Application
 class userId : Application() {
     var userId: String? = null
 }
+
+object userIdSingleton {
+    var userId : String? = null
+}

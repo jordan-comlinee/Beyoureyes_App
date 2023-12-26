@@ -44,16 +44,12 @@ class HomeActivity : AppCompatActivity() {
         val motionLayout = findViewById<MotionLayout>(R.id.home_motionLayout)
         val desiredPadding = calculateDesiredPadding(screenHeight)
         motionLayout.setPadding(48, desiredPadding, 48, desiredPadding)
-
-        // 파이어베이스 테스트용
-        val userIdClass = application as userId
-        val userId = userIdClass.userId
-        if (userId != null) {
+        if (userIdSingleton.userId != null) {
             // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
             val db = Firebase.firestore
             // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
             db.collection("userInfo")
-                .whereEqualTo("userID", userId)
+                .whereEqualTo("userID", userIdSingleton.userId)
                 .get()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -90,13 +86,13 @@ class HomeActivity : AppCompatActivity() {
 
         // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
         userInfoButton.setOnClickListener {
-            if (userInfoCheck == 1) {
+            if (userInfoCheck == 1) {   // userInfo가 있는 경우
                 val intent = Intent(this, UserInfoActivity::class.java)
                 Log.d("HOMEFIRESTORE : ", "success_1")
                 //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
-            else if (userInfoCheck == -1){
+            else if (userInfoCheck == -1){ //userInfo가 없는 경우
                 val intent = Intent(this, UserInfoRegisterActivity::class.java)
                 Log.d("HOMEFIRESTORE : ", "success_-1")
                 //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
@@ -109,17 +105,17 @@ class HomeActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-
+        // 촬영하기 버튼
         filmButton.setOnClickListener {
             val intent = Intent(this, FoodInfoAllActivity::class.java)
             startActivity(intent)
         }
-
+        // 오늘 섭취한 영양소 확인하기 버튼
         todayIntakeButton.setOnClickListener {
             val intent = Intent(this, TodayIntakeActivity::class.java)
             startActivity(intent)
         }
-
+        // 나가기 버튼
         exitButton.setOnClickListener{
             val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_default, null)
 
