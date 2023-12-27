@@ -13,15 +13,9 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.text.Spannable
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
 import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -74,21 +68,6 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_focus_problem)
 
-        //toolBar
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-        setSupportActionBar(toolBar)
-        //Toolbar에 앱 이름 표시 제거!!
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("다시 촬영해주세요")
-
-        toolbarBackButton.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
-        }
-
         // 카메라
         val camera = findViewById<Button>(R.id.buttoncamera)
         camera.setOnClickListener {
@@ -101,12 +80,6 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
 
         //openCV
         OpenCVLoader.initDebug()
-
-        // Kotlin 코드에서 해당 TextView를 찾아서 SpannableString을 사용하여 스타일을 적용
-        val textView = findViewById<TextView>(R.id.textView5)
-        val spannable = SpannableString("⚠ 글자 인식에 실패했습니다.")
-        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spannable
 
     }
 

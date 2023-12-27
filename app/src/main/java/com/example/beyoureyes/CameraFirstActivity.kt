@@ -14,6 +14,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
@@ -21,6 +22,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -73,6 +76,7 @@ class CameraFirstActivity : AppCompatActivity()  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera_first)
+
 
         //toolBar
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
@@ -194,6 +198,7 @@ class CameraFirstActivity : AppCompatActivity()  {
                             val intent = Intent(this, CameraFocusProblemActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
                             startActivity(intent) // 수진 수정 합칠때 이부분 수정해야함
 
+
                         }else{
 
                             val intent = Intent(this, LoadingActivity::class.java)
@@ -268,9 +273,11 @@ class CameraFirstActivity : AppCompatActivity()  {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        //Log.d(TAG, "onRequestPermissionsResult");
+
+        Log.d("camera Activity", "onRequestPermissionsResult");
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            //Log.d(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]); }
+            Log.d("camera Activity",
+                "Permission: " + permissions[0] + "was " + grantResults[0])
         }
     }
 

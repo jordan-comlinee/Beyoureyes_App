@@ -19,6 +19,8 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.Locale
 
 class FoodInfoAllActivity : AppCompatActivity() {
@@ -26,6 +28,8 @@ class FoodInfoAllActivity : AppCompatActivity() {
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
     private lateinit var personalButton: Button
+
+    private var user: UserInfo? = null
 
     val nutri = listOf("나트륨", "탄수화물", "ㄴ당류", "지방", "ㄴ포화지방", "콜레스테롤", "단백질")
 
@@ -187,6 +191,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
             val allergyText = "해당 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다."
 
+
             val textToSpeak = "영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다."
             speak(textToSpeak)
         }
@@ -210,11 +215,71 @@ class FoodInfoAllActivity : AppCompatActivity() {
         }
 
         personalButton = findViewById(R.id.buttonPersonalized)
-        personalButton.setOnClickListener {
-            val intent = Intent(this, FoodInfoAllPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
-            startActivity(intent)
-        }
+
+        // Firebase에서 사용자 정보 가져오기
+        // Firebase 연결을 위한 설정값
+        val userIdClass = application as userId
+        val userId = userIdClass.userId
+        val db = Firebase.firestore
+
+        // 유저 정보 받아오기
+        db.collection("userInfo")
+            .whereEqualTo("userID", userId)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val result = task.result
+
+                    // 유저 정보가 이미 존재하는 경우
+                    if (result != null && !result.isEmpty) {
+                        for (document in result) {
+                            Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
+                            this.user = UserInfo.parseFirebaseDoc(document)
+
+                            if (this.user!=null) {
+                                Log.d("FIRESTORE : ", "got UserInfo")
+                                break
+                            }
+                        }
+                    }
+
+                    user?.let { u -> // 사용자 정보 있을 시
+
+                        val intent = Intent(this, FoodInfoAllPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
+                        // 식품 정보 전달
+                        intent.putExtra("totalKcal", modifiedKcalList?.get(0)?.toInt())
+                        intent.putExtra("nutriFactsInMilliString",
+                            ArrayList(moPercentList?.map {it.toInt()}))
+                        intent.putExtra("allergyList", allergyList)
+                        // 사용자 정보 전달
+                        intent.putExtra("userAge", u.age)
+                        intent.putExtra("userSex", u.gender)
+                        intent.putExtra("userDisease", u.disease)
+                        intent.putExtra("userAllergic", u.allergic)
+
+
+                        personalButton.setOnClickListener {
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.none, R.anim.none)
+                        }
+
+                    } ?: run {// 사용자 정보 없을 시
+                        personalButton.isEnabled = false // 버튼 비활성화
+                        personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+                    }
+
+
+                } else {
+                    // 쿼리 중에 예외가 발생한 경우
+                    Log.d("FIRESTORE : ", "Error getting documents.", task.exception)
+                    personalButton.isEnabled = false // 버튼 비활성화
+                    personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+
+                }
+            }
+
     }
+
     override fun onDestroy() {
         // TTS 해제
         if (textToSpeech.isSpeaking) {

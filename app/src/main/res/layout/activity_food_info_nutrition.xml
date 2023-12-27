@@ -356,7 +356,7 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonPersonalized_nutri"
+            android:id="@+id/buttonPersonalized"
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:layout_marginLeft="5dp"
@@ -372,6 +372,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8sp"
             android:layout_weight="0"
             android:orientation="horizontal">
 

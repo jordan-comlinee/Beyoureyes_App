@@ -1,13 +1,17 @@
 package com.example.beyoureyes
 
+
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.AbsoluteSizeSpan
+
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -19,6 +23,8 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.Locale
 
 class FoodInfoNutritionActivity : AppCompatActivity() {
@@ -26,6 +32,9 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
     private lateinit var personalButton: Button
+
+    private val camera = Camera()
+
     val nutri = listOf("나트륨", "탄수화물", "ㄴ당류", "지방", "ㄴ포화지방", "콜레스테롤", "단백질")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,8 +50,6 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         //Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("영양 분석 결과")
-
-
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
@@ -103,6 +110,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             entries.add(PieEntry(Percent[1].toFloat(), koreanCharacterList[1]))
             entries.add(PieEntry(Percent[3].toFloat(), koreanCharacterList[3]))
             entries.add(PieEntry(Percent[6].toFloat(), koreanCharacterList[6]))
+
         }
         // 차트 색깔
         val colors = listOf(
@@ -130,10 +138,8 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             }
         }
 
-
         chart.apply {
             data = pieData
-
             description.isEnabled = false // 차트 설명 비활성화
             isRotationEnabled = false // 차트 회전 활성화
             legend.isEnabled = false // 하단 설명 비활성화
@@ -145,6 +151,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             animateY(1400, Easing.EaseInOutQuad) // 1.4초 동안 애니메이션 설정
             animate()
         }
+
         //chart.setEntryLabelTextSize(20f)
 
         // 버튼 눌렀을 때 TTS 실행
@@ -160,6 +167,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             }
 
             val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다. 알레르기 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요."
+
             speak(textToSpeak)
         }
 
@@ -181,14 +189,89 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             nutriTextView.text = "$nutriValue"
         }
 
-        personalButton = findViewById(R.id.buttonPersonalized_nutri)
-        personalButton.setOnClickListener {
-            val intent = Intent(this, FoodInfoNutritionPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
-            startActivity(intent)
+        val retryButton = findViewById<Button>(R.id.buttonRetry)
+
+        retryButton.setOnClickListener {
+            while(camera.start(this) == -1){
+                camera.start(this)
+            }
         }
+
+        // 맞춤 정보 버튼
+        val personalButton = findViewById<Button>(R.id.buttonPersonalized)
+
+        // Firebase에서 사용자 정보 가져오기
+        // Firebase 연결을 위한 설정값
+        val userIdClass = application as userId
+        val userId = userIdClass.userId
+        val db = Firebase.firestore
+
+        // 유저 정보 받아오기
+        db.collection("userInfo")
+            .whereEqualTo("userID", userId)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val result = task.result
+                    var user:UserInfo? = null
+
+                    // 유저 정보가 이미 존재하는 경우
+                    if (result != null && !result.isEmpty) {
+                        for (document in result) {
+                            Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
+                            user = UserInfo.parseFirebaseDoc(document)
+
+                            if (user!=null) {
+                                Log.d("FIRESTORE : ", "got UserInfo")
+                                break
+                            }
+                        }
+                    }
+
+                    user?.let { u -> // 사용자 정보 있을 시
+
+                        val intent = Intent(this, FoodInfoNutritionPersonalizedActivity::class.java)
+                        // 식품 정보 전달
+                        intent.putExtra("totalKcal", modifiedKcalList?.get(0)?.toInt())
+                        intent.putExtra("nutriFactsInMilliString",
+                            ArrayList(moPercentList?.map {it.toInt()}))
+                        // 사용자 정보 전달
+                        intent.putExtra("userAge", u.age)
+                        intent.putExtra("userSex", u.gender)
+                        intent.putExtra("userDisease", u.disease)
+                        intent.putExtra("userAllergic", u.allergic)
+
+                        personalButton.setOnClickListener {
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.none, R.anim.none)
+                        }
+
+                    } ?: run {// 사용자 정보 없을 시
+                        personalButton.isEnabled = false // 버튼 비활성화
+                        personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+                    }
+
+                } else {
+                    // 쿼리 중에 예외가 발생한 경우
+                    Log.d("FIRESTORE : ", "Error getting documents.", task.exception)
+                    personalButton.isEnabled = false // 버튼 비활성화
+                    personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+
+                }
+            }
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            when(requestCode) {
+                Camera.FLAG_REQ_CAMERA -> {
+                    camera.processPhoto(this)
+                }
+            }
+        }
+    }
 
     override fun onDestroy() {
         // TTS 해제

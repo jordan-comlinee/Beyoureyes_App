@@ -30,11 +30,8 @@
             android:orientation="vertical">
 
             <!-- 식품의 영양정보 -->
-
-            <!-- 차트 -->
             <TextView
                 android:id="@+id/labelNutrition"
-                style="@style/title3"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -42,13 +39,15 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/nutri_background"
                 android:gravity="center"
-                android:textColor="@color/black"
-                android:text="식품 영양성분 정보" />
+                android:text="식품 영양성분 정보"
+                style="@style/title3"
+                />
 
+            <!-- 차트 -->
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChartScanSuccess"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginVertical="30dp"
                 android:layout_gravity="center"
@@ -75,7 +74,7 @@
                     style="@style/text1"/>
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/kcalValue"
                     style="@style/title3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,12 +104,11 @@
 
                 <TextView
                     android:id="@+id/nutri_caution"
+                    style="@style/text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="⚠ 고지혈증에 주의해야 할 성분을 포함해요"
-                    style="@style/text1"
                     android:textColor="@color/red" />
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -125,8 +123,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:text="일일 권장량의" />
+                        android:text="내 일일 권장량의"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -142,8 +140,8 @@
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="left"
-                        android:textColor="@color/black"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line1_percent"
@@ -153,8 +151,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -170,8 +168,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:textColor="@color/black"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line2_percent"
@@ -180,9 +178,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:gravity="right"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -196,9 +194,9 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:textColor="@color/black"
                         android:layout_gravity="center"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line3_percent"
@@ -332,7 +330,6 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/aller_round"
                 android:gravity="center"
-                android:textColor="@color/black"
                 android:text="알레르기 인식에\n실패했어요"
                 style="@style/title3"
                 />
@@ -366,14 +363,14 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonPersonalized"
+            android:id="@+id/buttonGeneralize"
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginVertical="10dp"
             android:gravity="center"
-            android:background="@drawable/button_personal"
+            android:background="@drawable/button_white"
             android:textColor="@color/black"
             android:text="모든 정보 확인하기"
             style="@style/title3"

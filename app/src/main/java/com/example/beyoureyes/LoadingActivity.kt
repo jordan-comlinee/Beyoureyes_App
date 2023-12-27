@@ -103,6 +103,7 @@ class LoadingActivity : AppCompatActivity() {
         }, 3000) // 3초
 
     }
+
     private fun startFoodInfoAllActivity() {
         val intent = Intent(this, FoodInfoAllActivity::class.java)
         intent.putExtra("modifiedPercentList", ArrayList(moPercentList))
@@ -417,9 +418,3 @@ private fun modiPercentList(percentList: List<String>): List<String> {
 
     return modifiedList
 }
-
-
-
-
-
-

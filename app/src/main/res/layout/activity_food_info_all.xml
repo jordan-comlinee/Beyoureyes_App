@@ -42,8 +42,7 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:text="식품 영양성분 정보"
-                style="@style/title3"
-                />
+                style="@style/title3" />
 
             <!-- 차트 -->
             <com.github.mikephil.charting.charts.PieChart
@@ -117,8 +116,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:text="일일 권장량의" />
+                        android:text="일일 권장량의"
+                        android:textColor="@color/black"/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -134,8 +134,8 @@
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="left"
-                        android:textColor="@color/black"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line1_percent"
@@ -145,8 +145,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -162,8 +163,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:textColor="@color/black"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line2_percent"
@@ -173,8 +174,9 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
+
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -188,6 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="left"
+
                         android:textColor="@color/black"
                         android:layout_gravity="center"
                         android:text="TextView" />

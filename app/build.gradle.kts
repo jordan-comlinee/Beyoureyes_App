@@ -65,6 +65,11 @@ dependencies {
     //MPAndroidChart
     implementation("com.github.PhilJay:MpAndroidChart:v3.1.0")
 
+
+    //LocalDate 사용을 위한 백포팅
+    implementation("com.jakewharton.threetenabp:threetenabp:1.3.0")
+
+
     //openCV
     implementation(project(":opencv"))
 

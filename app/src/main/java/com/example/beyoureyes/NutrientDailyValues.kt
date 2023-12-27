@@ -1,18 +1,20 @@
 package com.example.beyoureyes
 
+import android.util.Log
+
 //========================================================================
 // 섭취 범위 관리를 위한 enum 객체들
 //========================================================================
 
 // 섭취 상태 평가를 위한 enum 객체 (주의-경고-적정)
-enum class Status {
-    WARNING,    // 경고 - 빨간색 표시
-    CAUTION,    // 주의 - 노란색 표시
-    SATISFIED   // 적정 - 초록색 표시
+enum class Status(val colorRID: Int) {
+    WARNING(R.color.highlight),    // 경고 - 빨간색 표시
+    CAUTION(R.color.chartyellow),    // 주의 - 노란색 표시
+    SATISFIED(R.color.green)   // 적정 - 초록색 표시
 }
 
 // 섭취량이 기준치 미달인지 초과인지 분류하고 그에 따른 평가를 구분하기 위한 enum 객체
-enum class IntakeRange(status: Status) {
+enum class IntakeRange(val status: Status) {
     LACK(Status.WARNING),       // 기준치 미달(경고)
     LESS(Status.CAUTION),       // 기준치 약간 미달(주의)
     ENOUGH(Status.SATISFIED),   // 기준치 충족(양호)
@@ -29,6 +31,7 @@ class NatriumDRI() : DailyValue, DRIwithClosedRange {
     // =========================================================================
 
     // primary 생성자 - 일일 권장량만 기본값(식품 표시 기준)으로 설정. 맞춤 정보는 null로 초기화
+    override val unit = UnitOfMass.MILLIGRAM
     override var dailyValue : Int = 2000 // 일일 권장량 mg
     override var intakeRange : Map<IntakeRange, IntProgression>? = null // 섭취량 범위 기준맵
     private var adequateIntake : Int? = null // 충분 섭취량
@@ -54,6 +57,8 @@ class NatriumDRI() : DailyValue, DRIwithClosedRange {
                 super.setIntakeRange(ai, ui)
             }
         }
+
+        Log.d("dv", intakeRange.toString())
     }
 
     // 충분 섭취량
@@ -93,6 +98,7 @@ class SugarDRI() : DailyValue, DRIwithClosedRange {
     // =========================================================================
 
     // primary 생성자 - 일일 권장량만 기본값(식품 표시 기준)으로 설정. 맞춤 정보는 null로 초기화
+    override val unit = UnitOfMass.GRAM
     override var dailyValue : Int = 100000 // 일일 권장량 mg
     override var intakeRange : Map<IntakeRange, IntProgression>? = null // 섭취량 범위 기준맵
     private var recommendedAllowance : Int? = null // 권장 섭취량
@@ -138,6 +144,7 @@ class FatDRI() : DailyValue, DRIwithClosedRange {
     // =========================================================================
 
     // primary 생성자 - 일일 권장량만 기본값(식품 표시 기준)으로 설정. 맞춤 정보는 null로 초기화
+    override val unit = UnitOfMass.GRAM
     override var dailyValue : Int = 54000 // 일일 권장량 mg
     override var intakeRange : Map<IntakeRange, IntProgression>? = null // 섭취량 범위 기준맵
     private var recommendedAllowance : Int? = null // 권장 섭취량
@@ -176,7 +183,7 @@ class FatDRI() : DailyValue, DRIwithClosedRange {
     // 상한 섭취량 = 에너지 섭취 제한 비율(최대값)
     private fun setUpperIntakeLevel(energyReq:Int, disease: Array<String>?) {
         if( disease != null && disease.contains("고지혈증"))
-            recommendedAllowance = ((energyReq * 0.2) / 9).toInt() * 1000
+            upperIntake = ((energyReq * 0.2) / 9).toInt() * 1000
         else
             upperIntake = ((energyReq * 0.3) / 9).toInt() * 1000
     }
@@ -189,6 +196,7 @@ class CarbsDRI() : DailyValue, DRIwithOpenEndRange {
     // =========================================================================
 
     // primary 생성자 - 일일 권장량만 기본값(식품 표시 기준)으로 설정. 맞춤 정보는 null로 초기화
+    override val unit = UnitOfMass.GRAM
     override var dailyValue : Int = 324000 // 일일 권장량 mg
     override var intakeRange : Map<IntakeRange, IntProgression>? = null // 섭취량 범위 기준맵
     private var averageRequirement : Int = 100000 // 평균 필요량
@@ -210,6 +218,7 @@ class ProteinDRI() : DailyValue, DRIwithOpenEndRange {
     // =========================================================================
 
     // primary 생성자 - 일일 권장량만 기본값(식품 표시 기준)으로 설정. 맞춤 정보는 null로 초기화
+    override val unit = UnitOfMass.GRAM
     override var dailyValue : Int = 55000 // 일일 권장량 mg
     override var intakeRange : Map<IntakeRange, IntProgression>? = null // 섭취량 범위 기준맵
     private var averageRequirement : Int = 100000 // 평균 필요량
@@ -279,6 +288,7 @@ class SaturatedFatDRI() : DailyValue, DRIwithOpenStartRange {
     // =========================================================================
 
     // primary 생성자 - 일일 권장량만 기본값(식품 표시 기준)으로 설정. 맞춤 정보는 null로 초기화
+    override val unit = UnitOfMass.GRAM
     override var dailyValue : Int = 15000 // 일일 권장량 mg
     override var intakeRange : Map<IntakeRange, IntProgression>? = null // 섭취량 범위 기준맵
     private var upperIntake : Int? = null // 상한 섭취량
@@ -325,6 +335,7 @@ class CholesterolDRI() : DailyValue, DRIwithOpenStartRange {
     // =========================================================================
 
     // primary 생성자 - 일일 권장량만 기본값(식품 표시 기준)으로 설정. 맞춤 정보는 null로 초기화
+    override val unit = UnitOfMass.MILLIGRAM
     override var dailyValue : Int = 300 // 일일 권장량 mg
     override var intakeRange : Map<IntakeRange, IntProgression>? = null // 섭취량 범위 기준맵
     private var upperIntake : Int? = null // 상한 섭취량
@@ -359,6 +370,8 @@ class CholesterolDRI() : DailyValue, DRIwithOpenStartRange {
     }
 
 }
+
+
 //========================================================================
 // 7가지 영양성분 + 에너지 섭취량에 대한 통합 권장량 관리 클래스
 //========================================================================
@@ -371,7 +384,7 @@ class NutrientDailyValues() {
     var energy = 2000
     var natrium = NatriumDRI()
     var carbs = CarbsDRI()
-    var sugars = SugarDRI()
+    var sugar = SugarDRI()
     var protein = ProteinDRI()
     var fat = FatDRI()
     var satFat = SaturatedFatDRI()
@@ -390,7 +403,7 @@ class NutrientDailyValues() {
         setPersonalizedEnergy(gender, age)
         natrium.personalize(age, disease)
         carbs.personalize()
-        sugars.personalize(this.energy)
+        sugar.personalize(this.energy)
         protein.personalize(gender, age)
         fat.personalize(this.energy, disease)
         satFat.personalize(age, this.energy, disease)
