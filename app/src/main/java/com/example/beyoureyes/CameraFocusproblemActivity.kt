@@ -31,7 +31,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class CameraFocusProblemActivity : AppCompatActivity()  {
+class CameraFocusproblemActivity : AppCompatActivity()  {
 
     // 권한 처리에 필요한 변수
     val CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)

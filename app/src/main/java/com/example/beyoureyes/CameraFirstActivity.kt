@@ -14,6 +14,7 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 
 import android.widget.Toast
@@ -124,7 +125,6 @@ class CameraFirstActivity : AppCompatActivity()  {
     }
 
 
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK){
@@ -172,7 +172,7 @@ class CameraFirstActivity : AppCompatActivity()  {
                         val blur_score = getBlurScore(bitmap)
                         if ( blur_score < BLUR_SCORE_THRESH) {
                             // 재촬영 요구 - intent 연결
-                            intent = Intent(this, CameraFocusProblemActivity::class.java)
+                            intent = Intent(this, CameraFocusproblemActivity::class.java)
 
                         }else{
 
@@ -248,10 +248,12 @@ class CameraFirstActivity : AppCompatActivity()  {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        //Log.d(TAG, "onRequestPermissionsResult");
+        Log.d("camera Activity", "onRequestPermissionsResult");
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            //Log.d(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]); }
+            Log.d("camera Activity",
+                "Permission: " + permissions[0] + "was " + grantResults[0])
         }
+
     }
 
 }

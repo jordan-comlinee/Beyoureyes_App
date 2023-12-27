@@ -64,7 +64,7 @@
                 style="@style/title3"
                 />
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button8"
+                android:id="@+id/buttonRetry"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -95,17 +95,16 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonPersonalized"
+            style="@style/title3"
             android:layout_width="match_parent"
             android:layout_height="64sp"
+            android:layout_marginVertical="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginVertical = "10dp"
             android:background="@drawable/button_black"
-            android:textColor="@color/white"
             android:gravity="center"
             android:text="나의 맞춤 정보 확인하기"
-            style="@style/title3"
-            />
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"

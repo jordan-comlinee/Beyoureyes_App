@@ -47,16 +47,14 @@ class UserInfoActivity : AppCompatActivity() {
         val userInfoChangeButton = findViewById<Button>(R.id.userInfoChangeButton)
         val googleConnectButton = findViewById<Button>(R.id.googleConnectButton)
 
-        //toolBar
+        // toolBar 및 뒤로가기 설정
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
         val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
         val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
         setSupportActionBar(toolBar)
-        //Toolbar에 앱 이름 표시 제거!!
+        // Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("내 질환 확인하기")
-
-
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)

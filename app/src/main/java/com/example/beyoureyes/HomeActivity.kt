@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
+import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.opencv.android.OpenCVLoader
@@ -25,6 +26,7 @@ class HomeActivity : AppCompatActivity() {
     // onBackPressed
     private var time: Long = 0
 
+    private var user: UserInfo? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +62,11 @@ class HomeActivity : AppCompatActivity() {
                         val result = task.result
                         // 유저 정보가 이미 존재하는 경우
                         if (result != null && !result.isEmpty) {
+                            for (document in result) {
+                                Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
+                                user = UserInfo.parseFirebaseDoc(document)
+                                if (user!=null) break
+                            }
                             Log.d("HOMEFIRESTORE : ", "getDataSuccess_exist")
                             userInfoCheck = 1
                         }
@@ -116,8 +123,18 @@ class HomeActivity : AppCompatActivity() {
         }
 
         todayIntakeButton.setOnClickListener {
-            val intent = Intent(this, TodayIntakeActivity::class.java)
-            startActivity(intent)
+            user?.let {// 사용자 정보 있을 시 맞춤 섭취량 통계 화면으로 연결
+                val intent = Intent(this, TodayIntakePersonalizedActivity::class.java)
+                intent.putExtra("userAge", it.age)
+                intent.putExtra("userSex", it.gender)
+                intent.putExtra("userDisease", it.disease)
+                intent.putExtra("userAllergic", it.allergic)
+                startActivity(intent)
+            } ?: run {// 사용자 정보 없을 시 일반 통계 화면으로 연결
+                val intent = Intent(this, TodayIntakeActivity::class.java)
+                startActivity(intent)
+            }
+
         }
 
         exitButton.setOnClickListener{

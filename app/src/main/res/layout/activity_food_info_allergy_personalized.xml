@@ -41,10 +41,11 @@
                 style="@style/title3"  />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/allergyMsg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
+                android:textAlignment="center"
                 android:text="✅  나의 알러지를 유발하는 성분이 발견되지 않았어요"
                 style="@style/text1"
                 android:textColor="@color/black" />
@@ -73,7 +74,7 @@
                 style="@style/title3"
                 />
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button8"
+                android:id="@+id/buttonRetry"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -103,16 +104,16 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonPersonalized"
+            android:id="@+id/buttonGeneralize"
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginVertical = "10dp"
-            android:background="@drawable/button_black"
-            android:textColor="@color/white"
+            android:background="@drawable/button_white"
+            android:textColor="@color/black"
             android:gravity="center"
-            android:text="나의 맞춤 정보 확인하기"
+            android:text="모든 정보 확인하기"
             style="@style/title3"
             />
 

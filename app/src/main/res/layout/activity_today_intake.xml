@@ -1,21 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".TodayIntakeActivity"
     tools:ignore="SpeakableTextPresentCheck">
 
-    <include layout="@layout/toolbar_dafault" />
+    <include
+        android:id="@+id/include3"
+        layout="@layout/toolbar_dafault"
+        android:layout_width="0dp"
+        android:layout_height="72sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:padding="24sp">
+        android:padding="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include3">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,87 +37,62 @@
 
             <TextView
                 android:id="@+id/date"
+                style="@style/title3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="2024년 12월 25일"
                 android:textAlignment="center"
-                android:textColor="@color/highlight"
-                style="@style/title3" />
+                android:textColor="@color/highlight" />
 
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_marginLeft="26sp"
-                android:layout_marginRight="26sp"/>
+                android:layout_marginRight="26sp"
+                android:layout_weight="3" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/totalCalorieTextView"
+                style="@style/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="36sp"
                 android:layout_gravity="center"
-                android:orientation="horizontal">
-
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="3sp"
-                    android:layout_weight="1"
-                    android:text="총 섭취한 칼로리는"
-                    android:textAlignment="viewEnd"
-                    android:textColor="@color/black"
-                    style="@style/text1"/>
-
-                <TextView
-                    android:id="@+id/totalCalorieTextView"
-                    style="@style/title3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="1500kcal"
-                    android:textAlignment="center"
-                    android:textColor="@color/green" />
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="3sp"
-                    android:layout_weight="1"
-                    android:text="입니다"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black"
-                    style="@style/text1"/>
-            </LinearLayout>
+                android:layout_marginTop="16sp"
+                android:bufferType="spannable"
+                android:text="아직 섭취량 기록이 없어요."
+                android:textAlignment="center"
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/carlReview1"
+                style="@style/title3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16sp"
-                android:text="오늘의 필요 에너지량을 충족했어요"
-                android:textColor="@color/green"
-                style="@style/title3" />
+                android:text="섭취량 기록을 남겨보세요!"
+                android:textAlignment="center"
+                android:textColor="@color/highlight" />
 
             <TextView
                 android:id="@+id/carlReview2"
+                style="@style/text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16sp"
-                android:text="정말 잘 하셨어요!🎉"
-                android:textColor="@color/black"
-                style="@style/text1" />
+                android:text="기록을 남기면 영양 관리를 도울 \n분석 결과를 제공해드려요!"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="36sp"
+                android:layout_marginBottom="160sp"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -131,10 +119,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:gravity="right"
-                        android:text="50%" />
+                        android:text="0mg"
+                        android:textColor="@color/black" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -147,9 +136,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:gravity="left"
-                        android:text="탄수화물" />
+                        android:text="탄수화물"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/carPer"
@@ -158,9 +147,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:textColor="@color/black"
                         android:gravity="right"
-                        android:text="20%" />
+                        android:text="0g"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -184,12 +173,13 @@
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:gravity="right"
                         android:layout_gravity="center"
-                        android:text="15%" />
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="0g"
+                        android:textColor="@color/black" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -200,23 +190,24 @@
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="@color/black"
-                        android:gravity="left"
                         android:layout_gravity="center"
-                        android:text="단백질" />
+                        android:layout_weight="1"
+                        android:gravity="left"
+                        android:text="단백질"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/proPer"
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:text="8%" />
+                        android:text="0g"
+                        android:textColor="@color/black" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -227,23 +218,24 @@
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:text="지방" />
+                        android:text="지방"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/fatPer"
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:text="17%" />
+                        android:text="0g"
+                        android:textColor="@color/black" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -254,23 +246,24 @@
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:text="  ㄴ 포화지방" />
+                        android:text="  ㄴ 포화지방"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/satFatPer"
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:text="10%" />
+                        android:text="0g"
+                        android:textColor="@color/black" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -281,22 +274,22 @@
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:text="콜레스테롤" />
+                        android:text="콜레스테롤"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/choPer"
                         style="@style/title3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:text="4%" />
+                        android:text="0mg"
+                        android:textColor="@color/black" />
                 </LinearLayout>
 
 
@@ -310,15 +303,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16sp"
-        android:orientation="horizontal">
+        android:paddingTop="50sp"
+        android:paddingBottom="16sp"
+        android:orientation="horizontal"
+        android:background="@drawable/gradient_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonGoHomeScanSuccess"
             android:layout_width="match_parent"
             android:layout_height="64sp"
-            android:layout_weight="1"
             android:layout_marginStart="6sp"
+            android:layout_weight="1"
             android:background="@drawable/button_highlight"
             android:fontFamily="@font/pretendard700"
             android:text="설명듣기"
@@ -327,5 +325,4 @@
     </LinearLayout>
 
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

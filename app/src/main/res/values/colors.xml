@@ -13,7 +13,10 @@
     <color name="highlight">#FF0000</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="green">#FF34CA00</color>
+    <color name="yellow">#F1BC00</color>
     <color name="chartgreen">#C2FF00</color>
     <color name="chartpink">#FFC2E5</color>
-    <color name="chartblue">#C1F1FC</color>
+    <color name="chartyellow">#F1BC00</color>
+    <color name="chartgrey">#E1E1E1</color>
+    <color name="grey">#777777</color>
 </resources>

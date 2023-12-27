@@ -1,5 +1,6 @@
 package com.example.beyoureyes
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -16,12 +17,15 @@ import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.Locale
 
 class FoodInfoNutritionActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
+    private val camera = Camera()
     val nutri = listOf("나트륨", "탄수화물", "ㄴ당류", "지방", "ㄴ포화지방", "콜레스테롤", "단백질")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -171,6 +175,88 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             nutriTextView.text = "$nutriValue"
         }
 
+        val retryButton = findViewById<Button>(R.id.buttonRetry)
+
+        retryButton.setOnClickListener {
+            while(camera.start(this) == -1){
+                camera.start(this)
+            }
+        }
+
+        // 맞춤 정보 버튼
+        val personalButton = findViewById<Button>(R.id.buttonPersonalized)
+
+        // Firebase에서 사용자 정보 가져오기
+        // Firebase 연결을 위한 설정값
+        val userIdClass = application as userId
+        val userId = userIdClass.userId
+        val db = Firebase.firestore
+
+        // 유저 정보 받아오기
+        db.collection("userInfo")
+            .whereEqualTo("userID", userId)
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val result = task.result
+                    var user:UserInfo? = null
+
+                    // 유저 정보가 이미 존재하는 경우
+                    if (result != null && !result.isEmpty) {
+                        for (document in result) {
+                            Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
+                            user = UserInfo.parseFirebaseDoc(document)
+
+                            if (user!=null) {
+                                Log.d("FIRESTORE : ", "got UserInfo")
+                                break
+                            }
+                        }
+                    }
+
+                    user?.let { u -> // 사용자 정보 있을 시
+
+                        val intent = Intent(this, FoodInfoNutritionPersonalizedActivity::class.java)
+                        // 식품 정보 전달
+                        intent.putExtra("totalKcal", modifiedKcalList?.get(0)?.toInt())
+                        intent.putExtra("nutriFactsInMilliString",
+                            ArrayList(moPercentList?.map {it.toInt()}))
+                        // 사용자 정보 전달
+                        intent.putExtra("userAge", u.age)
+                        intent.putExtra("userSex", u.gender)
+                        intent.putExtra("userDisease", u.disease)
+                        intent.putExtra("userAllergic", u.allergic)
+
+                        personalButton.setOnClickListener {
+                            startActivity(intent)
+                            overridePendingTransition(R.anim.none, R.anim.none)
+                        }
+
+                    } ?: run {// 사용자 정보 없을 시
+                        personalButton.isEnabled = false // 버튼 비활성화
+                        personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+                    }
+
+                } else {
+                    // 쿼리 중에 예외가 발생한 경우
+                    Log.d("FIRESTORE : ", "Error getting documents.", task.exception)
+                    personalButton.isEnabled = false // 버튼 비활성화
+                    personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+
+                }
+            }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            when(requestCode) {
+                Camera.FLAG_REQ_CAMERA -> {
+                    camera.processPhoto(this)
+                }
+            }
+        }
     }
 
     override fun onDestroy() {

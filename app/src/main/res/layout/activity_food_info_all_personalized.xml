@@ -47,8 +47,8 @@
             <!-- 차트 -->
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChartScanSuccess"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginVertical="30dp"
                 android:layout_gravity="center"
@@ -75,7 +75,7 @@
                     style="@style/text1"/>
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/kcalValue"
                     style="@style/title3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -105,10 +105,10 @@
 
                 <TextView
                     android:id="@+id/nutri_caution"
+                    style="@style/text1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="⚠ 고지혈증에 주의해야 할 성분을 포함해요"
-                    style="@style/text1"
                     android:textColor="@color/red" />
 
                 <LinearLayout
@@ -124,7 +124,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="일일 권장량의" />
+                        android:text="내 일일 권장량의"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -140,7 +141,8 @@
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="left"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line1_percent"
@@ -150,7 +152,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,7 +169,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line2_percent"
@@ -176,7 +180,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -191,7 +196,8 @@
                         android:layout_weight="1"
                         android:gravity="left"
                         android:layout_gravity="center"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line3_percent"
@@ -330,10 +336,11 @@
                 style="@style/title3"  />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/allergyMsg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
+                android:textAlignment="center"
                 android:text="✅  나의 알러지를 유발하는 성분이 발견되지 않았어요"
                 style="@style/text1"
                 android:textColor="@color/black" />
@@ -367,16 +374,16 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonPersonalized"
+            android:id="@+id/buttonGeneralize"
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginVertical = "10dp"
-            android:background="@drawable/button_black"
-            android:textColor="@color/white"
+            android:background="@drawable/button_white"
+            android:textColor="@color/black"
             android:gravity="center"
-            android:text="나의 맞춤 정보 확인하기"
+            android:text="모든 정보 확인하기"
             style="@style/title3"
             />
 

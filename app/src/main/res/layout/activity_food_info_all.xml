@@ -116,7 +116,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="일일 권장량의" />
+                        android:text="일일 권장량의"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -132,7 +133,8 @@
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="left"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line1_percent"
@@ -142,7 +144,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -158,7 +161,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line2_percent"
@@ -168,7 +172,8 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -183,7 +188,8 @@
                         android:layout_weight="1"
                         android:gravity="left"
                         android:layout_gravity="center"
-                        android:text="TextView" />
+                        android:text="TextView"
+                        android:textColor="@color/black"/>
 
                     <TextView
                         android:id="@+id/line3_percent"

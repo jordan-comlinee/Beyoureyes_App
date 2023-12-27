@@ -49,10 +49,10 @@
             android:name=".FoodInfoAllPersonalizedActivity"
             android:exported="false" />
         <activity
-            android:name=".CameraOcrProblemActivity"
+            android:name=".CameraOcrproblemActivity"
             android:exported="false" />
         <activity
-            android:name=".CameraFocusProblemActivity"
+            android:name=".CameraFocusproblemActivity"
             android:exported="false" />
         <activity
             android:name=".FoodInfoAllActivity"

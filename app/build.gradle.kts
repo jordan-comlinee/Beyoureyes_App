@@ -65,13 +65,15 @@ dependencies {
     //MPAndroidChart
     implementation("com.github.PhilJay:MpAndroidChart:v3.1.0")
 
+    //LocalDate 사용을 위한 백포팅
+    implementation("com.jakewharton.threetenabp:threetenabp:1.3.0")
+
     //openCV
     implementation(project(":opencv"))
 
     implementation ("com.google.android.gms:play-services-mlkit-text-recognition-common:17.0.0")
     implementation ("com.google.android.material:material:1.6.0")
     implementation ("com.google.android.gms:play-services-mlkit-text-recognition-korean:16.0.0")
-
 
     implementation ("androidx.camera:camera-core:1.2.0-alpha01")
     implementation ("androidx.camera:camera-camera2:1.2.0-alpha01")
