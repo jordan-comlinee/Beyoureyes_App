@@ -185,7 +185,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
                 }
             }
 
-            val allergyText = "이 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다."
+            val allergyText = "해당 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다."
 
             val textToSpeak = "영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다."
             speak(textToSpeak)

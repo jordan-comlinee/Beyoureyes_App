@@ -107,7 +107,7 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
 
         // 버튼 눌렀을 때 TTS 실행 -> 수정 예정
         speakButton.setOnClickListener {
-            val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다. 다른 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시찍기 버튼을 눌러주세요."
+            val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당 식품에는 <알러지> 가 함유되어 있습니다. 다른 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시찍기 버튼을 눌러주세요."
             speak(textToSpeak)
         }
 
