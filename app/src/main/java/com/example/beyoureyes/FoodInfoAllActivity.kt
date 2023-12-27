@@ -297,7 +297,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
                     )
 
                     Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
-                    sendData(nutriData, "userIntakeNutrition")
+                    //sendData(nutriData, "userIntakeNutrition")
                 }
             }
 
