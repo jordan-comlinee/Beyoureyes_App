@@ -1,14 +1,12 @@
 package com.example.beyoureyes
 
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import java.util.Locale
@@ -28,12 +26,10 @@ class TodayIntakeActivity : AppCompatActivity() {
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
 
-    private val calorieList : ArrayList<Int> = arrayListOf()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_today_intake)
-
+        overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
 
         // toolBar 및 뒤로가기 설정
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)

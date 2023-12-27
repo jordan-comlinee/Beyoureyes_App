@@ -71,7 +71,7 @@ dependencies {
 
 
     //openCV
-    implementation(project(":opencv"))
+    //implementation(project(":opencv"))
 
     implementation ("com.google.android.gms:play-services-mlkit-text-recognition-common:17.0.0")
     implementation ("com.google.android.material:material:1.6.0")

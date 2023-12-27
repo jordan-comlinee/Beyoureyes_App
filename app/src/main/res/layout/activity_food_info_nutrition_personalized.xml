@@ -397,7 +397,7 @@
                 />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button6"
+                android:id="@+id/eatButton"
                 android:layout_width="wrap_content"
                 android:layout_height="64sp"
                 android:layout_marginLeft="5dp"

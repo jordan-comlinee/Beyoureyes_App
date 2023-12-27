@@ -12,7 +12,9 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.android.material.chip.Chip
 import android.content.Intent
+import android.widget.CompoundButton
 import android.widget.ImageButton
+import android.widget.Switch
 import android.widget.TextView
 import java.io.Serializable
 
@@ -25,6 +27,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
     private var clickedAllergic : MutableList<Boolean> = MutableList(21) { false }
     private val userDiseaseList : ArrayList<String> = arrayListOf()
     private val userAllergyList : ArrayList<String> = arrayListOf()
+    var userSex : Int = 0;
 
     private var userInfoCheck : Int = 0;
 
@@ -37,10 +40,13 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
         val age : EditText = findViewById(R.id.editAge)
 
+        val sexSwitch : Switch = findViewById(R.id.sexSwitch)
+
+        // 질환 칩
         val chip0 = findViewById<Chip>(R.id.chip0)
         val chip1 = findViewById<Chip>(R.id.chip1)
         val chip2 = findViewById<Chip>(R.id.chip2)
-
+        // 알러지 칩
         val chip00 = findViewById<Chip>(R.id.chip2_0)
         val chip01 = findViewById<Chip>(R.id.chip2_1)
         val chip02 = findViewById<Chip>(R.id.chip2_2)
@@ -86,14 +92,11 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                                     chip16, chip17, chip18, chip19, chip20)
 
 
-        val userIdClass: userId = application as userId
-        val userId = userIdClass.userId
-
         // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
         val db = Firebase.firestore
         // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
         db.collection("userInfo")
-            .whereEqualTo("userID", userId)
+            .whereEqualTo("userID", userIdSingleton.userId)
             .get()
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -119,6 +122,18 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 }
             }
 
+
+        //성별 정보 클릭 로직
+        sexSwitch.setOnCheckedChangeListener{ buttonView, isChecked ->
+            if(isChecked) {
+                //Toast.makeText(this@UserInfoRegisterActivity, "woman", Toast.LENGTH_LONG).show()
+                userSex == 0
+            }
+            else {
+                //Toast.makeText(this@UserInfoRegisterActivity, "man", Toast.LENGTH_LONG).show()
+                userSex == 1
+            }
+        }
 
         // 질환 정보 클릭 로직
         for (i in diseaseChips.indices) {
@@ -194,16 +209,19 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
                 Log.d("LIST: ", userDiseaseList.toString())
                 Log.d("LIST: ", userAllergyList.toString())
+                Log.d("LIST: ", userIdSingleton.userId.toString())
+                Log.d("LIST: ", age.text.toString())
 
                 // 기존 유저 정보가 있다면 삭제
                 if(userInfoCheck == 1) {
                     Log.d("REGISTERFIRESTORE : ", "DELETE START")
-                    deleteData(userId!!, "userInfo") {
+                    deleteData(userIdSingleton.userId!!, "userInfo") {
                         // 삭제가 완료되면 이 블록이 실행됨
                         // 여기에서 sendData 함수 호출
                         val userInfo = hashMapOf(
-                            "userID" to userId,
+                            "userID" to userIdSingleton.userId!!,
                             "userAge" to age.text.toString().toInt(),
+                            "userSex" to userSex,
                             "userDisease" to userDiseaseList,
                             "userAllergic" to userAllergyList
                         )
@@ -218,8 +236,9 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 else {
                     // 유저 정보가 없는 경우에는 바로 sendData 함수 호출
                     val userInfo = hashMapOf(
-                        "userID" to userId!!,
+                        "userID" to userIdSingleton.userId!!,
                         "userAge" to age.text.toString().toInt(),
+                        "userSex" to userSex,
                         "userDisease" to userDiseaseList,
                         "userAllergic" to userAllergyList
                     )
@@ -234,8 +253,12 @@ class UserInfoRegisterActivity : AppCompatActivity() {
             }
         }
 
-    }
+        // 취소 버튼 클릭 시
+        usrInfoRegiCancelButton.setOnClickListener {
+            onBackPressed()
+        }
 
+    }
 
     private fun sendData(userInfo : HashMap<String, Serializable>, collectionName : String){
         val db = Firebase.firestore
@@ -248,6 +271,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                 Log.w("REGISTERFIRESTORE :", "Error adding document", e)
             }
     }
+
 
 
     private fun deleteData(userId: String, collectionName: String, onSuccess: () -> Unit) {
