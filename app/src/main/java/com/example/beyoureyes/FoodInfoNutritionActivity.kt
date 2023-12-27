@@ -5,6 +5,9 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.AbsoluteSizeSpan
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -22,6 +25,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
+    private lateinit var personalButton: Button
     val nutri = listOf("나트륨", "탄수화물", "ㄴ당류", "지방", "ㄴ포화지방", "콜레스테롤", "단백질")
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,10 +36,12 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
         val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
         val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
+
         setSupportActionBar(toolBar)
         //Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("영양 분석 결과")
+
 
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
@@ -92,11 +98,11 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
 
         // 단백질, 탄수화물, 지방
-        if (moPercentList != null) {
+        if (Percent != null) {
 
-            entries.add(PieEntry(moPercentList[1].toFloat(), koreanCharacterList[1]))
-            entries.add(PieEntry(moPercentList[3].toFloat(), koreanCharacterList[3]))
-            entries.add(PieEntry(moPercentList[6].toFloat(), koreanCharacterList[6]))
+            entries.add(PieEntry(Percent[1].toFloat(), koreanCharacterList[1]))
+            entries.add(PieEntry(Percent[3].toFloat(), koreanCharacterList[3]))
+            entries.add(PieEntry(Percent[6].toFloat(), koreanCharacterList[6]))
         }
         // 차트 색깔
         val colors = listOf(
@@ -112,10 +118,11 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             // 값(백분율)에 대한 색상 설정
             valueTextColor = Color.BLACK
             // 값에 대한 크기 설정
-            valueTextSize = 10f
+            valueTextSize = 20f
         }
 
         val pieData = PieData(pieDataSet)
+
         // 값에 사용자 정의 형식(백분율 값 + "%") 설정
         pieDataSet.valueFormatter = object : ValueFormatter() { // 값을 차트에 어떻게 표시할지
             override fun getFormattedValue(value: Float): String {
@@ -123,8 +130,10 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             }
         }
 
+
         chart.apply {
             data = pieData
+
             description.isEnabled = false // 차트 설명 비활성화
             isRotationEnabled = false // 차트 회전 활성화
             legend.isEnabled = false // 하단 설명 비활성화
@@ -136,20 +145,21 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             animateY(1400, Easing.EaseInOutQuad) // 1.4초 동안 애니메이션 설정
             animate()
         }
+        //chart.setEntryLabelTextSize(20f)
 
         // 버튼 눌렀을 때 TTS 실행
         speakButton.setOnClickListener {
             val calorieText = "칼로리는 $modifiedKcalList 입니다."
             val nutrientsText = buildString {
                 for (i in koreanCharacterList.indices) {
-                    append("${koreanCharacterList[i]}은 ${moPercentList?.get(i)}g")
+                    append("${koreanCharacterList[i]}은 ${Percent?.get(i)}%")
                     if (i < koreanCharacterList.size - 1) {
                         append(", ")
                     }
                 }
             }
 
-            val textToSpeak = "안녕하세요! 영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 $nutrientsText 입니다. 다른 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요."
+            val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다. 알레르기 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요."
             speak(textToSpeak)
         }
 
@@ -171,7 +181,14 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             nutriTextView.text = "$nutriValue"
         }
 
+        personalButton = findViewById(R.id.buttonPersonalized_nutri)
+        personalButton.setOnClickListener {
+            val intent = Intent(this, FoodInfoNutritionPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
+            startActivity(intent)
+        }
+
     }
+
 
     override fun onDestroy() {
         // TTS 해제

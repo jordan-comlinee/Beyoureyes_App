@@ -1,17 +1,14 @@
 package com.example.beyoureyes
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
-import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.mlkit.vision.common.InputImage
@@ -35,7 +32,8 @@ class LoadingActivity : AppCompatActivity() {
         KoreanTextRecognizerOptions.Builder().build()
     ) // 한글 텍스트 인식 인스턴스 생성
     private val pickImage = 100 // 이미지 선택 요청 코드
-    private val koreanCharactersSet = mutableSetOf<String>() // 한글 문자를 담을 Set, 중복 피하기 위해 Set 자료구조 활용
+    private val koreanCharactersList = mutableListOf<String>() // 한글 문자를 담을 Set, 중복 피하기 위해 Set 자료구조 활용
+    private var koreanCharactersListmodi = mutableListOf<String>()
     private val gList = mutableListOf<String>() // "숫자" + "g/mg" 를 담을 List
     private val percentList = mutableListOf<String>() // "숫자" + "%"를 담을 List
     private val kcalList = mutableListOf<String>() // "kcal"와 "g 당"을 담을 List
@@ -57,49 +55,62 @@ class LoadingActivity : AppCompatActivity() {
         val filePath = intent.getStringExtra("bitmapPath")
 
         if (filePath != null) {
+            Log.d("YourTag", "File path: $filePath") // 파일 경로 로깅
+
             val f = File(filePath)
             val bitmap = BitmapFactory.decodeFile(filePath)
             if (bitmap != null) {
                 detectTextInBitmap(bitmap) // 필터링 알고리즘
+            } else {
+                Log.e("bitmap", "Bitmap is null") // 비트맵이 null일 때
             }
             f.delete()
+        } else {
+            Log.e("bitmap", "File path is null") // 파일 경로가 null일 때
         }
 
 
-        // 필터링 변형한 데이터 intent 전달 알고리즘
         btn.setOnClickListener {
+
+            textView.append(moPercentList.toString())
+
             val isValidData = isValidData()
-            val isValidAlergyData = isValidData_alergy()
-            val hasValidKeywordOrder = checkKeywordOrder(koreanCharactersSet)
+            val isValidAllergyData = isValidData_alergy()
+            val hasValidKeywordOrder = checkKeywordOrder(koreanCharactersListmodi)
             val isValidPercentData = isValidData_per()
 
             when {
-                isValidData && isValidAlergyData && hasValidKeywordOrder && isValidPercentData -> { // 알레르기 & 영양성분
+                hasValidKeywordOrder && isValidData &&  isValidPercentData && isValidAllergyData  -> {
                     startFoodInfoAllActivity()
                 }
-                isValidData && hasValidKeywordOrder && isValidPercentData -> { // 영양성분
+                hasValidKeywordOrder && isValidData && isValidPercentData -> {
                     startFoodInfoNutritionActivity()
                 }
-                isValidAlergyData -> { // 알레르기
+                isValidAllergyData -> {
                     startFoodInfoAllergyActivity()
                 }
                 else -> {
-                    showAlertDialog("Camera Activity로 이동") // 인식 실패 시 Alert 창
+                    val intent = Intent(this, CameraOcrproblemActivity::class.java)
+                    startActivity(intent)
                 }
             }
+
         }
 
 
         handler.postDelayed({
             btn.performClick() // 버튼을 자동으로 클릭
-        }, 5000) // 5초
+        }, 3000) // 3초
 
     }
     private fun startFoodInfoAllActivity() {
         val intent = Intent(this, FoodInfoAllActivity::class.java)
-        configureIntent(intent)
+        intent.putExtra("modifiedPercentList", ArrayList(moPercentList))
+        intent.putExtra("PercentList", ArrayList(percentList))
+        intent.putStringArrayListExtra("modifiedKcalListText", ArrayList(kcalList))
         intent.putStringArrayListExtra("allergyList", ArrayList(extractedWords.toList()))
         startActivity(intent)
+
     }
 
     private fun startFoodInfoNutritionActivity() {
@@ -127,30 +138,31 @@ class LoadingActivity : AppCompatActivity() {
     }
 
     // 한글 키워드의 순서 확인하는 함수
-    private fun checkKeywordOrder(keywordSet: Set<String>): Boolean {
-        val targetKeywords = listOf("나트", "탄수화", "지방", "당류", "트랜스", "포화지방", "콜레스", "단백질")
-        val keywordList = keywordSet.toList()
+    private fun checkKeywordOrder(keywordList: List<String>): Boolean {
+        val targetKeywords = listOf("나트", "탄수화", "당류", "지방", "트랜스", "포화", "콜레스", "단백질")
+
+
+        textView.append(keywordList.toString())
 
         var targetIndex = 0
         for (keyword in keywordList) {
-            val partialMatch = targetKeywords.any { keyword.contains(it) }
-            if (partialMatch) {
+            val matchingKeyword = targetKeywords.getOrNull(targetIndex)
+            if (matchingKeyword != null && keyword.contains(matchingKeyword)) {
                 targetIndex++
             }
 
             if (targetIndex == targetKeywords.size) {
-                // 모든 키워드가 순서대로 나타났으면 true 반환
+                textView.append("true")
                 return true
             }
         }
 
-        // 여기까지 왔다면 순서가 일치하지 않음
         return false
     }
 
     private fun isValidData(): Boolean { // 퍼센트와 칼로리 유효성 판단
 
-        return percentList.isNotEmpty() && kcalList.isNotEmpty() && percentList.size == 7
+        return percentList.size == 7 && kcalList.size == 1 && percentList.all { it.isNotEmpty() } && kcalList.all { it.isNotEmpty() } && koreanCharactersListmodi.all { it.isNotEmpty() }
     }
 
     private fun isValidData_alergy(): Boolean { // 알레르기 유효성 판단
@@ -180,7 +192,8 @@ class LoadingActivity : AppCompatActivity() {
     private fun detectTextInBitmap(bitmap: Bitmap) {
         try {
             // 새 이미지를 처리하기 전에 세트와 리스트를 초기화!
-            koreanCharactersSet.clear()
+            koreanCharactersList.clear()
+            koreanCharactersListmodi.clear()
             gList.clear()
             percentList.clear()
 
@@ -237,16 +250,16 @@ class LoadingActivity : AppCompatActivity() {
                                 for (keyword in keywords) {
                                     if (elementText.contains(keyword)) {
                                         // 키워드를 한글 문자 Set에 추가
-                                        koreanCharactersSet.add(elementText)
+                                        koreanCharactersList.add(elementText)
                                         // replaceKoreanCharacters(koreanCharactersSet)
                                     }
                                 }
                             }
                             val lineText = line.text
                             val lineInfo = "라인 텍스트: $lineText" // 전체 인식한 라인 텍스트 출력
-                            runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
-                                textView.append("$lineInfo\n")
-                            }
+//                            runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
+//                                textView.append("$lineInfo\n")
+//                            }
 
                             // "숫자 g" 형태 확인
                             extractNumberG(lineText)
@@ -264,14 +277,23 @@ class LoadingActivity : AppCompatActivity() {
                     }
                     // 이미지 처리 후에 결과를 출력
                     showResults()
+                    koreanCharactersListmodi = koreanCharactersList.distinct().toMutableList()
+                    koreanCharactersListmodi = koreanCharactersListmodi.map { it.replace(Regex("[^가-힣]"), "") }.toMutableList()
+                    runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
+                        textView.append("$koreanCharactersListmodi\n")
+                        textView.append("$percentList\n")
+                    }
 
                 }
                 .addOnFailureListener { e ->
 
                     e.printStackTrace()
+                    showAlertDialog("OCR 처리 중 오류가 발생")
                 }
         } catch (e: Exception) {
             e.printStackTrace()
+            // 추가로 예외 정보를 로그에 출력
+            Log.e("wrong", "Exception occurred: ${e.message}", e)
         }
     }
 
@@ -371,7 +393,7 @@ class LoadingActivity : AppCompatActivity() {
 }
 
 
-// % 를 이용하여 g을 계산
+// % 를 이용하여 g으로 계산  -> mg으로 수정했는데 소영이한테 확인해보기!
 private fun modiPercentList(percentList: List<String>): List<String> {
     if (percentList.size != 7) {
         // 퍼센트 리스트의 길이가 7이 아니면 빈 리스트를 반환
@@ -381,12 +403,12 @@ private fun modiPercentList(percentList: List<String>): List<String> {
     val modifiedList = percentList.mapIndexed { index, percent ->
         val modifiedPercent = when (index) {
             0 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 2000).toInt().toString()
-            1 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 324).toInt().toString()
-            2 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 100).toInt().toString()
-            3 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 54).toInt().toString()
-            4 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 15).toInt().toString()
+            1 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 324 * 1000).toInt().toString()
+            2 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 100 * 1000).toInt().toString()
+            3 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 54 * 1000).toInt().toString()
+            4 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 15 * 1000).toInt().toString()
             5 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 300).toInt().toString()
-            6 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 55).toInt().toString()
+            6 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 55 * 1000).toInt().toString()
 
             else -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 2000).toInt().toString() // 그냥 한 값
         }

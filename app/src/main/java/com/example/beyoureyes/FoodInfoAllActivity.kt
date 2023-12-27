@@ -25,6 +25,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
+    private lateinit var personalButton: Button
 
     val nutri = listOf("나트륨", "탄수화물", "ㄴ당류", "지방", "ㄴ포화지방", "콜레스테롤", "단백질")
 
@@ -36,10 +37,14 @@ class FoodInfoAllActivity : AppCompatActivity() {
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
         val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
         val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
+
+
         setSupportActionBar(toolBar)
         //Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("영양 분석 결과")
+
+
 
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
@@ -73,10 +78,13 @@ class FoodInfoAllActivity : AppCompatActivity() {
         }
 
         // 버튼 초기화
-        speakButton = findViewById(R.id.button5)
+        speakButton = findViewById(R.id.buttonVoice)
 
         // 알러지 정보 intent하여 표시
         val allergyChipGroup: ChipGroup = findViewById<ChipGroup>(R.id.allergyChipGroup1)
+        val modifiedKcalList = intent.getStringArrayListExtra("modifiedKcalListText")
+        val Percent = intent.getStringArrayListExtra("PercentList")
+        val moPercentList = intent.getStringArrayListExtra("modifiedPercentList")
         val allergyList = intent.getStringArrayListExtra("allergyList")
 
         if (allergyList != null) {
@@ -86,7 +94,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
                 // Chip 뷰의 크기 및 여백 설정
                 val params = ChipGroup.LayoutParams(
-                    200, // 넓이 80
+                    250, // 넓이 80
                     150  // 높이 50
                 )
                 params.setMargins(8, 8, 8, 8) // 여백을 8로..
@@ -104,8 +112,6 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
         // 칼로리 intent 하여 kcalTextView에 표시
         val kcalText: TextView = findViewById(R.id.textView5)
-        val modifiedKcalList = intent.getStringArrayListExtra("modifiedKcalListText")
-        val Percent = intent.getStringArrayListExtra("PercentList")
 
         if (modifiedKcalList != null) {
             kcalText.text = modifiedKcalList.joinToString(", ") + " kcal"
@@ -115,16 +121,17 @@ class FoodInfoAllActivity : AppCompatActivity() {
         val chart = findViewById<PieChart>(R.id.pieChartScanSuccess)
         chart.setUsePercentValues(true)
         val entries = ArrayList<PieEntry>()
-        // NutriActivity 에서 데이터 받기
-        val moPercentList = intent.getStringArrayListExtra("modifiedPercentList")
+        // LoadingActivity 에서 데이터 받기
         val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
 
-        // 단백질, 탄수화물, 지방
-        if (moPercentList != null) {
+        println(Percent)
 
-            entries.add(PieEntry(moPercentList[1].toFloat(), koreanCharacterList[1]))
-            entries.add(PieEntry(moPercentList[3].toFloat(), koreanCharacterList[3]))
-            entries.add(PieEntry(moPercentList[6].toFloat(), koreanCharacterList[6]))
+        // 단백질, 탄수화물, 지방
+        if (Percent != null) {
+
+            entries.add(PieEntry(Percent[1].toFloat(), koreanCharacterList[1]))
+            entries.add(PieEntry(Percent[3].toFloat(), koreanCharacterList[3]))
+            entries.add(PieEntry(Percent[6].toFloat(), koreanCharacterList[6]))
         }
 
         // 색깔 적용
@@ -141,7 +148,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
             // 값(백분율)에 대한 색상 설정
             valueTextColor = Color.BLACK
             // 값에 대한 크기 설정
-            valueTextSize = 10f
+            valueTextSize = 20f
         }
 
         val pieData = PieData(pieDataSet)
@@ -154,6 +161,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
         chart.apply {
             data = pieData
+            chart.setEntryLabelTextSize(20f)
             description.isEnabled = false // 차트 설명 비활성화
             isRotationEnabled = false // 차트 회전 활성화
             legend.isEnabled = false // 하단 설명 비활성화
@@ -170,16 +178,16 @@ class FoodInfoAllActivity : AppCompatActivity() {
             val calorieText = "칼로리는 $modifiedKcalList 입니다."
             val nutrientsText = buildString {
                 for (i in koreanCharacterList.indices) {
-                    append("${koreanCharacterList[i]}은 ${moPercentList?.get(i)}g")
+                    append("${koreanCharacterList[i]}은 ${Percent?.get(i)}%")
                     if (i < koreanCharacterList.size - 1) {
                         append(", ")
                     }
                 }
             }
 
-            val allergyText = "이 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다."
+            val allergyText = "해당 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다."
 
-            val textToSpeak = "안녕하세요! 영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 $nutrientsText 입니다."
+            val textToSpeak = "영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다."
             speak(textToSpeak)
         }
 
@@ -199,6 +207,12 @@ class FoodInfoAllActivity : AppCompatActivity() {
             val nutriTextView = findViewById<TextView>(resources.getIdentifier("line${i + 1}_label", "id", packageName))
             val nutriValue = nutri?.get(i) ?: "N/A"
             nutriTextView.text = "$nutriValue"
+        }
+
+        personalButton = findViewById(R.id.buttonPersonalized)
+        personalButton.setOnClickListener {
+            val intent = Intent(this, FoodInfoAllPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
+            startActivity(intent)
         }
     }
     override fun onDestroy() {

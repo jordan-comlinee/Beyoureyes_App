@@ -30,8 +30,11 @@
             android:orientation="vertical">
 
             <!-- 식품의 영양정보 -->
+
+            <!-- 차트 -->
             <TextView
                 android:id="@+id/labelNutrition"
+                style="@style/title3"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -39,11 +42,9 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/nutri_background"
                 android:gravity="center"
-                android:text="식품 영양성분 정보"
-                style="@style/title3"
-                />
+                android:textColor="@color/black"
+                android:text="식품 영양성분 정보" />
 
-            <!-- 차트 -->
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChartScanSuccess"
                 android:layout_width="match_parent"
@@ -124,6 +125,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
+                        android:textColor="@color/black"
                         android:text="일일 권장량의" />
                 </LinearLayout>
 
@@ -140,6 +142,7 @@
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="left"
+                        android:textColor="@color/black"
                         android:text="TextView" />
 
                     <TextView
@@ -150,6 +153,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
+                        android:textColor="@color/black"
                         android:text="TextView" />
                 </LinearLayout>
 
@@ -166,6 +170,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
+                        android:textColor="@color/black"
                         android:text="TextView" />
 
                     <TextView
@@ -175,6 +180,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:gravity="right"
                         android:text="TextView" />
                 </LinearLayout>
@@ -190,6 +196,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="left"
+                        android:textColor="@color/black"
                         android:layout_gravity="center"
                         android:text="TextView" />
 
@@ -325,6 +332,7 @@
                 android:layout_marginTop="30dp"
                 android:background="@drawable/aller_round"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:text="알레르기 인식에\n실패했어요"
                 style="@style/title3"
                 />
@@ -364,11 +372,10 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginVertical="10dp"
-            android:backgroundTint="#161616"
             android:gravity="center"
-            android:background="@drawable/button_highlight"
-            android:textColor="@color/white"
-            android:text="나의 맞춤 정보 확인하기"
+            android:background="@drawable/button_personal"
+            android:textColor="@color/black"
+            android:text="모든 정보 확인하기"
             style="@style/title3"
             />
 

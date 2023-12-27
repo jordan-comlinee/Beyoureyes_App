@@ -40,6 +40,7 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/nutri_background"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:text="식품 영양성분 정보"
                 style="@style/title3"
                 />
@@ -116,6 +117,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
+                        android:textColor="@color/black"
                         android:text="일일 권장량의" />
                 </LinearLayout>
 
@@ -132,6 +134,7 @@
                         android:layout_weight="1"
                         android:layout_gravity="center"
                         android:gravity="left"
+                        android:textColor="@color/black"
                         android:text="TextView" />
 
                     <TextView
@@ -142,6 +145,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
+                        android:textColor="@color/black"
                         android:text="TextView" />
                 </LinearLayout>
 
@@ -158,6 +162,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="left"
+                        android:textColor="@color/black"
                         android:text="TextView" />
 
                     <TextView
@@ -168,6 +173,7 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:gravity="right"
+                        android:textColor="@color/black"
                         android:text="TextView" />
                 </LinearLayout>
                 <LinearLayout
@@ -182,6 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="left"
+                        android:textColor="@color/black"
                         android:layout_gravity="center"
                         android:text="TextView" />
 
@@ -317,6 +324,7 @@
                 android:layout_marginTop="12dp"
                 android:background="@drawable/aller_round"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:text="식품 알러지 정보"
                 style="@style/title3"  />
 

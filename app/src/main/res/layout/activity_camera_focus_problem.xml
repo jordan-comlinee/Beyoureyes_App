@@ -15,14 +15,6 @@
         android:layout_marginTop="50dp"
         android:layout_weight="0.1">
 
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginLeft="50dp"
-            android:layout_weight="0.1"
-            android:layout_gravity="center"
-            app:srcCompat="@drawable/icon_caution"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -32,8 +24,8 @@
             android:layout_gravity="center"
             android:gravity="center"
             style="@style/title3"
-            android:layout_marginRight="70dp"
-            android:text="사진을 다시 촬영해주세요." />
+            android:textColor="@color/black"
+            android:text="⚠ 사진을 다시 촬영해주세요" />
     </LinearLayout>
 
     <LinearLayout

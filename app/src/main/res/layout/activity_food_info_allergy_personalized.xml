@@ -38,6 +38,7 @@
                 android:background="@drawable/aller_round"
                 android:gravity="center"
                 android:text="식품 알러지 정보"
+                android:textColor="@color/black"
                 style="@style/title3"  />
 
             <TextView
@@ -70,6 +71,7 @@
                 android:background="@drawable/nutri_background"
                 android:gravity="center"
                 android:text="영양성분표 인식에\n실패했어요"
+                android:textColor="@color/black"
                 style="@style/title3"
                 />
             <androidx.appcompat.widget.AppCompatButton
@@ -109,10 +111,10 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginVertical = "10dp"
-            android:background="@drawable/button_black"
-            android:textColor="@color/white"
+            android:background="@drawable/button_personal"
+            android:textColor="@color/black"
             android:gravity="center"
-            android:text="나의 맞춤 정보 확인하기"
+            android:text="모든 정보 확인하기"
             style="@style/title3"
             />
 
