@@ -383,7 +383,7 @@
             android:orientation="horizontal">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button5"
+                android:id="@+id/buttonVoice"
                 android:layout_width="wrap_content"
                 android:layout_height="64sp"
                 android:layout_marginLeft="5dp"

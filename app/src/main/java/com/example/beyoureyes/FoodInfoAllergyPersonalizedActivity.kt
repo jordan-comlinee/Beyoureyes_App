@@ -51,7 +51,7 @@ class FoodInfoAllergyPersonalizedActivity : AppCompatActivity() {
         }
 
         // 버튼 초기화
-        // speakButton = findViewById(R.id.)
+        speakButton = findViewById(R.id.buttonVoice)
 
         // 버튼 눌렀을 때 TTS 실행 -> 수정 예정
         speakButton.setOnClickListener {
@@ -74,16 +74,6 @@ class FoodInfoAllergyPersonalizedActivity : AppCompatActivity() {
             }
         }
 
-        // intent로 전달받은 사용자 파라미터 파싱 + 사용자 객체 생성
-        val user = UserInfo(
-            "tmp",
-            intent.getIntExtra("userAge", 0),
-            intent.getIntExtra("userSex", 0),
-            intent.getStringArrayExtra("userDisease"),
-            intent.getStringArrayExtra("userAllergic")
-        )
-        Log.d("test", user.disease?.joinToString() + ", " + user.allergic?.joinToString())
-
         // intent로 전달받은 식품 정보 파싱
         val allergyList = intent.getStringArrayListExtra("allergyList")
 
@@ -98,12 +88,12 @@ class FoodInfoAllergyPersonalizedActivity : AppCompatActivity() {
 
         val allergyChipView = AllergyChipView(allergyChipGroup, allergyTextView)
 
-        user.allergic?.let { userAllergy ->
-            allergyList?.let { foodAllergy ->
-                Log.d("test", foodAllergy.toString())
-                allergyChipView.set(this, foodAllergy.toTypedArray(), userAllergy)
+        AppUser.info?.allergic?.let { userAllergy -> // 사용자 알러지 정보 꺼내기
+            allergyList?.let { foodAllergy ->        // 식품 알러지 정보 꺼내기
+                allergyChipView.set(this, foodAllergy.toTypedArray(), userAllergy.toTypedArray())
             }
         }
+
 
         val retryButton = findViewById<Button>(R.id.buttonRetry)
 

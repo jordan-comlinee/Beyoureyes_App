@@ -156,7 +156,7 @@ class EnergyReview(
 
     // 앱 전체에서 쓰는 색상 정의 xml 활용하기 위해 context 전달 필요.
     // 액티비티 내에서 쓸 때 this로 context 전달하면 됨. ex) setTextViews(this, ...)
-    fun setTextViews(context: Context, energyIntake:Int, energyDV:Int){
+    fun setTextViews(context: Context, energyIntake:Int, energyDV:Int?){
 
         val calrText1 = "총 "
         val calrText2 = "${energyIntake}kcal"
@@ -175,42 +175,42 @@ class EnergyReview(
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
-        var sigColor = 0 // 총 칼로리 및 섭취량 평가 포인트 색상
-
-        when(energyIntake) {
-            in 0..< energyDV -> { // 적정 범위 미만
-                sigColor = ContextCompat.getColor(context, R.color.yellow)
-                // 총 칼로리 섭취량 평가
-                review1.text = "오늘의 필요 에너지량보다\n" + "${energyDV-energyIntake}kcal 적습니다"
-                review2.text = "더 든든하게 식사하세요!"
+        energyDV?.let {energyDV ->  // 일일 권장량 기준 있을 때만 전용 문구 및 색상 구분 설정
+            var sigColor = 0 // 총 칼로리 및 섭취량 평가 포인트 색상
+            when(energyIntake) {
+                in 0..< energyDV -> { // 적정 범위 미만
+                    sigColor = ContextCompat.getColor(context, R.color.yellow)
+                    // 총 칼로리 섭취량 평가
+                    review1.text = "오늘의 필요 에너지량보다\n" + "${energyDV-energyIntake}kcal 적습니다"
+                    review2.text = "더 든든하게 식사하세요!"
+                }
+                in energyDV..energyDV+200 -> { // 적정 범위
+                    sigColor = ContextCompat.getColor(context, R.color.green)
+                    // 총 칼로리 섭취량 평가
+                    review1.text = "오늘의 필요 에너지량을 충족했어요"
+                    review2.text = "정말 잘 하셨어요!\uD83C\uDF89"
+                }
+                else -> { // 적정 범위 초과
+                    sigColor = ContextCompat.getColor(context, R.color.highlight)
+                    // 총 칼로리 섭취량 평가
+                    review1.text = "오늘의 필요 에너지량을 초과했어요\n" + "체중 조절에 주의하세요!"
+                    review2.text = "평소보다 움직임을 늘려보는 게 어떨까요?"
+                }
             }
-            in energyDV..energyDV+200 -> { // 적정 범위
-                sigColor = ContextCompat.getColor(context, R.color.green)
-                // 총 칼로리 섭취량 평가
-                review1.text = "오늘의 필요 에너지량을 충족했어요"
-                review2.text = "정말 잘 하셨어요!\uD83C\uDF89"
-            }
-            else -> { // 적정 범위 초과
-                sigColor = ContextCompat.getColor(context, R.color.highlight)
-                // 총 칼로리 섭취량 평가
-                review1.text = "오늘의 필요 에너지량을 초과했어요\n" + "체중 조절에 주의하세요!"
-                review2.text = "평소보다 움직임을 늘려보는 게 어떨까요?"
-            }
+            // 포인트 색상 적용(노랑/초록/빨강)
+            val colorSigSpan = ForegroundColorSpan(sigColor)
+            builder.setSpan(
+                colorSigSpan,
+                calrText1.length,
+                calrText1.length + calrText2.length,
+                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+            review1.setTextColor(sigColor)
         }
-        // 포인트 색상 적용(노랑/초록/빨강)
-        val colorSigSpan = ForegroundColorSpan(sigColor)
-        builder.setSpan(
-            colorSigSpan,
-            calrText1.length,
-            calrText1.length + calrText2.length,
-            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-        )
-        review1.setTextColor(sigColor)
 
         // spannable 텍스트 적용
         totalCalories.text = builder
     }
-
 
 }
 
@@ -339,8 +339,20 @@ class AllIntakeBarDisplay(
     val overIntakeReview : TextView
     ) {
 
-    fun hide(context: Context, userDVs: NutrientDailyValues) {
-        setNoDataValues(context, userDVs)
+    fun hide(context: Context, userDVs: NutrientDailyValues?) {
+
+        userDVs?.let { // 사용자 맞춤 권장량 O
+            setNoDataValues(context, it)
+        }?:{ // 사용자 맞춤 권장량 객체 null 일때 바 차트 다 숨김
+            natriumBar.hide()
+            carbsBar.hide()
+            sugarBar.hide()
+            proteinBar.hide()
+            fatBar.hide()
+            satFatBar.hide()
+            cholBar.hide()
+        }
+
         lackIntakeReview.visibility = View.GONE
         overIntakeReview.visibility = View.GONE
     }
@@ -476,50 +488,61 @@ class AllIntakeBarDisplay(
         }
     }
 
-    fun setAll(context: Context, totalIntake:NutritionFacts, userDVs: NutrientDailyValues) {
-        totalIntake.natrium?.let {
-            natriumBar.setBarValue(context, it, userDVs.natrium)
-        } ?: run {
-            natriumBar.setBarValue(context, Nutrition(0, UnitOfMass.MILLIGRAM), userDVs.natrium)
-        }
+    fun setAll(context: Context, totalIntake:NutritionFacts, userDVs: NutrientDailyValues?) {
+        userDVs?.let { userDVs ->
+            totalIntake.natrium?.let {
+                natriumBar.setBarValue(context, it, userDVs.natrium)
+            } ?: run {
+                natriumBar.setBarValue(context, Nutrition(0, UnitOfMass.MILLIGRAM), userDVs.natrium)
+            }
 
-        totalIntake.carbs?.let {
-            carbsBar.setBarValue(context, it, userDVs.carbs)
-        } ?: run {
-            carbsBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.carbs)
-        }
+            totalIntake.carbs?.let {
+                carbsBar.setBarValue(context, it, userDVs.carbs)
+            } ?: run {
+                carbsBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.carbs)
+            }
 
-        totalIntake.sugar?.let {
-            sugarBar.setBarValue(context, it, userDVs.sugar)
-        } ?: run {
-            sugarBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.sugar)
-        }
+            totalIntake.sugar?.let {
+                sugarBar.setBarValue(context, it, userDVs.sugar)
+            } ?: run {
+                sugarBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.sugar)
+            }
 
-        totalIntake.protein?.let {
-            proteinBar.setBarValue(context, it, userDVs.protein)
-        } ?: run {
-            proteinBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.protein)
-        }
+            totalIntake.protein?.let {
+                proteinBar.setBarValue(context, it, userDVs.protein)
+            } ?: run {
+                proteinBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.protein)
+            }
 
-        totalIntake.fat?.let {
-            fatBar.setBarValue(context, it, userDVs.fat)
-        } ?: run {
-            fatBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.fat)
-        }
+            totalIntake.fat?.let {
+                fatBar.setBarValue(context, it, userDVs.fat)
+            } ?: run {
+                fatBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.fat)
+            }
 
-        totalIntake.satFat?.let {
-            satFatBar.setBarValue(context, it, userDVs.satFat)
-        } ?: run {
-            satFatBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.satFat)
-        }
+            totalIntake.satFat?.let {
+                satFatBar.setBarValue(context, it, userDVs.satFat)
+            } ?: run {
+                satFatBar.setBarValue(context, Nutrition(0, UnitOfMass.GRAM), userDVs.satFat)
+            }
 
-        totalIntake.chol?.let {
-            cholBar.setBarValue(context, it, userDVs.chol)
-        } ?: run {
-            cholBar.setBarValue(context, Nutrition(0, UnitOfMass.MILLIGRAM), userDVs.chol)
-        }
+            totalIntake.chol?.let {
+                cholBar.setBarValue(context, it, userDVs.chol)
+            } ?: run {
+                cholBar.setBarValue(context, Nutrition(0, UnitOfMass.MILLIGRAM), userDVs.chol)
+            }
 
-        setReviews(context, totalIntake, userDVs)
+            setReviews(context, totalIntake, userDVs)
+        }?:{
+            // 사용자 맞춤 권장량 객체 null 일때 바 차트 다 숨김
+            natriumBar.hide()
+            carbsBar.hide()
+            sugarBar.hide()
+            proteinBar.hide()
+            fatBar.hide()
+            satFatBar.hide()
+            cholBar.hide()
+        }
     }
 
 }
@@ -533,6 +556,14 @@ class PercentOfDailyValueLineView(val labelTextView : TextView, val percentTextV
             labelTextView.text = nutriLabel
 
         percentTextView.text = "${percentValue}%"
+    }
+
+    fun disable(nutriLabel:String) {
+        if (isSubNutri(nutriLabel))
+            labelTextView.text = "ㄴ" + nutriLabel
+        else
+            labelTextView.text = nutriLabel
+        percentTextView.text = "제공 불가"
     }
 
     @SuppressLint("ResourceAsColor")
@@ -551,8 +582,17 @@ class PercentViewOfNutritionFacts(
     val line0 : TextView,
     val viewLines : ArrayList<PercentOfDailyValueLineView>) {
 
+    fun disable(){
+        val allNutris =
+            arrayOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
+        cautionTextView.visibility = View.GONE
+        for(i in 0 until viewLines.size) { // 그외 영양소들
+            val label = allNutris[i]
+            viewLines[i].disable(label)
+        }
+    }
 
-    fun setWarningText(diseaseList: Array<String>) {
+    fun setWarningText(diseaseList: MutableSet<String>) {
         cautionTextView.text = "⚠ " + diseaseList.joinToString() + "에 주의해야 할 성분을 포함해요"
     }
 
@@ -560,7 +600,7 @@ class PercentViewOfNutritionFacts(
         cautionTextView.visibility = View.GONE
     }
 
-    fun setLineViews(context: Context, nutriFacts: NutritionFacts, userDVs: NutrientDailyValues, nutrisToCare: Array<String>) {
+    fun setLineViews(context: Context, nutriFacts: NutritionFacts, userDVs: NutrientDailyValues?, nutrisToCare: Array<String>) {
         val allNutris =
             arrayOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
         val others = allNutris.subtract(nutrisToCare.toSet()).toTypedArray()
@@ -568,24 +608,36 @@ class PercentViewOfNutritionFacts(
         line0.setTextColor(ContextCompat.getColor(context, R.color.highlight))
         for(i in 0 until nutrisToCare.size){ // 질환에 주의해야할 영양소들
             val label = nutrisToCare[i]
-            val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, userDVs)
-            viewLines[i].set(label, percent)
+            userDVs?.let {
+                val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, it)
+                viewLines[i].set(label, percent)
+            }?:{
+                viewLines[i].disable(label)
+            }
             viewLines[i].highlight(context)
         }
         for(i in nutrisToCare.size until viewLines.size) { // 그외 영양소들
             val label = others[i-nutrisToCare.size]
-            val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, userDVs)
-            viewLines[i].set(label, percent)
+            userDVs?.let {
+                val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, it)
+                viewLines[i].set(label, percent)
+            }?:{
+                viewLines[i].disable(label)
+            }
         }
     }
 
-    fun setLineViews(nutriFacts: NutritionFacts, userDVs: NutrientDailyValues) {
+    fun setLineViews(nutriFacts: NutritionFacts, userDVs: NutrientDailyValues?) {
         val allNutris =
             arrayOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
         for(i in 0 until viewLines.size) { // 그외 영양소들
             val label = allNutris[i]
-            val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, userDVs)
-            viewLines[i].set(label, percent)
+            userDVs?.let {
+                val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, it)
+                viewLines[i].set(label, percent)
+            }?:{
+                viewLines[i].disable(label)
+            }
         }
     }
 }

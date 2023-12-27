@@ -52,7 +52,7 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
         }
 
         // 버튼 초기화
-        //speakButton = findViewById(R.id.)
+        speakButton = findViewById(R.id.buttonVoice)
 
         val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
 
@@ -87,16 +87,6 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
-
-        // intent로 전달받은 사용자 파라미터 파싱 + 사용자 객체 생성
-        val user = UserInfo(
-            "tmp",
-            intent.getIntExtra("userAge", 0),
-            intent.getIntExtra("userSex", 0),
-            intent.getStringArrayExtra("userDisease"),
-            intent.getStringArrayExtra("userAllergic")
-        )
-        Log.d("test", user.disease.toString() + ", " + user.allergic.toString())
 
         // intent로 전달받은 식품 정보 파싱
         val totalKcal = intent.getIntExtra("totalKcal", 0)
@@ -157,14 +147,17 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
 
         val percentView = PercentViewOfNutritionFacts(cautionTextView, line0, lineViewsList)
 
+        // 사용자 맞춤 권장량 계산
+        val userDVs = AppUser.info?.getDailyValues()
 
-        val userDVs = user.getDailyValues()
-        if (user.hasDisease()) { // 질환 있을 시
-            percentView.setWarningText(user.disease!!) // 경고 문구 설정
-            percentView.setLineViews(this, nutriFacts, userDVs, user.getNutrisToCare()) // 퍼센트 라인 설정
-        }else { // 질환 없을 시
+        // 권장량 대비 영양소 함유 퍼센트 표시 설정
+        AppUser.info?.disease?.let { disease -> // 사용자가 질환 있을 시
+            percentView.setWarningText(disease) // 경고 문구 설정
+            percentView.setLineViews(this,
+                nutriFacts, userDVs, AppUser.info!!.getNutrisToCare())
+        }?:{ // 질환 없을 시
             percentView.hideWarningText() // 경고 문구 없애기
-            percentView.setLineViews(nutriFacts, userDVs) // 퍼센트 라인 설정
+            percentView.setLineViews(nutriFacts, userDVs)
         }
 
         // 알러지 표시 ------------------------------------------------------
@@ -172,9 +165,9 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
         val allergyTextView = findViewById<TextView>(R.id.allergyMsg)
         val allergyChipView = AllergyChipView(allergyChipGroup, allergyTextView)
 
-        user.allergic?.let { userAllergy ->
-            allergyList?.let { foodAllergy ->
-                allergyChipView.set(this, foodAllergy.toTypedArray(), userAllergy)
+        AppUser.info?.allergic?.let { userAllergy -> // 사용자 알러지 정보 꺼내기
+            allergyList?.let { foodAllergy ->        // 식품 알러지 정보 꺼내기
+                allergyChipView.set(this, foodAllergy.toTypedArray(), userAllergy.toTypedArray())
             }
         }
 

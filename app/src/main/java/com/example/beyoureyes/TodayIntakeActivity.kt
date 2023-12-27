@@ -46,8 +46,6 @@ class TodayIntakeActivity : AppCompatActivity() {
         }
 
         // Firebase 연결을 위한 설정값
-        val userIdClass = application as userId
-        val userId = userIdClass.userId
         val db = Firebase.firestore
 
         // 에너지 섭취 비율 원형 차트
@@ -87,7 +85,7 @@ class TodayIntakeActivity : AppCompatActivity() {
         Log.d("TODAYINTAKE", "${current} => ${startOfToday.toDate()}")
 
         db.collection("userIntakeNutrition")
-            .whereEqualTo("userID", userId)
+            .whereEqualTo("userID", AppUser.id)
             .whereGreaterThanOrEqualTo("date", startOfToday) // 오늘 날짜 해당하는 것만
             .get()
             .addOnSuccessListener { result ->

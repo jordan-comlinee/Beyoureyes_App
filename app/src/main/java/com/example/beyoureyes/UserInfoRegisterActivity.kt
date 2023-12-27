@@ -92,164 +92,146 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                                     chip16, chip17, chip18, chip19, chip20)
 
 
-        // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
-        val db = Firebase.firestore
-        // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
-        db.collection("userInfo")
-            .whereEqualTo("userID", userIdSingleton.userId)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val result = task.result
-                    // 유저 정보가 이미 존재하는 경우
-                    if (result != null && !result.isEmpty) {
-                        Log.d("REGISTERFIRESTORE : ", "getDataSuccess_exist")
-                        toolbarTitle.setText("내 정보 수정하기")
-                        //userInfoRegisterTitle.setText("내 정보 수정하기")
-                        userInfoCheck = 1
+
+        // 사용자 정보 존재 여부에 따른 등록/수정 구분
+        AppUser.info?.let { // 사용자 정보 있음(기존 정보 수정화면)
+            toolbarTitle.setText("내 정보 수정하기")
+
+            // 기존 정보를 수정 화면에 반영
+
+            // 사용자 나이
+            age.setText(it.age.toString())
+
+            // 사용자 성별
+            userSex = it.gender
+            sexSwitch.isChecked = (it.gender==Gender.WOMAN.ordinal)
+
+            // 사용자 질환
+            it.disease?.let { userDisease ->
+                for (chip in diseaseChips) {
+                    if (userDisease.contains(chip.text)){
+                        chip.isChecked = true
                     }
-                    // 유저 정보가 존재하지 않는 경우
-                    else {
-                        Log.d("REGISTERFIRESTORE : ", "getDataSuccess_not exist")
-                        toolbarTitle.setText("내 정보 등록하기")
-                        userInfoCheck = -1
+                }
+            }
+            // 사용자 알레르기
+            it.allergic?.let { userAllergic ->
+                for (chip in allergyChips) {
+                    if (userAllergic.contains(chip.text)){
+                        chip.isChecked = true
                     }
-                } else {
-                    // 쿼리 중에 예외가 발생한 경우
-                    Log.d("REGISTERFIRESTORE : ", "Error getting documents.", task.exception)
-                    toolbarTitle.setText("내 정보 등록하기")
-                    userInfoCheck = 0
                 }
             }
-
-
-        //성별 정보 클릭 로직
-        sexSwitch.setOnCheckedChangeListener{ buttonView, isChecked ->
-            if(isChecked) {
-                //Toast.makeText(this@UserInfoRegisterActivity, "woman", Toast.LENGTH_LONG).show()
-                userSex == 0
-            }
-            else {
-                //Toast.makeText(this@UserInfoRegisterActivity, "man", Toast.LENGTH_LONG).show()
-                userSex == 1
-            }
+        }?:{ // 사용자 정보 없음(기존 정보 등록화면)
+            toolbarTitle.setText("내 정보 등록하기")
         }
 
-        // 질환 정보 클릭 로직
-        for (i in diseaseChips.indices) {
-            diseaseChips[i].setOnClickListener { view ->
-                val chip = view as Chip
-
-                //val chipText = chip.text.toString()
-                // Toast 메시지 표시
-                //Toast.makeText(this@UserInfoRegisterActivity, chipText, Toast.LENGTH_LONG).show()
-
-                // clickedDisease 리스트 업데이트
-                val index = diseaseChips.indexOf(chip)
-                clickedDisease[index] = !clickedDisease[index]
-
-                // clickedDisease의 값을 확인하여 배경색과 텍스트 색상 변경
-                if (clickedDisease[index]) {
-                    // 클릭되었을 때의 처리
-                    chip.setChipBackgroundColorResource(R.color.red)
-                    chip.setTextColor(Color.WHITE)
-                } else {
-                    // 클릭이 해제되었을 때의 처리
-                    // 원래의 배경색과 텍스트 색상을 복원하려면 해당 색상 리소스 ID를 사용하세요.
-                    chip.setChipBackgroundColorResource(R.color.white)
-                    chip.setTextColor(Color.BLACK) // 원래의 텍스트 색상을 복원
-                }
-            }
-        }
-        // 알러지 정보 클릭 로직
-        for (i in allergyChips.indices) {
-            allergyChips[i].setOnClickListener { view ->
-                val chip = view as Chip
-
-                //val chipText = chip.text.toString()
-                //Toast.makeText(this@UserInfoRegisterActivity, chipText, Toast.LENGTH_LONG).show()
-
-
-                // clickedDisease 리스트 업데이트
-                val index = allergyChips.indexOf(chip)
-                clickedAllergic[index] = !clickedAllergic[index]
-
-                // clickedDisease의 값을 확인하여 배경색과 텍스트 색상 변경
-                if (clickedAllergic[index]) {
-                    // 클릭되었을 때의 처리
-                    chip.setChipBackgroundColorResource(R.color.red)
-                    chip.setTextColor(Color.WHITE)
-                } else {
-                    // 클릭이 해제되었을 때의 처리
-                    // 원래의 배경색과 텍스트 색상을 복원하려면 해당 색상 리소스 ID를 사용하세요.
-                    chip.setChipBackgroundColorResource(R.color.white)
-                    chip.setTextColor(Color.BLACK) // 원래의 텍스트 색상을 복원
-                }
-            }
-        }
+        // 알러지, 질환 칩 클릭 시 색상 설정하는 코드 없애고 레이아웃 상에서 적용해둠
 
         // 등록하기 버튼 클릭 시 로직
         usrInfoRegiSaveButton.setOnClickListener {
             // 나이 입력 X 시 토스트 메세지 띄움
             if(age.text.toString() == ""){
                 Toast.makeText(this@UserInfoRegisterActivity, "나이를 입력해주세요!", Toast.LENGTH_LONG).show()
-            }
-            // 나이 입력 O 시
-            else {
-                // 질환 정보
-                for( index in clickedDisease.indices ) {
-                    if(clickedDisease[index])
-                        userDiseaseList.add(diseaseList[index])
-                }
-                // 알러지 정보
-                for ( index in clickedAllergic.indices ) {
-                    if(clickedAllergic[index])
-                        userAllergyList.add(allergyList[index])
-                }
+            }else{ // 나이 입력 내용 유효한지 검사
+                val ageInt = age.text.toString().toIntOrNull()
+                if (ageInt == null)
+                    Toast.makeText(this@UserInfoRegisterActivity, "나이를 숫자로만 입력해주세요!", Toast.LENGTH_LONG).show()
+                else
+                {
+                    if(ageInt !in 15..120)
+                        Toast.makeText(this@UserInfoRegisterActivity, "등록 가능한 나이 범위는 15세~120세 입니다.", Toast.LENGTH_LONG).show()
+                    // 나이 입력 O 시
+                    else {
 
-                Log.d("LIST: ", userDiseaseList.toString())
-                Log.d("LIST: ", userAllergyList.toString())
-                Log.d("LIST: ", userIdSingleton.userId.toString())
-                Log.d("LIST: ", age.text.toString())
+                        // 성별 정보 반영
+                        if (sexSwitch.isChecked)
+                            userSex = 0
+                        else
+                            userSex = 1
 
-                // 기존 유저 정보가 있다면 삭제
-                if(userInfoCheck == 1) {
-                    Log.d("REGISTERFIRESTORE : ", "DELETE START")
-                    deleteData(userIdSingleton.userId!!, "userInfo") {
-                        // 삭제가 완료되면 이 블록이 실행됨
-                        // 여기에서 sendData 함수 호출
-                        val userInfo = hashMapOf(
-                            "userID" to userIdSingleton.userId!!,
-                            "userAge" to age.text.toString().toInt(),
-                            "userSex" to userSex,
-                            "userDisease" to userDiseaseList,
-                            "userAllergic" to userAllergyList
-                        )
-                        sendData(userInfo, "userInfo")
-                        userDiseaseList.clear()
-                        userAllergyList.clear()
+                        // 선택한 질환 정보
+                        val checkedDisease =
+                            (diseaseChips.filter { it.isChecked }).map { it.text.toString() }
+                        userDiseaseList.addAll(checkedDisease)
 
-                        val intent = Intent(this, UserInfoActivity::class.java)
-                        startActivity(intent)
+                        // 선택한 알러지 정보
+                        val checkedAllergy =
+                            (allergyChips.filter { it.isChecked }).map { it.text.toString() }
+                        userAllergyList.addAll(checkedAllergy)
+
+
+                        // 싱글톤 객체 업데이트 ----------------------------------
+                        AppUser.info?.let {// 수정 시
+
+                            // 나이 정보 반영
+                            it.age = ageInt
+
+                            // 성별 정보 반영
+                            it.gender = userSex
+
+                            // 질환 정보
+                            AppUser.info?.disease?.clear()
+                            AppUser.info?.disease?.addAll(checkedDisease)
+
+                            // 알레르기 정보
+                            AppUser.info?.allergic?.clear()
+                            AppUser.info?.allergic?.addAll(checkedAllergy)
+
+
+                        }?:{ // 최초 등록 시
+
+                            AppUser.info = UserInfo(
+                                ageInt, userSex,
+                                checkedDisease.toMutableSet(), checkedAllergy.toMutableSet())
+                        }
+
+                        Log.d("LIST: ", userDiseaseList.toString())
+                        Log.d("LIST: ", userAllergyList.toString())
+                        Log.d("LIST: ", AppUser.id.toString())
+                        Log.d("LIST: ", age.text.toString())
+
+                        // Firebase DB 업데이트 ----------------------------------
+                        // 기존 유저 정보가 있다면 삭제
+                        if(AppUser.info != null) {
+                            Log.d("REGISTERFIRESTORE : ", "DELETE START")
+                            deleteData(AppUser.id!!, "userInfo") {
+                                // 삭제가 완료되면 이 블록이 실행됨
+                                // 여기에서 sendData 함수 호출
+                                val userInfo = hashMapOf(
+                                    "userID" to AppUser.id!!,
+                                    "userAge" to AppUser.info!!.age,
+                                    "userSex" to AppUser.info!!.gender,
+                                    "userDisease" to userDiseaseList,
+                                    "userAllergic" to userAllergyList
+                                )
+                                sendData(userInfo, "userInfo")
+                                userDiseaseList.clear()
+                                userAllergyList.clear()
+
+                                val intent = Intent(this, UserInfoActivity::class.java)
+                                startActivity(intent)
+                            }
+                        }
+                        else {
+                            // 유저 정보가 없는 경우에는 바로 sendData 함수 호출
+                            val userInfo = hashMapOf(
+                                "userID" to AppUser.id!!,
+                                "userAge" to AppUser.info!!.age,
+                                "userSex" to AppUser.info!!.gender,
+                                "userDisease" to userDiseaseList,
+                                "userAllergic" to userAllergyList
+                            )
+                            sendData(userInfo, "userInfo")
+                            userDiseaseList.clear()
+                            userAllergyList.clear()
+
+                            val intent = Intent(this, UserInfoActivity::class.java)
+                            startActivity(intent)
+                        }
+
                     }
                 }
-                else {
-                    // 유저 정보가 없는 경우에는 바로 sendData 함수 호출
-                    val userInfo = hashMapOf(
-                        "userID" to userIdSingleton.userId!!,
-                        "userAge" to age.text.toString().toInt(),
-                        "userSex" to userSex,
-                        "userDisease" to userDiseaseList,
-                        "userAllergic" to userAllergyList
-                    )
-                    sendData(userInfo, "userInfo")
-                    userDiseaseList.clear()
-                    userAllergyList.clear()
-
-                    val intent = Intent(this, UserInfoActivity::class.java)
-                    startActivity(intent)
-                }
-
             }
         }
 

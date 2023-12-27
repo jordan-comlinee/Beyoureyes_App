@@ -122,65 +122,25 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
         // 맞춤 정보 버튼
         val personalButton = findViewById<Button>(R.id.buttonPersonalized)
 
-        // Firebase에서 사용자 정보 가져오기
-        // Firebase 연결을 위한 설정값
-        val userIdClass = application as userId
-        val userId = userIdClass.userId
-        val db = Firebase.firestore
+        // 사용자 맞춤 서비스 제공 여부 검사(맞춤 정보 있는지)
+        // 기존 Firebase와의 통신 코드는 다 제거
+        AppUser.info?.let { // 사용자 정보 있을 시
 
-        // 유저 정보 받아오기
-        db.collection("userInfo")
-            .whereEqualTo("userID", userId)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val result = task.result
-                    var user:UserInfo? = null
+            val intent = Intent(this, FoodInfoAllPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
+            // 식품 정보 전달 (알레르기 only)
+            intent.putExtra("allergyList", allergyList)
+            // 이제 intent로 사용자 정보 전달할 필요 X
 
-                    // 유저 정보가 이미 존재하는 경우
-                    if (result != null && !result.isEmpty) {
-                        for (document in result) {
-                            Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
-                            user = UserInfo.parseFirebaseDoc(document)
-
-                            if (user!=null) {
-                                Log.d("FIRESTORE : ", "got UserInfo")
-                                break
-                            }
-                        }
-                    }
-
-                    user?.let { u -> // 사용자 정보 있을 시
-
-                        val intent = Intent(this, FoodInfoAllergyPersonalizedActivity::class.java)
-                        // 식품 정보 전달
-                        intent.putExtra("allergyList", allergyList)
-                        // 사용자 정보 전달
-                        intent.putExtra("userAge", u.age)
-                        intent.putExtra("userSex", u.gender)
-                        intent.putExtra("userDisease", u.disease)
-                        intent.putExtra("userAllergic", u.allergic)
-
-
-                        personalButton.setOnClickListener {
-                            startActivity(intent)
-                            overridePendingTransition(R.anim.none, R.anim.none)
-                        }
-
-                    } ?: run {// 사용자 정보 없을 시
-                        personalButton.isEnabled = false // 버튼 비활성화
-                        personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
-                    }
-
-
-                } else {
-                    // 쿼리 중에 예외가 발생한 경우
-                    Log.d("FIRESTORE : ", "Error getting documents.", task.exception)
-                    personalButton.isEnabled = false // 버튼 비활성화
-                    personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
-
-                }
+            // 맞춤 정보 버튼 활성화
+            personalButton.setOnClickListener {
+                startActivity(intent)
+                overridePendingTransition(R.anim.none, R.anim.none)
             }
+        } ?: run {// 사용자 정보 없을 시
+            // 맞춤 정보 버튼 비활성화
+            personalButton.isEnabled = false // 버튼 비활성화
+            personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+        }
 
     }
 

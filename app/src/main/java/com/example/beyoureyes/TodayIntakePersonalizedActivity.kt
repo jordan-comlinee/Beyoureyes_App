@@ -54,20 +54,7 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
         }
 
         // Firebase 연결을 위한 설정값
-        val userIdClass = application as userId
-        val userId = userIdClass.userId
         val db = Firebase.firestore
-
-        // intent로 전달받은 파라미터 파싱 + 사용자 객체 생성
-        var id = ""
-        userId?.let { id = it }
-        val user = UserInfo(
-            id,
-            intent.getIntExtra("userAge", 0),
-            intent.getIntExtra("userSex", 0),
-            intent.getStringArrayExtra("userDisease"),
-            intent.getStringArrayExtra("userAllergic")
-        )
 
         // 에너지 섭취 비율 원형 차트
         val chart = findViewById<PieChart>(R.id.pieChart)
@@ -141,10 +128,11 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
         val startOfToday = Timestamp(today.toEpochSecond(ZoneOffset.UTC), today.nano)
 
         // 사용자 맞춤 권장량 구하기
-        val userDVs = user.getDailyValues()
+        val userDVs = AppUser.info?.getDailyValues()
 
+        // DB에서 총 섭취량 가져오기
         db.collection("userIntakeNutrition")
-            .whereEqualTo("userID", userId)
+            .whereEqualTo("userID", AppUser.id)
             .whereGreaterThanOrEqualTo("date", startOfToday) // 오늘 날짜 해당하는 것만
             .get()
             .addOnSuccessListener { result ->
@@ -158,8 +146,8 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     // 2.1. 총 섭취량 구하기
                     var totalIntake = NutritionFacts()
 
+                    // 섭취량 합계 연산
                     for (document in result) {
-                        // 섭취량 합계 연산
                         Log.d("TODAYINTAKE", "${document.id} => ${document.data}")
                         val nutritionMap = document.data["nutrition"] as? Map<String, Any?>
                         val calories = document.data.get("calories") as Long
@@ -195,7 +183,7 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
                     // 2.3. 총 섭취량 화면 표시 - 총 칼로리 평가
                     val energyIntake = totalIntake.energy ?: 0
-                    energyReviewText.setTextViews(this, energyIntake, userDVs.energy)
+                    energyReviewText.setTextViews(this, energyIntake, userDVs?.energy)
 
                     // 2.4. 총 섭취량 화면 표시 - 성분별 섭취량 바
                     intakeBars.setAll(this, totalIntake, userDVs)
