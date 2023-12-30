@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/alert_dialog_shape"
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24sp"
+        android:layout_marginBottom="24sp"
+        android:background="@drawable/alert_dialog_shape"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:text="얼마나 드셨나요?"
+        style="@style/title2"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="24dp"
+        android:orientation="horizontal">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/horizontalChartIntake"
+            android:layout_width="match_parent"
+            android:layout_height="450dp"
+            android:layout_weight="1"
+            android:background="@color/green" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonAll"
+                style="@style/title3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="24sp"
+                android:layout_weight="1"
+                android:background="@drawable/button_default"
+                android:text="다 먹음"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonLot"
+                style="@style/title3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="24sp"
+                android:layout_weight="1"
+                android:background="@drawable/button_default"
+                android:text="많이 먹음"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonHalf"
+                style="@style/title3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="24sp"
+                android:layout_weight="1"
+                android:background="@drawable/button_default"
+                android:text="반 먹음"
+                android:textColor="@color/black" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonLittle"
+                style="@style/title3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="24sp"
+                android:layout_weight="1"
+                android:background="@drawable/button_default"
+                android:text="적게 먹음"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonBack"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="24sp"
+            android:layout_marginEnd="12sp"
+            android:layout_weight="1"
+            android:text="뒤로가기"
+            android:background="@drawable/button_black"
+            android:textColor="@color/white"
+            style="@style/title3"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSend"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
+            android:layout_gravity="center"
+            android:layout_marginStart="12sp"
+            android:layout_marginEnd="24sp"
+            android:layout_weight="1"
+            android:text="완료하기"
+            android:background="@drawable/button_black"
+            android:textColor="@color/white"
+            style="@style/title3"/>
+    </LinearLayout>
+
+
+</LinearLayout>
