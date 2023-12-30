@@ -44,16 +44,19 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
 
         val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
 
-        // 버튼 초기화
-        // speakButton = findViewById(R.id.)
+         // 버튼 초기화
+        speakButton = findViewById(R.id.buttonVoice)
 
         // 버튼 눌렀을 때 TTS 실행 -> 수정 예정 -> 여기서 칼로리는 제공하지 않아도되지 않을까???-> 회의 시간에 애기!!
         speakButton.setOnClickListener {
-            val calorieText = "칼로리는 <~kcal> 입니다."
+            val calorieText = "칼로리는 ${totalKcal}kcal 입니다."
             val nutrientsText = buildString {
-                for (i in koreanCharacterList.indices) {
-                    append("${koreanCharacterList[i]}은 <퍼센트 리스트>")
-                    if (i < koreanCharacterList.size - 1) {
+                for (i in lineViewsList.indices) {
+                    val nutrientName = lineViewsList[i].labelTextView.text.toString().removePrefix("ㄴ")
+                    val nutrientPercent = lineViewsList[i].percentTextView.text.toString()
+                    append("$nutrientName 은 $nutrientPercent")
+
+                    if (i < lineViewsList.size - 1) {
                         append(", ")
                     }
                 }
