@@ -44,26 +44,28 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
         }
 
         // 버튼 초기화
-        //speakButton = findViewById(R.id.)
-
-        val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
+        speakButton = findViewById(R.id.buttonVoice)
 
         // 버튼 눌렀을 때 TTS 실행 -> 수정예정
         speakButton.setOnClickListener {
-            val calorieText = "칼로리는 <~~kcal> 입니다."
+            val calorieText = "칼로리는 ${totalKcal}kcal 입니다."
             val nutrientsText = buildString {
-                for (i in koreanCharacterList.indices) {
-                    append("${koreanCharacterList[i]}은 <퍼센트 리스트>%")
-                    if (i < koreanCharacterList.size - 1) {
+                for (i in lineViewsList.indices) {
+                    val nutrientName = lineViewsList[i].labelTextView.text.toString().removePrefix("ㄴ")
+                    val nutrientPercent = lineViewsList[i].percentTextView.text.toString()
+                    append("$nutrientName 은 $nutrientPercent")
+
+                    if (i < lineViewsList.size - 1) {
                         append(", ")
                     }
                 }
             }
 
-            val allergyText = "해당 식품에는 <알레르기> 가 함유되어 있습니다."
+            val allergyText = "해당 식품에는 ${allergyList?.joinToString(", ")} 가 함유되어 있습니다."
 
-            val textToSpeak = "당신의 맞춤별 영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다." +
-                    "해당 식품의 모든 정보를 확인하고 싶으시면 모든 정보 확인하기 버튼을 클릭해주세요. 또한 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
+            val textToSpeak =
+                "당신의 맞춤별 영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 당신의 일일 권장량 $nutrientsText 입니다." +
+                        "해당 식품의 모든 정보를 확인하고 싶으시면 모든 정보 확인하기 버튼을 클릭해주세요. 또한 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
             speak(textToSpeak)
         }
     }
