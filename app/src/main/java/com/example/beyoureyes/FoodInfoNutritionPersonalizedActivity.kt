@@ -42,9 +42,7 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
             }
         }
 
-        val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
-
-         // 버튼 초기화
+        // 버튼 초기화
         speakButton = findViewById(R.id.buttonVoice)
 
         // 버튼 눌렀을 때 TTS 실행 -> 수정 예정 -> 여기서 칼로리는 제공하지 않아도되지 않을까???-> 회의 시간에 애기!!
@@ -62,7 +60,7 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
                 }
             }
 
-            val textToSpeak = "당신의 맞춤별 영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다. 해당 식품의 모든 정보를 확인하고" +
+            val textToSpeak = "당신의 맞춤별 영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 당신의 일일 권장량 $nutrientsText 입니다. 해당 식품의 모든 정보를 확인하고" +
                     "싶으시면 모든 정보 확인하기 버튼을 클릭해주세요. 또한 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
             speak(textToSpeak)
         }
