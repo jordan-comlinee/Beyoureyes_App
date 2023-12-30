@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
+import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import org.opencv.android.OpenCVLoader
@@ -21,10 +22,8 @@ import org.opencv.android.OpenCVLoader
 
 class HomeActivity : AppCompatActivity() {
 
-    private var userInfoCheck : Int = 0;
     // onBackPressed
     private var time: Long = 0
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,44 +44,45 @@ class HomeActivity : AppCompatActivity() {
         val desiredPadding = calculateDesiredPadding(screenHeight)
         motionLayout.setPadding(48, desiredPadding, 48, desiredPadding)
 
-        // 파이어베이스 테스트용
-        val userIdClass = application as userId
-        val userId = userIdClass.userId
-        if (userId != null) {
+
+        if (AppUser.id != null) {
             // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
             val db = Firebase.firestore
             // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
             db.collection("userInfo")
-                .whereEqualTo("userID", userId)
+                .whereEqualTo("userID", AppUser.id)
                 .get()
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val result = task.result
                         // 유저 정보가 이미 존재하는 경우
                         if (result != null && !result.isEmpty) {
-                            Log.d("HOMEFIRESTORE : ", "getDataSuccess_exist")
-                            userInfoCheck = 1
-                        }
-                        // 유저 정보가 이미 존재하는 경우
-                        else {
-                            Log.d("HOMEFIRESTORE : ", "getDataSuccess_not exist")
-                            userInfoCheck = -1
-                        }
+                            for (document in result) {
+                                Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
+
+                                // Firebase 문서에서 사용자 정보 파싱하여 UserInfo 객체 생성
+                                val user = UserInfo.parseFirebaseDoc(document)
+
+                                // 싱글톤 객체 유저 정보 업뎃
+                                if (user != null) {
+                                    AppUser.info = user
+                                    break
+                                }
+                            }
+                        } // 싱글톤 객체 사용으로 불필요해진 else 절 삭제
                     } else {
                         // 쿼리 중에 예외가 발생한 경우
+                        // 쿼리 실패의 경우 인터넷 연결 상태와도 연관이 있으므로
+                        // 추후 대응 필요성을 고려해 else문 분기 유지
                         Log.d("HOMEFIRESTORE : ", "Error getting documents.", task.exception)
-                        userInfoCheck = 0
                     }
                 }
-
-
-        }
-        else {
+        } else { // 사용자 id 자체가 없는 경우? 오류
             Log.d("HOMEFIRESTORE : ", "Error getting documents.")
             Toast.makeText(this@HomeActivity, "userId not exist", Toast.LENGTH_LONG).show()
         }
 
-
+        // 4개의 메뉴 버튼 레이아웃 연결
         val filmButton : ImageView = findViewById(R.id.filmButton)
         val todayIntakeButton : ImageView = findViewById(R.id.todayNutritionButton)
         val exitButton : ImageView = findViewById(R.id.exitButton)
@@ -90,37 +90,38 @@ class HomeActivity : AppCompatActivity() {
 
         // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
         userInfoButton.setOnClickListener {
-            if (userInfoCheck == 1) {
+            if (AppUser.info != null) {   // userInfo가 있는 경우
                 val intent = Intent(this, UserInfoActivity::class.java)
                 Log.d("HOMEFIRESTORE : ", "success_1")
                 //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
-            else if (userInfoCheck == -1){
+            else { //userInfo가 없는 경우
                 val intent = Intent(this, UserInfoRegisterActivity::class.java)
                 Log.d("HOMEFIRESTORE : ", "success_-1")
                 //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
             }
-            else {
-                Log.d("HOMEFIRESTORE : ", "failure_0")
-                val intent = Intent(this, UserInfoRegisterActivity::class.java)
-                //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
-                startActivity(intent)
-            }
-        }
+        } // 사용자정보존재, 존재하지않음 2가지로만 분기 축소
 
+        // 촬영하기 버튼
         filmButton.setOnClickListener {
            // val intent = Intent(this, CameraFirstActivity::class.java)
             val intent = Intent(this, NutriCautionActivity::class.java)
             startActivity(intent)
         }
-
+        // 오늘 섭취한 영양소 확인하기 버튼
         todayIntakeButton.setOnClickListener {
-            val intent = Intent(this, TodayIntakeActivity::class.java)
-            startActivity(intent)
+            if (AppUser.info != null) { // 사용자 정보 있을 시 맞춤 섭취량 통계 화면으로 연결
+                // 이제 사용자 정보 인텐트 파라미터로 전달할 필요X
+                val intent = Intent(this, TodayIntakePersonalizedActivity::class.java)
+                startActivity(intent)
+            } else {// 사용자 정보 없을 시 일반 통계 화면으로 연결
+                val intent = Intent(this, TodayIntakeActivity::class.java)
+                startActivity(intent)
+            }
         }
-
+        // 나가기 버튼
         exitButton.setOnClickListener{
             val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_default, null)
 

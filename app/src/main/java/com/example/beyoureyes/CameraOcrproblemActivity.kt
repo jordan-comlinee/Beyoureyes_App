@@ -10,6 +10,7 @@ import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -20,7 +21,6 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -37,8 +37,7 @@ import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 
-class CameraFocusProblemActivity : AppCompatActivity()  {
-
+class CameraOcrproblemActivity : AppCompatActivity() {
     // 권한 처리에 필요한 변수
     val CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)
 
@@ -72,7 +71,7 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_camera_focus_problem)
+        setContentView(R.layout.activity_camera_ocrproblem)
 
         //toolBar
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
@@ -83,13 +82,11 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("다시 촬영해주세요")
 
-
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
+            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
-
 
         // 카메라
         val camera = findViewById<Button>(R.id.buttoncamera)
@@ -106,7 +103,7 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
 
         // Kotlin 코드에서 해당 TextView를 찾아서 SpannableString을 사용하여 스타일을 적용
         val textView = findViewById<TextView>(R.id.textView5)
-        val spannable = SpannableString("⚠ 사진을 다시 촬영해주세요")
+        val spannable = SpannableString("⚠ 글자 인식에 실패했습니다.")
         spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         textView.text = spannable
 
@@ -276,9 +273,6 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
 
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
         }
-
-
     }
-
 
 }

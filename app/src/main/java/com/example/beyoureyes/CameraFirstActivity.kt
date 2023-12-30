@@ -21,6 +21,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -83,10 +85,11 @@ class CameraFirstActivity : AppCompatActivity()  {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("영양 정보 촬영하기")
 
+
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
+            overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
 
         // 카메라
@@ -194,6 +197,7 @@ class CameraFirstActivity : AppCompatActivity()  {
                             val intent = Intent(this, CameraFocusProblemActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
                             startActivity(intent) // 수진 수정 합칠때 이부분 수정해야함
 
+
                         }else{
 
                             val intent = Intent(this, LoadingActivity::class.java)
@@ -268,9 +272,11 @@ class CameraFirstActivity : AppCompatActivity()  {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        //Log.d(TAG, "onRequestPermissionsResult");
+
+        Log.d("camera Activity", "onRequestPermissionsResult");
         if (grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-            //Log.d(TAG, "Permission: " + permissions[0] + "was " + grantResults[0]); }
+            Log.d("camera Activity",
+                "Permission: " + permissions[0] + "was " + grantResults[0])
         }
     }
 

@@ -1,27 +1,33 @@
 package com.example.beyoureyes
 
 import android.annotation.SuppressLint
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.app.Activity
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+
+
 import java.util.Locale
 
 class FoodInfoAllergyActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
-    private lateinit var personalButton: Button
+    private lateinit var personalButton:Button
 
+    private val camera = Camera()
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,15 +38,10 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
         val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
         val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-
-
-
         setSupportActionBar(toolBar)
         //Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("영양 분석 결과")
-
-
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
@@ -100,24 +101,61 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
 
                 // 가운데 정렬
                 chip.textAlignment = View.TEXT_ALIGNMENT_CENTER
-
+                chip.setPadding(20, 20, 20, 20) // 상, 좌, 하, 우 패딩
                 allergyChipGroup.addView(chip)
             }
         }
 
         // 버튼 눌렀을 때 TTS 실행 -> 수정 예정
         speakButton.setOnClickListener {
-            val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당 식품에는 <알러지> 가 함유되어 있습니다. 다른 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시찍기 버튼을 눌러주세요."
+
+            val textToSpeak = "안녕하세요! 영양 정보를 분석해드리겠습니다. 해당 식품에는 ${allergyList?.joinToString(", ")}가 함유되어 있습니다. 다른 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시찍기 버튼을 눌러주세요."
             speak(textToSpeak)
         }
 
-        personalButton = findViewById(R.id.buttonPersonalized_allergy)
-        personalButton.setOnClickListener {
+        val retryButton = findViewById<Button>(R.id.buttonRetry)
+        retryButton.setOnClickListener {
+            while(camera.start(this) == -1){
+                camera.start(this)
+            }
+        }
+
+        // 맞춤 정보 버튼
+        personalButton = findViewById<Button>(R.id.buttonPersonalized)
+
+        // 사용자 맞춤 서비스 제공 여부 검사(맞춤 정보 있는지)
+        // 기존 Firebase와의 통신 코드는 다 제거
+        AppUser.info?.let { // 사용자 정보 있을 시
+
             val intent = Intent(this, FoodInfoAllergyPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
-            startActivity(intent)
+            // 식품 정보 전달 (알레르기 only)
+            intent.putExtra("allergyList", allergyList)
+            // 이제 intent로 사용자 정보 전달할 필요 X
+
+            // 맞춤 정보 버튼 활성화
+            personalButton.setOnClickListener {
+                startActivity(intent)
+                overridePendingTransition(R.anim.none, R.anim.none)
+            }
+        } ?: run {// 사용자 정보 없을 시
+            // 맞춤 정보 버튼 비활성화
+            personalButton.isEnabled = false // 버튼 비활성화
+            personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
         }
 
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            when(requestCode) {
+                Camera.FLAG_REQ_CAMERA -> {
+                    camera.processPhoto(this)
+                }
+            }
+        }
+    }
+
 
     override fun onDestroy() {
         // TTS 해제

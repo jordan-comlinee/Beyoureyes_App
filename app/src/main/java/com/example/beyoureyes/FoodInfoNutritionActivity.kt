@@ -1,32 +1,42 @@
 package com.example.beyoureyes
 
+
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.AbsoluteSizeSpan
+
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.util.Locale
 
 class FoodInfoNutritionActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
-    private lateinit var personalButton: Button
-    val nutri = listOf("나트륨", "탄수화물", "ㄴ당류", "지방", "ㄴ포화지방", "콜레스테롤", "단백질")
+    private lateinit var eatButton: Button
+
+    private val camera = Camera()
+
+    val nutri = listOf("나트륨", "탄수화물", " ㄴ당류", "지방", " ㄴ포화지방", "콜레스테롤", "단백질")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,13 +51,13 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         //Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
         toolbarTitle.setText("영양 분석 결과")
-
-
         toolbarBackButton.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
+
+
         // TextToSpeech 초기화
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
@@ -90,7 +100,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         }
 
         // 원형 차트 (영양성분 이름  + 해당 g) intent해서 표시
-        val chart = findViewById<PieChart>(R.id.pieChartScanSuccess)
+        val chart = findViewById<PieChart>(R.id.pieChart)
         chart.setUsePercentValues(true)
         val entries = ArrayList<PieEntry>()
         // NutriActivity 에서 데이터 받기
@@ -103,12 +113,13 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             entries.add(PieEntry(Percent[1].toFloat(), koreanCharacterList[1]))
             entries.add(PieEntry(Percent[3].toFloat(), koreanCharacterList[3]))
             entries.add(PieEntry(Percent[6].toFloat(), koreanCharacterList[6]))
+
         }
         // 차트 색깔
         val colors = listOf(
-            Color.parseColor("#C2FF00"),
-            Color.parseColor("#F1BC00"),
-            Color.parseColor("#FFC2E5")
+            ContextCompat.getColor(this, R.color.chartgreen),
+            ContextCompat.getColor(this, R.color.chartyellow),
+            ContextCompat.getColor(this, R.color.chartpink)
         )
 
         val pieDataSet = PieDataSet(entries, "")
@@ -118,7 +129,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             // 값(백분율)에 대한 색상 설정
             valueTextColor = Color.BLACK
             // 값에 대한 크기 설정
-            valueTextSize = 20f
+            valueTextSize = 30f
         }
 
         val pieData = PieData(pieDataSet)
@@ -130,21 +141,21 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             }
         }
 
-
         chart.apply {
             data = pieData
-
             description.isEnabled = false // 차트 설명 비활성화
             isRotationEnabled = false // 차트 회전 활성화
             legend.isEnabled = false // 하단 설명 비활성화
             isDrawHoleEnabled = true // 가운데 빈 구멍 활성화 비활성화 여부
-            holeRadius = 20f // 가운데 빈 구멍 크기
-            transparentCircleRadius = 40f // 투명한 부분 크기
+            holeRadius = 0f // 가운데 빈 구멍 크기
+            transparentCircleRadius = 0f // 투명한 부분 크기
             centerText = null // 가운데 텍스트 없앰
+            setEntryLabelTextSize(20f) // label 글씨 크기
             setEntryLabelColor(Color.BLACK) // label 색상
-            animateY(1400, Easing.EaseInOutQuad) // 1.4초 동안 애니메이션 설정
+            animateY(800, Easing.EaseInOutQuad) // 0.8초 동안 애니메이션 설정
             animate()
         }
+
         //chart.setEntryLabelTextSize(20f)
 
         // 버튼 눌렀을 때 TTS 실행
@@ -160,6 +171,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             }
 
             val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다. 알레르기 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요."
+
             speak(textToSpeak)
         }
 
@@ -181,14 +193,58 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             nutriTextView.text = "$nutriValue"
         }
 
-        personalButton = findViewById(R.id.buttonPersonalized_nutri)
-        personalButton.setOnClickListener {
+        val retryButton = findViewById<Button>(R.id.buttonRetry)
+
+        retryButton.setOnClickListener {
+            while(camera.start(this) == -1){
+                camera.start(this)
+            }
+        }
+
+        // 맞춤 정보 버튼
+        val personalButton = findViewById<Button>(R.id.buttonPersonalized)
+
+        // 사용자 맞춤 서비스 제공 여부 검사(맞춤 정보 있는지)
+        // 기존 Firebase와의 통신 코드는 다 제거
+        AppUser.info?.let { // 사용자 정보 있을 시
+
             val intent = Intent(this, FoodInfoNutritionPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
-            startActivity(intent)
+            // 식품 정보 전달 (영양정보 only)
+            intent.putExtra("totalKcal", modifiedKcalList?.get(0)?.toInt())
+            intent.putExtra("nutriFactsInMilliString",
+                ArrayList(moPercentList?.map {it.toInt()}))
+            // 이제 intent로 사용자 정보 전달할 필요 X
+
+            // 맞춤 정보 버튼 활성화
+            personalButton.setOnClickListener {
+                startActivity(intent)
+                overridePendingTransition(R.anim.none, R.anim.none)
+            }
+        } ?: run {// 사용자 정보 없을 시
+            // 맞춤 정보 버튼 비활성화
+            personalButton.isEnabled = false // 버튼 비활성화
+            personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+        }
+
+        eatButton = findViewById(R.id.eatButton)
+
+        val customDialog = CustomDialog(this)
+        eatButton.setOnClickListener {
+            customDialog.show()
         }
 
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            when(requestCode) {
+                Camera.FLAG_REQ_CAMERA -> {
+                    camera.processPhoto(this)
+                }
+            }
+        }
+    }
 
     override fun onDestroy() {
         // TTS 해제

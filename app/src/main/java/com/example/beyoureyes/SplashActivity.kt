@@ -40,16 +40,15 @@ class SplashActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
 
-        if (currentUser != null) {
+        if (currentUser != null) { // 앱 이용한 적 있는 유저
             //Toast.makeText(this@SplashActivity, "이미 가입한 유저", Toast.LENGTH_LONG).show()
             userId = currentUser.uid
-            val userIdClass = application as userId
-            userIdClass.userId = userId
-            Log.d("USERID : ", userId)
+            AppUser.id = userId
+            Log.d("GOOGLE : ", AppUser.id.toString()+"  INIT")
             //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
         }
-        else {
+        else { // 최초 접속
             //Toast.makeText(this@SplashActivity, "가입안한 유저", Toast.LENGTH_LONG).show()
             signInAnonymously()
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
@@ -70,9 +69,8 @@ class SplashActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     // 과연 절대로 null이 아닐까?
                     userId = user!!.uid
-                    val userIdClass = application as userId
-                    userIdClass.userId = userId
-                    Log.d("USERID : ", userId)
+                    AppUser.id = userId
+                    Log.d("GOOGLE : ", AppUser.id.toString()+"  INIT")
                     //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
                     updateUI(user)
                 } else {
