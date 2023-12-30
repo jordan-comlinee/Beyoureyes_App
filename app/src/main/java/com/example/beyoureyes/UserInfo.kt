@@ -33,8 +33,8 @@ class UserInfo (
         disease?.forEach {
             when (it) {
                 "고지혈증" -> list.addAll(arrayOf("지방", "포화지방", "콜레스테롤"))
-                "고혈압" -> list.addAll(arrayOf("나트륨", "포화 지방", "콜레스테롤"))
-                "당뇨" -> list.addAll(arrayOf("당", "콜레스테롤"))
+                "고혈압" -> list.addAll(arrayOf("나트륨", "포화지방", "콜레스테롤"))
+                "당뇨" -> list.addAll(arrayOf("당류", "콜레스테롤"))
             }
         }
         val set = list.toSet() // 중복 없애기

@@ -159,6 +159,8 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
             percentView.hideWarningText() // 경고 문구 없애기
             percentView.setLineViews(nutriFacts, userDVs)
         }
+        nutriFacts.carbs?.getMilliGram()
+
 
         // 알러지 표시 ------------------------------------------------------
         val allergyChipGroup: ChipGroup = findViewById<ChipGroup>(R.id.allergyChipGroup1)
