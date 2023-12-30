@@ -122,7 +122,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                     }
                 }
             }
-        }?:{ // 사용자 정보 없음(기존 정보 등록화면)
+        }?:run{ // 사용자 정보 없음(기존 정보 등록화면)
             toolbarTitle.setText("내 정보 등록하기")
         }
 

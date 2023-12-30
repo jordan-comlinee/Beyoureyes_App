@@ -343,7 +343,7 @@ class AllIntakeBarDisplay(
 
         userDVs?.let { // 사용자 맞춤 권장량 O
             setNoDataValues(context, it)
-        }?:{ // 사용자 맞춤 권장량 객체 null 일때 바 차트 다 숨김
+        }?:run{ // 사용자 맞춤 권장량 객체 null 일때 바 차트 다 숨김
             natriumBar.hide()
             carbsBar.hide()
             sugarBar.hide()
@@ -533,7 +533,7 @@ class AllIntakeBarDisplay(
             }
 
             setReviews(context, totalIntake, userDVs)
-        }?:{
+        }?:run{
             // 사용자 맞춤 권장량 객체 null 일때 바 차트 다 숨김
             natriumBar.hide()
             carbsBar.hide()
@@ -611,7 +611,7 @@ class PercentViewOfNutritionFacts(
             userDVs?.let {
                 val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, it)
                 viewLines[i].set(label, percent)
-            }?:{
+            }?:run{
                 viewLines[i].disable(label)
             }
             viewLines[i].highlight(context)
@@ -621,7 +621,7 @@ class PercentViewOfNutritionFacts(
             userDVs?.let {
                 val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, it)
                 viewLines[i].set(label, percent)
-            }?:{
+            }?:run{
                 viewLines[i].disable(label)
             }
         }
@@ -635,7 +635,7 @@ class PercentViewOfNutritionFacts(
             userDVs?.let {
                 val percent = nutriFacts.getPercentOfDailyValueByNutriLabel(label, it)
                 viewLines[i].set(label, percent)
-            }?:{
+            }?:run{
                 viewLines[i].disable(label)
             }
         }

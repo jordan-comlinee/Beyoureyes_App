@@ -104,7 +104,7 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
             percentView.setWarningText(disease) // 경고 문구 설정
             percentView.setLineViews(this,
                 nutriFacts, userDVs, AppUser.info!!.getNutrisToCare())
-        }?:{ // 질환 없을 시
+        }?:run{ // 질환 없을 시
             percentView.hideWarningText() // 경고 문구 없애기
             percentView.setLineViews(nutriFacts, userDVs)
         }
