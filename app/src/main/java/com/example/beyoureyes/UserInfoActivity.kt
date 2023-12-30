@@ -125,9 +125,9 @@ class UserInfoActivity : AppCompatActivity() {
             }
         }?:run{ // 사용자 정보 null일 시 -> 처리 조건 상 이 분기는 아마 진입할 일이 없긴 할 것
             // 나이 정보 표시
-            infoAge.text = "나이 정보 확인 실패"
+            infoAge.text = "-"
             // 성별 정보 표시
-            infoSex.text = "성별 정보 확인 실패"
+            infoSex.text = "-"
         }
 
 
