@@ -161,14 +161,15 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                         userAllergyList.addAll(checkedAllergy)
 
 
-                        // 싱글톤 객체 업데이트 ----------------------------------
-                        AppUser.info?.let {// 수정 시
+                        // 싱글톤 객체 & Firebase DB 업데이트 ----------------------------------
+                        // 기존 유저 정보가 있다면 삭제
+                        if(AppUser.info != null) {
 
                             // 나이 정보 반영
-                            it.age = ageInt
+                            AppUser.info?.age = ageInt
 
                             // 성별 정보 반영
-                            it.gender = userSex
+                            AppUser.info?.gender = userSex
 
                             // 질환 정보
                             AppUser.info?.disease?.clear()
@@ -179,21 +180,6 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                             AppUser.info?.allergic?.addAll(checkedAllergy)
 
 
-                        }?:{ // 최초 등록 시
-
-                            AppUser.info = UserInfo(
-                                ageInt, userSex,
-                                checkedDisease.toMutableSet(), checkedAllergy.toMutableSet())
-                        }
-
-                        Log.d("LIST: ", userDiseaseList.toString())
-                        Log.d("LIST: ", userAllergyList.toString())
-                        Log.d("LIST: ", AppUser.id.toString())
-                        Log.d("LIST: ", age.text.toString())
-
-                        // Firebase DB 업데이트 ----------------------------------
-                        // 기존 유저 정보가 있다면 삭제
-                        if(AppUser.info != null) {
                             Log.d("REGISTERFIRESTORE : ", "DELETE START")
                             deleteData(AppUser.id!!, "userInfo") {
                                 // 삭제가 완료되면 이 블록이 실행됨
@@ -214,11 +200,16 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                             }
                         }
                         else {
+
+                            AppUser.info = UserInfo(
+                                ageInt, userSex,
+                                checkedDisease.toMutableSet(), checkedAllergy.toMutableSet())
+
                             // 유저 정보가 없는 경우에는 바로 sendData 함수 호출
                             val userInfo = hashMapOf(
                                 "userID" to AppUser.id!!,
-                                "userAge" to AppUser.info!!.age,
-                                "userSex" to AppUser.info!!.gender,
+                                "userAge" to ageInt,
+                                "userSex" to userSex,
                                 "userDisease" to userDiseaseList,
                                 "userAllergic" to userAllergyList
                             )
