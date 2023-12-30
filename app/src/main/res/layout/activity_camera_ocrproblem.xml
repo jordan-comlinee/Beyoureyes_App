@@ -29,7 +29,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginTop="50dp"
                 android:layout_weight="0.1">
 
 
@@ -41,6 +40,8 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     style="@style/title3"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
                     android:textColor="@color/black"
                     android:text="⚠ 글자 인식에 실패했습니다." />
             </LinearLayout>
@@ -58,19 +59,50 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
                     android:text="아래 유의 사항에 맞게 다시 촬영해주세요."
                     android:textColor="@color/highlight" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    style="@style/text1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:textColor="@color/black"
+                    android:text="1. 글자가 잘 보이도록 가까기 찍되, 전체 내용이 다 담을 수 있도록 촬영해주세요." />
 
                 <ImageView
                     android:id="@+id/imageView13"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    app:srcCompat="@drawable/ocrproblem2" />
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    app:srcCompat="@drawable/cameraocrimage1" />
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    style="@style/text1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:textColor="@color/black"
+                    android:text="2. 물체를 사물과 잘 구별되는 배경에 놓고 촬영해주세요. " />
                 <ImageView
                     android:id="@+id/imageView14"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    app:srcCompat="@drawable/ocrproblem3"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    app:srcCompat="@drawable/cameraocrimage2"
                     android:layout_marginBottom="80dp"/>
 
             </LinearLayout>
