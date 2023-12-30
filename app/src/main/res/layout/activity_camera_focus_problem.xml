@@ -12,9 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="50dp"
         android:layout_weight="0.1">
-
 
         <TextView
             android:id="@+id/textView5"
@@ -23,6 +21,8 @@
             android:layout_weight="0.9"
             android:layout_gravity="center"
             android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             style="@style/title3"
             android:textColor="@color/black"
             android:text="⚠ 사진을 다시 촬영해주세요" />
@@ -41,14 +41,31 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:text="아래 유의 사항에 맞게 다시 촬영해주세요."
             android:textColor="@color/highlight" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            style="@style/text1"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textColor="@color/black"
+            android:text="1. 초점을 잘 맞춰서 촬영해주세요." />
 
         <ImageView
             android:id="@+id/imageView13"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            app:srcCompat="@drawable/focusproblem" />
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            app:srcCompat="@drawable/camerafocusimage1" />
 
     </LinearLayout>
     <LinearLayout
