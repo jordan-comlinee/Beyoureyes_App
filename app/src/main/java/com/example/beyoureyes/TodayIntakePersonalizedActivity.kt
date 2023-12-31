@@ -262,7 +262,7 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
                     speakButton.setOnClickListener {
                         val textToSpeech = "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text} 또한 오늘 섭취한 나트륨은 ${naStatus}, 탄수화물은 ${carboStatus}, " +
-                                "당은 ${sugarStatus}, 지방은 ${fatStatus}, 포화지방은 ${satfatStatus}, 콜레스테롤은 ${choleStatus}, 단백질은 ${proteinStatus} 입니다."
+                                "당류는 ${sugarStatus}, 지방은 ${fatStatus}, 포화지방은 ${satfatStatus}, 콜레스테롤은 ${choleStatus}, 단백질은 ${proteinStatus} 입니다."
                         speak(textToSpeech)
                     }
 

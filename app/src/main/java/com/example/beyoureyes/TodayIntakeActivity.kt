@@ -47,6 +47,33 @@ class TodayIntakeActivity : AppCompatActivity() {
             //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
 
+        // TextToSpeech 초기화
+        textToSpeech = TextToSpeech(this) { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                val result = textToSpeech.setLanguage(Locale.KOREAN)
+
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.e("TTS", "Language is not supported or missing data")
+                } else {
+                    // TTS 초기화 성공
+                    Log.d("TTS", "TextToSpeech initialization successful")
+                }
+            } else {
+                Log.e("TTS", "TextToSpeech initialization failed")
+            }
+        }
+        fun speak(text: String) {
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                val params = Bundle()
+                params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "")
+                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, params, "UniqueID")
+            } else {
+                // LOLLIPOP 이하의 버전에서는 UtteranceId를 지원하지 않음
+                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null)
+            }
+        }
+
+
         // Firebase 연결을 위한 설정값
         val db = Firebase.firestore
 
@@ -95,6 +122,11 @@ class TodayIntakeActivity : AppCompatActivity() {
                 if (result.isEmpty) { // 쿼리 결과 없을 때(오늘 섭취량 기록 아직 없음)
                     energyChart.hide() // 차트 숨김
                     energyReviewText.showNoDataMsg(this)
+
+                    speakButton.setOnClickListener {
+                        val textToSpeech = "오늘의 섭취량 기록이 없습니다. 분석 결과를 제공받기 위해서 기록을 남겨보세요."
+                        speak(textToSpeech)
+                    }
 
                 } else { // 쿼리 결과 있을 때
                     // 2.1. 총 섭취량 구하기
@@ -150,36 +182,10 @@ class TodayIntakeActivity : AppCompatActivity() {
                     totalIntake.chol?.let {chol -> choPer.setText("${chol.getMilliGram()}mg")}
 
                     //////////////////////////////////////////////////////////
-                    // TextToSpeech 초기화
-                    textToSpeech = TextToSpeech(this) { status ->
-                        if (status == TextToSpeech.SUCCESS) {
-                            val result = textToSpeech.setLanguage(Locale.KOREAN)
 
-                            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                                Log.e("TTS", "Language is not supported or missing data")
-                            } else {
-                                // TTS 초기화 성공
-                                Log.d("TTS", "TextToSpeech initialization successful")
-                            }
-                        } else {
-                            Log.e("TTS", "TextToSpeech initialization failed")
-                        }
-                    }
-                    fun speak(text: String) {
-                        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                            val params = Bundle()
-                            params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "")
-                            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, params, "UniqueID")
-                        } else {
-                            // LOLLIPOP 이하의 버전에서는 UtteranceId를 지원하지 않음
-                            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null)
-                        }
-                    }
                     // 버튼 눌렀을 때 TTS 실행 -> 영양성분 순서 다시 확인 필요 및 % 맞는지 확인 !
                     speakButton.setOnClickListener {
-                        val textToSpeak = "오늘 <날짜> 섭취한 영양소를 분석해드리겠습니다. " +
-                                "오늘 하루 총 섭취한 칼로리는 ${totalIntake.energy}kcal 입니다. " +
-                                "<오늘의 필요 에너지 량을 충족했어요> 세부적인 영양분석은 다음과 같습니다. " +
+                        val textToSpeak = "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text}" +
                                 "나트륨은 ${totalIntake.natrium?.getMilliGram()}mg, " +
                                 "탄수화물은  ${totalIntake.carbs?.getGram()}g, " +
                                 "당류는 ${totalIntake.sugar?.getGram()}g, " +
