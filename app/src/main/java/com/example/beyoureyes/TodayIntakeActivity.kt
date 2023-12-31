@@ -31,6 +31,8 @@ class TodayIntakeActivity : AppCompatActivity() {
         setContentView(R.layout.activity_today_intake)
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
 
+        speakButton = findViewById(R.id.buttonlisten)
+
         // toolBar 및 뒤로가기 설정
         val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
         val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
@@ -173,8 +175,6 @@ class TodayIntakeActivity : AppCompatActivity() {
                             textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null)
                         }
                     }
-                    speakButton = findViewById(R.id.buttonlisten)
-
                     // 버튼 눌렀을 때 TTS 실행 -> 영양성분 순서 다시 확인 필요 및 % 맞는지 확인 !
                     speakButton.setOnClickListener {
                         val textToSpeak = "오늘 <날짜> 섭취한 영양소를 분석해드리겠습니다. " +

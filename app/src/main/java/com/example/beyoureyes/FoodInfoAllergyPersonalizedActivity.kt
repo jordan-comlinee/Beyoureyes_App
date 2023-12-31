@@ -23,6 +23,19 @@ class FoodInfoAllergyPersonalizedActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_info_allergy_personalized)
 
+        // toolBar 및 뒤로가기 설정
+        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
+        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
+        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
+        setSupportActionBar(toolBar)
+        // Toolbar에 앱 이름 표시 제거!!
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        toolbarTitle.setText("맞춤 영양 분석 결과")
+        toolbarBackButton.setOnClickListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
+        }
+
         // TextToSpeech 초기화
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
@@ -99,18 +112,7 @@ class FoodInfoAllergyPersonalizedActivity : AppCompatActivity() {
                         "싶으시면 모든 정보 확인하기 버튼을 클릭해주세요. 또한 해당 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
             speak(textToSpeak)
 
-            // toolBar 및 뒤로가기 설정
-            val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-            val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-            val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-            setSupportActionBar(toolBar)
-            // Toolbar에 앱 이름 표시 제거!!
-            supportActionBar?.setDisplayShowTitleEnabled(false)
-            toolbarTitle.setText("맞춤 영양 분석 결과")
-            toolbarBackButton.setOnClickListener {
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent)
-            }
+
         }
     }
 

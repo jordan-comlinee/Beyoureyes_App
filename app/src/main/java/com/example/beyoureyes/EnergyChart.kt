@@ -220,6 +220,17 @@ class NutriIntakeBarDisplay(
     val dvTextView : TextView,
     val iconTextView : TextView) {
 
+    fun getBarColor(): Int? {
+        val barData = barChart.barData
+        if (barData != null && barData.dataSetCount > 0) {
+            val barDataSet = barData.getDataSetByIndex(0) as? BarDataSet
+            if (barDataSet != null && barDataSet.colors.isNotEmpty()) {
+                return barDataSet.colors[0] // 첫 번째 바의 색상을 가져옴
+            }
+        }
+        return null
+    }
+
     fun setBarValue(context: Context, nutri: Nutrition, dv: DailyValue) {
         val milliIntake = nutri.getMilliGram()
         val percentIntake = nutri.getPercentageOfDailyValue(dv.dailyValue)
@@ -338,6 +349,7 @@ class AllIntakeBarDisplay(
     val lackIntakeReview : TextView,
     val overIntakeReview : TextView
     ) {
+
 
     fun hide(context: Context, userDVs: NutrientDailyValues?) {
 

@@ -486,7 +486,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/buttonGoHomeScanSuccess"
+            android:id="@+id/buttonVoice"
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:layout_marginStart="6sp"
