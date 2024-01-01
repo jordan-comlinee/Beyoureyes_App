@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.beyoureyes.databinding.ActivityLoadingBinding
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
@@ -25,7 +26,7 @@ class LoadingActivity : AppCompatActivity() {
 
     private lateinit var textView: TextView // 텍스트 뷰 선언
 
-    private lateinit var btn: Button
+    private lateinit var resultbtn: Button
 
 
     private val textRecognizer = TextRecognition.getClient(
@@ -41,15 +42,17 @@ class LoadingActivity : AppCompatActivity() {
 
     private lateinit var moPercentList: List<String> // % -> g 으로 변형하여 담을 List
 
+    private lateinit var binding: ActivityLoadingBinding
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_loading)
+        binding = ActivityLoadingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        textView = findViewById(R.id.textView) // 텍스트뷰 초기화
+        textView = findViewById(R.id.textView) // test 하기 위해.. 삭제예정
 
-        btn = findViewById(R.id.btn) // 버튼 초기화
+        resultbtn = binding.resultbtn
 
 
         val filePath = intent.getStringExtra("bitmapPath")
@@ -70,7 +73,7 @@ class LoadingActivity : AppCompatActivity() {
         }
 
 
-        btn.setOnClickListener {
+        resultbtn.setOnClickListener {
 
             textView.append(moPercentList.toString())
 
@@ -99,8 +102,8 @@ class LoadingActivity : AppCompatActivity() {
 
 
         handler.postDelayed({
-            btn.performClick() // 버튼을 자동으로 클릭
-        }, 3000) // 3초
+            resultbtn.performClick() // 버튼을 자동으로 클릭
+        }, 4000) // 4초
 
     }
 
@@ -289,7 +292,7 @@ class LoadingActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
 
                     e.printStackTrace()
-                    showAlertDialog("OCR 처리 중 오류가 발생")
+                    showAlertDialog("네트워크를 연결해주세요 또는 API 연동 중이거나 적합하지 않은 이미지일 수 있습니다.")
                 }
         } catch (e: Exception) {
             e.printStackTrace()

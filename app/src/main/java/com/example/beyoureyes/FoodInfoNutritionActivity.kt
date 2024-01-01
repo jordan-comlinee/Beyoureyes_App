@@ -18,6 +18,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import com.example.beyoureyes.databinding.ActivityFoodInfoNutritionBinding
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
@@ -32,31 +33,26 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
-    private lateinit var eatButton: Button
-
     private val camera = Camera()
+    private lateinit var binding: ActivityFoodInfoNutritionBinding
 
     val nutri = listOf("나트륨", "탄수화물", " ㄴ당류", "지방", " ㄴ포화지방", "콜레스테롤", "단백질")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_food_info_nutrition)
+        binding = ActivityFoodInfoNutritionBinding.inflate(layoutInflater) // Inflate the binding
+        setContentView(binding.root)
 
-        //toolBar
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-
-        setSupportActionBar(toolBar)
-        //Toolbar에 앱 이름 표시 제거!!
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("영양 분석 결과")
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarTitle.text = "영양 분석 결과"
+
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
+            overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
-
 
         // TextToSpeech 초기화
         textToSpeech = TextToSpeech(this) { status ->
@@ -86,12 +82,10 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         }
 
         // 버튼 초기화
-        speakButton = findViewById(R.id.button5)
-
-
+        speakButton = binding.buttonVoice
 
         // 칼로리 intent 하여 kcalTextView에 표시
-        val kcalText: TextView = findViewById(R.id.textView5)
+        val kcalText: TextView = binding.kcaltextview
         val modifiedKcalList = intent.getStringArrayListExtra("modifiedKcalListText")
         val Percent = intent.getStringArrayListExtra("PercentList")
 
@@ -100,7 +94,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         }
 
         // 원형 차트 (영양성분 이름  + 해당 g) intent해서 표시
-        val chart = findViewById<PieChart>(R.id.pieChart)
+        val chart = binding.pieChart
         chart.setUsePercentValues(true)
         val entries = ArrayList<PieEntry>()
         // NutriActivity 에서 데이터 받기
@@ -156,8 +150,6 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             animate()
         }
 
-        //chart.setEntryLabelTextSize(20f)
-
         // 버튼 눌렀을 때 TTS 실행
         speakButton.setOnClickListener {
             val calorieText = "칼로리는 $modifiedKcalList 입니다."
@@ -193,16 +185,14 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             nutriTextView.text = "$nutriValue"
         }
 
-        val retryButton = findViewById<Button>(R.id.buttonRetry)
-
-        retryButton.setOnClickListener {
+        binding.buttonRetry.setOnClickListener {
             while(camera.start(this) == -1){
                 camera.start(this)
             }
         }
 
         // 맞춤 정보 버튼
-        val personalButton = findViewById<Button>(R.id.buttonPersonalized)
+        val personalButton = binding.buttonPersonalized
 
         // 사용자 맞춤 서비스 제공 여부 검사(맞춤 정보 있는지)
         // 기존 Firebase와의 통신 코드는 다 제거
@@ -226,7 +216,8 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
         }
 
-        eatButton = findViewById(R.id.eatButton)
+        //먹기 버튼
+        val eatButton = binding.buttoneat
 
         val customDialog = CustomDialog(this)
         eatButton.setOnClickListener {

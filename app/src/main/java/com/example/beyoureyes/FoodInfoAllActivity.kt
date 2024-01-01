@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import com.example.beyoureyes.databinding.ActivityFoodInfoAllBinding
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.HorizontalBarChart
@@ -42,30 +43,30 @@ class FoodInfoAllActivity : AppCompatActivity() {
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
     private lateinit var personalButton: Button
+    private lateinit var binding: ActivityFoodInfoAllBinding
 
     val nutri = listOf("나트륨", "탄수화물", " ㄴ당류", "지방", " ㄴ포화지방", "콜레스테롤", "단백질")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_food_info_all)
+        binding = ActivityFoodInfoAllBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val eatButton : Button = findViewById(R.id.eatButton)
+        // 먹기 버튼
+        val eatButton: Button = binding.buttoneat
 
-        //toolBar
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-        setSupportActionBar(toolBar)
-        //Toolbar에 앱 이름 표시 제거!!
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("영양 분석 결과")
+        binding.include.toolbarTitle.text = "영양 분석 결과"
 
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
+            overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
+
         // TextToSpeech 초기화
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
@@ -92,11 +93,9 @@ class FoodInfoAllActivity : AppCompatActivity() {
             }
         }
 
-        // 버튼 초기화
-        speakButton = findViewById(R.id.buttonVoice)
 
         // 알러지 정보 intent하여 표시
-        val allergyChipGroup: ChipGroup = findViewById<ChipGroup>(R.id.allergyChipGroup1)
+        val allergyChipGroup: ChipGroup = binding.allergyChipGroup
         val modifiedKcalList = intent.getStringArrayListExtra("modifiedKcalListText")
         val Percent = intent.getStringArrayListExtra("PercentList")
         val moPercentList = intent.getStringArrayListExtra("modifiedPercentList")
@@ -128,14 +127,14 @@ class FoodInfoAllActivity : AppCompatActivity() {
         }
 
         // 칼로리 intent 하여 kcalTextView에 표시
-        val kcalText: TextView = findViewById(R.id.textView5)
+        val kcalText: TextView = binding.kcaltextview
 
         if (modifiedKcalList != null) {
             kcalText.text = modifiedKcalList.joinToString(", ") + " kcal"
         }
 
         // 원형 차트 (영양성분 이름  + 해당 g) intent해서 표시
-        val chart = findViewById<PieChart>(R.id.pieChartScanSuccess)
+        val chart: PieChart = binding.pieChart
         chart.setUsePercentValues(true)
         val entries = ArrayList<PieEntry>()
         // LoadingActivity 에서 데이터 받기
@@ -188,6 +187,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
             animateY(800, Easing.EaseInOutQuad) // 0.8초 동안 애니메이션 설정
             animate()
         }
+        speakButton = binding.buttonVoice
         // 버튼 눌렀을 때 TTS 실행 -> 수정예정
         speakButton.setOnClickListener {
             val calorieText = "칼로리는 $modifiedKcalList 입니다."
@@ -311,7 +311,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
 */
         // personal Button
-        personalButton = findViewById(R.id.buttonPersonalized)
+        personalButton = binding.buttonPersonalized
 
         // 사용자 맞춤 서비스 제공 여부 검사(맞춤 정보 있는지)
         // 기존 Firebase와의 통신 코드는 다 제거

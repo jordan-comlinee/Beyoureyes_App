@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Toast
+import com.example.beyoureyes.databinding.ActivitySplashBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseUser
@@ -20,9 +21,12 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var userId : String
     // [END declare_auth]
 
+    private lateinit var binding: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //Toast.makeText( this@SplashActivity, "Authentication start", Toast.LENGTH_SHORT).show()
         // [START initialize_auth]

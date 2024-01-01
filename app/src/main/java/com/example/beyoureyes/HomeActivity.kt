@@ -14,6 +14,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.motion.widget.MotionLayout
+import com.example.beyoureyes.databinding.ActivityAlertDialogDefaultBinding
+import com.example.beyoureyes.databinding.ActivityHomeBinding
 import com.google.android.material.chip.Chip
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -24,10 +26,12 @@ class HomeActivity : AppCompatActivity() {
 
     // onBackPressed
     private var time: Long = 0
+    private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //openCV
         OpenCVLoader.initDebug()
@@ -40,7 +44,7 @@ class HomeActivity : AppCompatActivity() {
         val screenHeight = displayMetrics.heightPixels
 
         // 원하는 비율에 따라 padding 조절
-        val motionLayout = findViewById<MotionLayout>(R.id.home_motionLayout)
+        val motionLayout: MotionLayout = binding.homeMotionLayout
         val desiredPadding = calculateDesiredPadding(screenHeight)
         motionLayout.setPadding(48, desiredPadding, 48, desiredPadding)
 
@@ -83,10 +87,10 @@ class HomeActivity : AppCompatActivity() {
         }
 
         // 4개의 메뉴 버튼 레이아웃 연결
-        val filmButton : ImageView = findViewById(R.id.filmButton)
-        val todayIntakeButton : ImageView = findViewById(R.id.todayNutritionButton)
-        val exitButton : ImageView = findViewById(R.id.exitButton)
-        val userInfoButton : ImageView = findViewById(R.id.myProfileButton)
+        val filmButton: ImageView = binding.filmButton
+        val todayIntakeButton: ImageView = binding.todayNutritionButton
+        val exitButton: ImageView = binding.exitButton
+        val userInfoButton: ImageView = binding.myProfileButton
 
         // 내 질환정보 수정하기 클릭 시...정보가 없으면 정보 등록 페이지로 넘어가도록 함
         userInfoButton.setOnClickListener {
@@ -95,8 +99,7 @@ class HomeActivity : AppCompatActivity() {
                 Log.d("HOMEFIRESTORE : ", "success_1")
                 //Toast.makeText(this@HomeActivity, "TRUE", Toast.LENGTH_LONG).show()
                 startActivity(intent)
-            }
-            else { //userInfo가 없는 경우
+            } else { //userInfo가 없는 경우
                 val intent = Intent(this, UserInfoRegisterActivity::class.java)
                 Log.d("HOMEFIRESTORE : ", "success_-1")
                 //Toast.makeText(this@HomeActivity, "FALSE", Toast.LENGTH_LONG).show()
@@ -106,7 +109,7 @@ class HomeActivity : AppCompatActivity() {
 
         // 촬영하기 버튼
         filmButton.setOnClickListener {
-           // val intent = Intent(this, CameraFirstActivity::class.java)
+            // val intent = Intent(this, CameraFirstActivity::class.java)
             val intent = Intent(this, NutriCautionActivity::class.java)
             startActivity(intent)
         }
@@ -122,24 +125,18 @@ class HomeActivity : AppCompatActivity() {
             }
         }
         // 나가기 버튼
-        exitButton.setOnClickListener{
-            val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_default, null)
+        exitButton.setOnClickListener {
+            val dialogView =
+                LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_default, null)
+            val alertDialogBuilder = AlertDialog.Builder(this)
+            val alertDialogBinding = ActivityAlertDialogDefaultBinding.inflate(layoutInflater)
+            alertDialogBuilder.setView(alertDialogBinding.root)
 
-            val builder = AlertDialog.Builder(this@HomeActivity)
-            builder.setView(dialogView)
-
-            val alertDialog = builder.create()
+            val alertDialog = alertDialogBuilder.create()
 
             alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-            val yesButton = dialogView.findViewById<Button>(R.id.rightBtn)
-            val noButton = dialogView.findViewById<Button>(R.id.leftBtn)
-            val title = dialogView.findViewById<TextView>(R.id.title)
-            val text = dialogView.findViewById<TextView>(R.id.text)
-            title.setText("어플리케이션 종료")
-            text.setText("어플리케이션을 종료하시겠어요?")
-
-            yesButton.setOnClickListener {
+            alertDialogBinding.rightBtn.setOnClickListener {
                 try {
                     // finish 후 다른 Activity 뜨지 않도록 함
                     moveTaskToBack(true)
@@ -155,12 +152,16 @@ class HomeActivity : AppCompatActivity() {
                 alertDialog.dismiss()
             }
 
-            noButton.setOnClickListener {
+            alertDialogBinding.leftBtn.setOnClickListener {
                 alertDialog.dismiss()
             }
 
+            alertDialogBinding.title.text = "어플리케이션 종료"
+            alertDialogBinding.text.text = "어플리케이션을 종료하시겠어요?"
+
             alertDialog.show()
         }
+
 
     }
     // 화면의 비율 구하기
@@ -175,23 +176,18 @@ class HomeActivity : AppCompatActivity() {
         if (System.currentTimeMillis() - time >= 2000) {
             time = System.currentTimeMillis()
 
-            val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_default, null)
+            val dialogView =
+                LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_default, null)
 
-            val builder = AlertDialog.Builder(this@HomeActivity)
-            builder.setView(dialogView)
+            val alertDialogBuilder = AlertDialog.Builder(this)
+            val alertDialogBinding = ActivityAlertDialogDefaultBinding.inflate(layoutInflater)
+            alertDialogBuilder.setView(alertDialogBinding.root)
 
-            val alertDialog = builder.create()
+            val alertDialog = alertDialogBuilder.create()
 
             alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-            val yesButton = dialogView.findViewById<Button>(R.id.rightBtn)
-            val noButton = dialogView.findViewById<Button>(R.id.leftBtn)
-            val title = dialogView.findViewById<TextView>(R.id.title)
-            val text = dialogView.findViewById<TextView>(R.id.text)
-            title.setText("어플리케이션 종료")
-            text.setText("어플리케이션을\n종료하시겠어요?")
-
-            yesButton.setOnClickListener {
+            alertDialogBinding.rightBtn.setOnClickListener {
                 try {
                     // finish 후 다른 Activity 뜨지 않도록 함
                     moveTaskToBack(true)
@@ -207,9 +203,12 @@ class HomeActivity : AppCompatActivity() {
                 alertDialog.dismiss()
             }
 
-            noButton.setOnClickListener {
+            alertDialogBinding.leftBtn.setOnClickListener {
                 alertDialog.dismiss()
             }
+
+            alertDialogBinding.title.text = "어플리케이션 종료"
+            alertDialogBinding.text.text = "어플리케이션을\n종료하시겠어요?"
 
             alertDialog.show()
         }

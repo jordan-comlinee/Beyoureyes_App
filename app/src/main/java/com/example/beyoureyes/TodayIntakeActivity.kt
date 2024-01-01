@@ -12,6 +12,7 @@ import com.google.firebase.ktx.Firebase
 import java.util.Locale
 import android.widget.ImageButton
 import androidx.appcompat.widget.Toolbar
+import com.example.beyoureyes.databinding.ActivityTodayIntakeBinding
 import com.github.mikephil.charting.charts.PieChart
 import com.google.firebase.Timestamp
 
@@ -25,26 +26,24 @@ class TodayIntakeActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
+    private lateinit var binding: ActivityTodayIntakeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_today_intake)
+        binding = ActivityTodayIntakeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
 
-        speakButton = findViewById(R.id.buttonlisten)
+        speakButton = binding.buttonlisten
 
-        // toolBar 및 뒤로가기 설정
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-        setSupportActionBar(toolBar)
-        // Toolbar에 앱 이름 표시 제거!!
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("오늘의 영양소 확인")
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarTitle.text = "오늘의 영양소 확인"
+
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
 
         // TextToSpeech 초기화
@@ -78,26 +77,32 @@ class TodayIntakeActivity : AppCompatActivity() {
         val db = Firebase.firestore
 
         // 에너지 섭취 비율 원형 차트
-        val chart = findViewById<PieChart>(R.id.pieChart)
+        val chart = binding.pieChart
         val energyChart = EnergyChart(chart)
 
         // 날짜 표시
-        val dateText = findViewById<TextView>(R.id.date)
+        val dateText = binding.date
 
         // 총 섭취 칼로리 표시
-        val totalCalorieTextView = findViewById<TextView>(R.id.totalCalorieTextView)
-        val calorieReview1 = findViewById<TextView>(R.id.carlReview1)
-        val calorieReview2 = findViewById<TextView>(R.id.carlReview2)
+        val totalCalorieTextView = binding.totalCalorieTextView
+        val calorieReview1 = binding.carlReview1
+        val calorieReview2 = binding.carlReview2
         val energyReviewText = EnergyReview(totalCalorieTextView, calorieReview1, calorieReview2)
 
-        // 영양성분별 섭취량 표시
-        val naPer = findViewById<TextView>(R.id.naPer)
-        val carPer = findViewById<TextView>(R.id.carPer)
-        val proPer = findViewById<TextView>(R.id.proPer)
-        val choPer = findViewById<TextView>(R.id.choPer)
-        val fatPer = findViewById<TextView>(R.id.fatPer)
-        val satFatPer = findViewById<TextView>(R.id.satFatPer)
-        val sugerPer = findViewById<TextView>(R.id.sugerPer)
+        // 나트륨 섭취 비율
+        val naPer: TextView = binding.naPer
+        // 탄수화물 섭취 비율
+        val carPer: TextView = binding.carPer
+        // 단백질 섭취 비율
+        val proPer: TextView = binding.proPer
+        // 콜레스테롤 섭취 비율
+        val choPer: TextView = binding.choPer
+        // 지방 섭취 비율
+        val fatPer: TextView = binding.fatPer
+        // 포화 지방 섭취 비율
+        val satFatPer: TextView = binding.satFatPer
+        // 당류 섭취 비율
+        val sugerPer: TextView = binding.sugerPer
 
         // 1. 오늘 날짜 표시
         // 현재 api 레벨 최소 설정이 24라 호환 문제(LocalDateTime 사용에 26이상 필요)

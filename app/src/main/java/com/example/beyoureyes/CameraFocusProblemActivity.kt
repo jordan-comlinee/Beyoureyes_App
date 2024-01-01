@@ -25,6 +25,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.beyoureyes.databinding.ActivityCameraFocusProblemBinding
 import org.opencv.android.OpenCVLoader
 import org.opencv.android.Utils
 import org.opencv.core.Core
@@ -41,13 +42,11 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
 
     // 권한 처리에 필요한 변수
     val CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)
-
     val FLAG_PERM_CAMERA = 98
-
     val FLAG_REQ_CAMERA = 101
     val BLUR_SCORE_THRESH = 40
-
     lateinit var currentPhotoPath: String
+    private lateinit var binding: ActivityCameraFocusProblemBinding
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
@@ -72,28 +71,22 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_camera_focus_problem)
+        binding = ActivityCameraFocusProblemBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        //toolBar
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-        setSupportActionBar(toolBar)
-        //Toolbar에 앱 이름 표시 제거!!
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("다시 촬영해주세요")
+        binding.include.toolbarTitle.text = "다시 촬영해주세요."
 
-
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
 
-
         // 카메라
-        val camera = findViewById<Button>(R.id.buttoncamera)
-        camera.setOnClickListener {
+        binding.buttoncamera.setOnClickListener {
             if(isPermission(CAMERA_PERMISSION)){
                 dispatchTakePictureIntent()
             } else {
@@ -105,11 +98,14 @@ class CameraFocusProblemActivity : AppCompatActivity()  {
         OpenCVLoader.initDebug()
 
         // Kotlin 코드에서 해당 TextView를 찾아서 SpannableString을 사용하여 스타일을 적용
-        val textView = findViewById<TextView>(R.id.textView5)
         val spannable = SpannableString("⚠ 사진을 다시 촬영해주세요")
-        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
-        textView.text = spannable
-
+        spannable.setSpan(
+            ForegroundColorSpan(ContextCompat.getColor(this, R.color.red)),
+            0,
+            1,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding.textView1.text = spannable
     }
 
     fun isPermission(permissions:Array<String>) : Boolean {

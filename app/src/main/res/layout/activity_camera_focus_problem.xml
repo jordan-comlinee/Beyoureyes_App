@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".CameraFocusProblemActivity">
-    <include layout="@layout/toolbar_dafault"/>
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_dafault" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,7 +17,7 @@
         android:layout_weight="0.1">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.9"
@@ -35,7 +37,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/textView2"
             style="@style/text2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,7 +49,7 @@
             android:textColor="@color/highlight" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/camerafocustextview1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -59,7 +61,7 @@
             android:text="1. 초점을 잘 맞춰서 촬영해주세요." />
 
         <ImageView
-            android:id="@+id/imageView13"
+            android:id="@+id/camerafocusimage1"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_marginTop="5dp"

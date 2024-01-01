@@ -17,6 +17,7 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.beyoureyes.databinding.ActivityTodayIntakePersonalizedBinding
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.HorizontalBarChart
 import com.github.mikephil.charting.components.XAxis
@@ -38,25 +39,22 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
+    private lateinit var binding: ActivityTodayIntakePersonalizedBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_today_intake_personalized)
+        binding = ActivityTodayIntakePersonalizedBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)
 
-        // toolBar 및 뒤로가기 설정
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-        setSupportActionBar(toolBar)
-
-        // Toolbar에 앱 이름 표시 제거!!
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("오늘의 영양소 확인")
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarTitle.text = "오늘의 영양소 확인"
+
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
 
         // TextToSpeech 초기화
@@ -87,7 +85,7 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
         }
 
         // 버튼 초기화
-        speakButton = findViewById(R.id.buttonVoice)
+        speakButton = binding.buttonVoice
 
         fun convertColorIntToRgb(colorInt: Int): Triple<Int, Int, Int> {
             val red = colorInt shr 16 and 0xFF
@@ -112,50 +110,51 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
         val db = Firebase.firestore
 
         // 에너지 섭취 비율 원형 차트
-        val chart = findViewById<PieChart>(R.id.pieChart)
+        val chart = binding.pieChart
         val energyChart = EnergyChart(chart)
 
         // 날짜 표시
-        val dateText = findViewById<TextView>(R.id.date)
+        val dateText = binding.date
 
         // 총 섭취 칼로리 표시
-        val totalCalorieTextView = findViewById<TextView>(R.id.totalCalorieTextView)
-        val calorieReview1 = findViewById<TextView>(R.id.carlReview1)
-        val calorieReview2 = findViewById<TextView>(R.id.carlReview2)
+        val totalCalorieTextView = binding.totalCalorieTextView
+        val calorieReview1 = binding.carlReview1
+        val calorieReview2 = binding.carlReview2
         val energyReviewText = EnergyReview(totalCalorieTextView, calorieReview1, calorieReview2)
 
         // 영양성분 바 표시
-        val carboBarChart = findViewById<HorizontalBarChart>(R.id.carboBarchart)
-        val carboDVTextView = findViewById<TextView>(R.id.carboDV)
-        val carboIconTextView = findViewById<TextView>(R.id.carboIcon)
+        // 영양성분 바 표시
+        val carboBarChart: HorizontalBarChart = binding.carboBarchart
+        val carboDVTextView: TextView = binding.carboDV
+        val carboIconTextView: TextView = binding.carboIcon
 
-        val sugBarChart = findViewById<HorizontalBarChart>(R.id.sugBarchart)
-        val sugDVTextView = findViewById<TextView>(R.id.sugDV)
-        val sugIconTextView = findViewById<TextView>(R.id.sugIcon)
+        val sugBarChart: HorizontalBarChart = binding.sugBarchart
+        val sugDVTextView: TextView = binding.sugDV
+        val sugIconTextView: TextView = binding.sugIcon
 
-        val fatBarChart = findViewById<HorizontalBarChart>(R.id.fatBarchart)
-        val fatDVTextView = findViewById<TextView>(R.id.fatDV)
-        val fatIconTextView = findViewById<TextView>(R.id.fatIcon)
+        val fatBarChart: HorizontalBarChart = binding.fatBarchart
+        val fatDVTextView: TextView = binding.fatDV
+        val fatIconTextView: TextView = binding.fatIcon
 
-        val proteinBarChart = findViewById<HorizontalBarChart>(R.id.proBarchart)
-        val proteinDVTextView = findViewById<TextView>(R.id.proDV)
-        val proteinIconTextView = findViewById<TextView>(R.id.proIcon)
+        val proteinBarChart: HorizontalBarChart = binding.proBarchart
+        val proteinDVTextView: TextView = binding.proDV
+        val proteinIconTextView: TextView = binding.proIcon
 
-        val naBarChart = findViewById<HorizontalBarChart>(R.id.naBarchart)
-        val naDVTextView = findViewById<TextView>(R.id.naDV)
-        val naIconTextView = findViewById<TextView>(R.id.naIcon)
+        val naBarChart: HorizontalBarChart = binding.naBarchart
+        val naDVTextView: TextView = binding.naDV
+        val naIconTextView: TextView = binding.naIcon
 
-        val choleBarChart = findViewById<HorizontalBarChart>(R.id.choleBarchart)
-        val choleDVTextView = findViewById<TextView>(R.id.choleDV)
-        val choleIconTextView = findViewById<TextView>(R.id.choleIcon)
+        val choleBarChart: HorizontalBarChart = binding.choleBarchart
+        val choleDVTextView: TextView = binding.choleDV
+        val choleIconTextView: TextView = binding.choleIcon
 
-        val satFatBarChart = findViewById<BarChart>(R.id.satFatBarchart)
-        val satFatDVTextView = findViewById<TextView>(R.id.satFatDV)
-        val satFatIconTextView = findViewById<TextView>(R.id.satFatIcon)
+        val satFatBarChart: BarChart = binding.satFatBarchart
+        val satFatDVTextView: TextView = binding.satFatDV
+        val satFatIconTextView: TextView = binding.satFatIcon
 
         // 영양성분 섭취량 총평
-        val lackIntakeReviewTextView = findViewById<TextView>(R.id.lackIntakeReview)
-        val overIntakeReviewTextView = findViewById<TextView>(R.id.overIntakeReview)
+        val lackIntakeReviewTextView: TextView = binding.lackIntakeReview
+        val overIntakeReviewTextView: TextView = binding.overIntakeReview
 
         val nat = NutriIntakeBarDisplay(naBarChart,naDVTextView, naIconTextView)
         val carbo = NutriIntakeBarDisplay(carboBarChart,carboDVTextView, carboIconTextView)
