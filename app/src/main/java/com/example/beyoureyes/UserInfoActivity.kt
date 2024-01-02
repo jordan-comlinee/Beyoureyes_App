@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.beyoureyes.databinding.ActivityUserInfoBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.auth.api.identity.Identity
@@ -50,11 +51,14 @@ class UserInfoActivity : AppCompatActivity() {
 
     private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
     private var showOneTapUI = true
+    private lateinit var binding: ActivityUserInfoBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_info)
+        binding = ActivityUserInfoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
         Log.d(TAG, AppUser.id.toString()+"   AGAIN")
         auth = Firebase.auth
@@ -65,31 +69,24 @@ class UserInfoActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         oneTapClient = Identity.getSignInClient(this)
 
-        val diseaseChipGroup = findViewById<ChipGroup> (R.id.diseaseChipGroup)
-        val allergicChipGroup  = findViewById<ChipGroup>(R.id.allergyChipGroup)
+        val diseaseChipGroup = binding.diseaseChipGroup
+        val allergicChipGroup  = binding.allergyChipGroup
         var sex : Int = 2
 
-        val infoAge = findViewById<TextView>(R.id.infoAge)
-        val infoSex = findViewById<TextView>(R.id.infoSex)
+        val infoAge = binding.infoAge
+        val infoSex = binding.infoSex
 
-        val userInfoChangeButton = findViewById<Button>(R.id.userInfoChangeButton)
-        val googleConnectButton = findViewById<SignInButton>(R.id.googleConnectButton)
-
-
-        // toolBar 및 뒤로가기 설정
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-        setSupportActionBar(toolBar)
-
-        // Toolbar에 앱 이름 표시 제거!!
+        val userInfoChangeButton = binding.userInfoChangeButton
+        val googleConnectButton = binding.googleConnectButton
+        
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("내 질환 확인하기")
+        binding.include.toolbarTitle.text = "내 질환 확인하기"
 
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
 
         // 사용자 정보 화면 표시 ---------------------------------------------

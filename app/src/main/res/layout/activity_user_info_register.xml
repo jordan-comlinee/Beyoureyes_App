@@ -9,7 +9,9 @@
     android:textAlignment="center"
     tools:context=".UserInfoRegisterActivity">
 
-    <include layout="@layout/toolbar_dafault" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_dafault" />
 
 
     <ScrollView

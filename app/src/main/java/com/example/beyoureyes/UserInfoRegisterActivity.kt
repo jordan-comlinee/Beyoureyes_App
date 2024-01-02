@@ -16,6 +16,7 @@ import android.widget.CompoundButton
 import android.widget.ImageButton
 import android.widget.Switch
 import android.widget.TextView
+import com.example.beyoureyes.databinding.ActivityUserInfoRegisterBinding
 import java.io.Serializable
 
 
@@ -31,55 +32,58 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
     private var userInfoCheck : Int = 0;
 
+    private lateinit var binding: ActivityUserInfoRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_info_register)
+        binding = ActivityUserInfoRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)
 
         //val userInfoRegisterTitle = findViewById<TextView>(R.id.userInfoRegisterTitle)
 
-        val age : EditText = findViewById(R.id.editAge)
+        val age : EditText = binding.editAge
 
-        val sexSwitch : Switch = findViewById(R.id.sexSwitch)
+        val sexSwitch : Switch = binding.sexSwitch
 
         // 질환 칩
-        val chip0 = findViewById<Chip>(R.id.chip0)
-        val chip1 = findViewById<Chip>(R.id.chip1)
-        val chip2 = findViewById<Chip>(R.id.chip2)
-        // 알러지 칩
-        val chip00 = findViewById<Chip>(R.id.chip2_0)
-        val chip01 = findViewById<Chip>(R.id.chip2_1)
-        val chip02 = findViewById<Chip>(R.id.chip2_2)
-        val chip03 = findViewById<Chip>(R.id.chip2_3)
-        val chip04 = findViewById<Chip>(R.id.chip2_4)
-        val chip05 = findViewById<Chip>(R.id.chip2_5)
-        val chip06 = findViewById<Chip>(R.id.chip2_6)
-        val chip07 = findViewById<Chip>(R.id.chip2_7)
-        val chip08 = findViewById<Chip>(R.id.chip2_8)
-        val chip09 = findViewById<Chip>(R.id.chip2_9)
-        val chip10 = findViewById<Chip>(R.id.chip2_10)
-        val chip11 = findViewById<Chip>(R.id.chip2_11)
-        val chip12 = findViewById<Chip>(R.id.chip2_12)
-        val chip13 = findViewById<Chip>(R.id.chip2_13)
-        val chip14 = findViewById<Chip>(R.id.chip2_14)
-        val chip15 = findViewById<Chip>(R.id.chip2_15)
-        val chip16 = findViewById<Chip>(R.id.chip2_16)
-        val chip17 = findViewById<Chip>(R.id.chip2_17)
-        val chip18 = findViewById<Chip>(R.id.chip2_18)
-        val chip19 = findViewById<Chip>(R.id.chip2_19)
-        val chip20 = findViewById<Chip>(R.id.chip2_20)
+        val chip0 = binding.chip0
+        val chip1 = binding.chip1
+        val chip2 = binding.chip2
 
-        val usrInfoRegiSaveButton = findViewById<Button>(R.id.usrInfoRegiSaveButton)
-        val usrInfoRegiCancelButton = findViewById<Button>(R.id.usrInfoRegiCancelButton)
+        // 알러지 칩
+        val chip00 = binding.chip20
+        val chip01 = binding.chip21
+        val chip02 = binding.chip22
+        val chip03 = binding.chip23
+        val chip04 = binding.chip24
+        val chip05 = binding.chip25
+        val chip06 = binding.chip26
+        val chip07 = binding.chip27
+        val chip08 = binding.chip28
+        val chip09 = binding.chip29
+        val chip10 = binding.chip210
+        val chip11 = binding.chip211
+        val chip12 = binding.chip212
+        val chip13 = binding.chip213
+        val chip14 = binding.chip214
+        val chip15 = binding.chip215
+        val chip16 = binding.chip216
+        val chip17 = binding.chip217
+        val chip18 = binding.chip218
+        val chip19 = binding.chip219
+        val chip20 = binding.chip220
+
+        val usrInfoRegiSaveButton = binding.usrInfoRegiSaveButton
+        val usrInfoRegiCancelButton = binding.usrInfoRegiCancelButton
 
         //toolBar
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
+        val toolBar = binding.include.toolbarDefault
+        val toolbarTitle = binding.include.toolbarTitle
+        val toolbarBackButton = binding.include.toolbarBackBtn
         setSupportActionBar(toolBar)
         //Toolbar에 앱 이름 표시 제거!!
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
         toolbarBackButton.setOnClickListener {
             onBackPressed()
             //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
