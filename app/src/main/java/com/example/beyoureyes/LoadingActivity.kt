@@ -11,6 +11,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.beyoureyes.databinding.ActivityLoadingBinding
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.korean.KoreanTextRecognizerOptions
@@ -25,7 +26,7 @@ class LoadingActivity : AppCompatActivity() {
 
     private lateinit var textView: TextView // 텍스트 뷰 선언
 
-    private lateinit var btn: Button
+    private lateinit var resultbtn: Button
 
 
     private val textRecognizer = TextRecognition.getClient(
@@ -41,15 +42,17 @@ class LoadingActivity : AppCompatActivity() {
 
     private lateinit var moPercentList: List<String> // % -> g 으로 변형하여 담을 List
 
+    private lateinit var binding: ActivityLoadingBinding
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_loading)
+        binding = ActivityLoadingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        textView = findViewById(R.id.textView) // 텍스트뷰 초기화
+        textView = findViewById(R.id.textView) // test 하기 위해.. 삭제예정
 
-        btn = findViewById(R.id.btn) // 버튼 초기화
+        resultbtn = binding.resultbtn
 
 
         val filePath = intent.getStringExtra("bitmapPath")
@@ -70,7 +73,7 @@ class LoadingActivity : AppCompatActivity() {
         }
 
 
-        btn.setOnClickListener {
+        resultbtn.setOnClickListener {
 
             textView.append(moPercentList.toString())
 
@@ -99,9 +102,58 @@ class LoadingActivity : AppCompatActivity() {
 
 
         handler.postDelayed({
-            btn.performClick() // 버튼을 자동으로 클릭
-        }, 3000) // 3초
+            resultbtn.performClick() // 버튼을 자동으로 클릭
+        }, 4000) // 4초
 
+    }
+
+    private fun useTestInfo() {
+        // 추출 키워드 값 임의 설정
+        koreanCharactersList.clear()
+        koreanCharactersList.add("나트륨")
+        koreanCharactersList.add("탄수화물")
+        koreanCharactersList.add("당류")
+        koreanCharactersList.add("지방")
+        koreanCharactersList.add("트랜스지방")
+        koreanCharactersList.add("포화지방")
+        koreanCharactersList.add("콜레스테롤")
+        koreanCharactersList.add("단백질")
+
+
+
+        koreanCharactersListmodi = koreanCharactersList.distinct().toMutableList()
+        koreanCharactersListmodi = koreanCharactersListmodi.map {
+            it.replace(Regex("[^가-힣]"), "")
+        }.toMutableList()
+
+
+        // % 리스트 값 임의 설정
+        percentList.clear()
+        percentList.add("17") // 나트륨%
+        percentList.add("17") // 탄수화물%
+        percentList.add("9") // 당류%
+        percentList.add("20") // 지방%
+        percentList.add("19") // 포화지방%
+        percentList.add("5") // 콜레스테롤%
+        percentList.add("13") // 단백질%
+
+        // % -> g 리스트 값 설정
+        moPercentList = modiPercentList(percentList)
+        if (moPercentList.size == 0) {
+            Log.d("test", "moPercentList is empty")
+        }
+
+
+        // kcal 리스트 값 설정
+        kcalList.clear()
+        kcalList.add("343")
+
+
+        // 알레르기 값 설정
+        extractedWords.clear()
+        extractedWords.add("밀")
+        extractedWords.add("땅콩")
+        extractedWords.add("새우")
     }
 
     private fun startFoodInfoAllActivity() {
@@ -289,7 +341,7 @@ class LoadingActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
 
                     e.printStackTrace()
-                    showAlertDialog("OCR 처리 중 오류가 발생")
+                    showAlertDialog("네트워크를 연결해주세요 또는 API 연동 중이거나 적합하지 않은 이미지일 수 있습니다.")
                 }
         } catch (e: Exception) {
             e.printStackTrace()

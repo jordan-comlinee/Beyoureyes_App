@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.widget.Toast
+import com.example.beyoureyes.databinding.ActivitySplashBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseUser
@@ -20,9 +21,12 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var userId : String
     // [END declare_auth]
 
+    private lateinit var binding: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //Toast.makeText( this@SplashActivity, "Authentication start", Toast.LENGTH_SHORT).show()
         // [START initialize_auth]
@@ -40,15 +44,15 @@ class SplashActivity : AppCompatActivity() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
 
-        if (currentUser != null) {
+        if (currentUser != null) { // 앱 이용한 적 있는 유저
             //Toast.makeText(this@SplashActivity, "이미 가입한 유저", Toast.LENGTH_LONG).show()
             userId = currentUser.uid
-            userIdSingleton.userId = userId
-            Log.d("GOOGLE : ", userIdSingleton.userId.toString()+"  INIT")
+            AppUser.id = userId
+            Log.d("GOOGLE : ", AppUser.id.toString()+"  INIT")
             //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
         }
-        else {
+        else { // 최초 접속
             //Toast.makeText(this@SplashActivity, "가입안한 유저", Toast.LENGTH_LONG).show()
             signInAnonymously()
             Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
@@ -69,8 +73,8 @@ class SplashActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     // 과연 절대로 null이 아닐까?
                     userId = user!!.uid
-                    userIdSingleton.userId = userId
-                    Log.d("GOOGLE : ", userIdSingleton.userId.toString()+"  INIT")
+                    AppUser.id = userId
+                    Log.d("GOOGLE : ", AppUser.id.toString()+"  INIT")
                     //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
                     updateUI(user)
                 } else {

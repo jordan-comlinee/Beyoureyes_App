@@ -26,6 +26,7 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.beyoureyes.databinding.ActivityCameraFirstBinding
 import org.opencv.android.OpenCVLoader
 import org.opencv.android.Utils
 import org.opencv.core.Core
@@ -43,13 +44,11 @@ class CameraFirstActivity : AppCompatActivity()  {
 
     // 권한 처리에 필요한 변수
     val CAMERA_PERMISSION = arrayOf(Manifest.permission.CAMERA)
-
     val FLAG_PERM_CAMERA = 98
-
     val FLAG_REQ_CAMERA = 101
     val BLUR_SCORE_THRESH = 40
-
     lateinit var currentPhotoPath: String
+    private lateinit var binding: ActivityCameraFirstBinding
 
     @Throws(IOException::class)
     private fun createImageFile(): File {
@@ -74,27 +73,22 @@ class CameraFirstActivity : AppCompatActivity()  {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_camera_first)
+        binding = ActivityCameraFirstBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-
-        //toolBar
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-        setSupportActionBar(toolBar)
-        //Toolbar에 앱 이름 표시 제거!!
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("영양 정보 촬영하기")
+        binding.include.toolbarTitle.text = "영양 정보 촬영하기"
 
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
 
+
         // 카메라
-        val camera = findViewById<Button>(R.id.buttoncamera)
-        camera.setOnClickListener {
+        binding.buttoncamera.setOnClickListener {
             if(isPermission(CAMERA_PERMISSION)){
                 dispatchTakePictureIntent()
             } else {
@@ -115,7 +109,6 @@ class CameraFirstActivity : AppCompatActivity()  {
                 return false
             }
         }
-
         return true
     }
 

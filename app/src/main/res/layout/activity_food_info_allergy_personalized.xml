@@ -29,7 +29,7 @@
 
             <!-- 알레르기 -->
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/labelAllergy"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -42,7 +42,7 @@
                 style="@style/title3"  />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="30dp"
@@ -59,7 +59,7 @@
                 android:textColor="@color/black" />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/allergyChipGroup1"
+                android:id="@+id/allergyChipGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -72,7 +72,7 @@
 
             <!-- 식품의 영양정보(인식 실패) -->
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/labelNutrition"
                 android:layout_width="250dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
@@ -150,7 +150,7 @@
                 />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/eatButton"
+                android:id="@+id/buttoneat"
                 android:layout_width="wrap_content"
                 android:layout_height="64sp"
                 android:layout_marginLeft="5dp"

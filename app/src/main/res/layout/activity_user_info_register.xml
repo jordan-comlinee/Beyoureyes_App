@@ -9,7 +9,9 @@
     android:textAlignment="center"
     tools:context=".UserInfoRegisterActivity">
 
-    <include layout="@layout/toolbar_dafault" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar_dafault" />
 
 
     <ScrollView
@@ -117,28 +119,40 @@
                 style="@style/title3">
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip0"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     android:text="고혈압"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip"
                     style="@style/title3"/>
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip1"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     android:text="고지혈증"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip"
                     style="@style/title3"/>
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip"
                     style="@style/title3"
                     android:text="당뇨"/>
@@ -164,192 +178,276 @@
                 app:singleLine="false">
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_0"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip"
                     style="@style/title3"
                     android:text="메밀" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_1"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="밀"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_2"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="대두"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_3"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="호두"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_4"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="땅콩"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_5"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="복숭아"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_6"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="토마토"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_7"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="돼지고기"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_8"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="난류"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_9"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="우유"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_10"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="닭고기"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_11"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="쇠고기"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_12"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="새우"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_13"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="고등어"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_14"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="홍합"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_15"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="전복"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_16"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="굴"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_17"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="조개류"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_18"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="게"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_19"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="오징어"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
 
                 <com.google.android.material.chip.Chip
+                    android:clickable="true"
+                    android:checkable="true"
                     android:id="@+id/chip2_20"
                     android:layout_width="wrap_content"
                     android:layout_height="60sp"
                     android:elevation="3dp"
                     style="@style/title3"
                     android:text="아황산"
+                    android:textColor="@color/chiptext"
+                    app:checkedIconVisible="false"
                     app:chipBackgroundColor="@color/chip" />
             </com.google.android.material.chip.ChipGroup>
         </LinearLayout>

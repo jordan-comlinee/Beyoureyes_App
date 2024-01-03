@@ -7,7 +7,9 @@
     android:orientation="vertical"
     tools:context=".UserInfoActivity">
 
-  <include layout="@layout/toolbar_dafault" />
+  <include
+      android:id="@+id/include"
+      layout="@layout/toolbar_dafault" />
 
 
   <ScrollView
@@ -59,6 +61,7 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:layout_marginTop="12sp"
+          style="@style/title3"
           android:fontFamily="@font/pretendard500"
           android:minHeight="48dp"
           android:textAlignment="center"

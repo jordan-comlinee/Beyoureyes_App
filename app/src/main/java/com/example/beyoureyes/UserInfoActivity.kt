@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.example.beyoureyes.databinding.ActivityUserInfoBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInResult
 import com.google.android.gms.auth.api.identity.Identity
@@ -33,11 +34,8 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import kotlin.math.sign
 
-
 val diseaseKoreanList : List<String> = listOf("고혈압", "고지혈증", "당뇨")
 val allergyKoreanList : List<String> = listOf("메밀", "밀", "콩", "호두", "땅콩", "복숭아", "토마토", "돼지고기", "난류", "우유", "닭고기", "쇠고기", "새우", "고등어", "홍합", "전복", "굴", "조개류", "게", "오징어", "아황산")
-
-
 
 class UserInfoActivity : AppCompatActivity() {
     private val userDiseaseList : ArrayList<String> = arrayListOf()
@@ -53,14 +51,16 @@ class UserInfoActivity : AppCompatActivity() {
 
     private val REQ_ONE_TAP = 2  // Can be any integer unique to the Activity
     private var showOneTapUI = true
-
+    private lateinit var binding: ActivityUserInfoBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_info)
+        binding = ActivityUserInfoBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
-        Log.d(TAG, userIdSingleton.userId.toString()+"   AGAIN")
+        Log.d(TAG, AppUser.id.toString()+"   AGAIN")
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -69,79 +69,65 @@ class UserInfoActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
         oneTapClient = Identity.getSignInClient(this)
 
-        val diseaseChipGroup = findViewById<ChipGroup> (R.id.diseaseChipGroup)
-        val allergicChipGroup  = findViewById<ChipGroup>(R.id.allergyChipGroup)
+        val diseaseChipGroup = binding.diseaseChipGroup
+        val allergicChipGroup  = binding.allergyChipGroup
         var sex : Int = 2
 
-        val infoAge = findViewById<TextView>(R.id.infoAge)
-        val infoSex = findViewById<TextView>(R.id.infoSex)
+        val infoAge = binding.infoAge
+        val infoSex = binding.infoSex
 
-        val userInfoChangeButton = findViewById<Button>(R.id.userInfoChangeButton)
-        val googleConnectButton = findViewById<SignInButton>(R.id.googleConnectButton)
-
-
-        // toolBar 및 뒤로가기 설정
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-        setSupportActionBar(toolBar)
-
-        // Toolbar에 앱 이름 표시 제거!!
+        val userInfoChangeButton = binding.userInfoChangeButton
+        val googleConnectButton = binding.googleConnectButton
+        
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("내 질환 확인하기")
+        binding.include.toolbarTitle.text = "내 질환 확인하기"
 
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
 
-        val db = Firebase.firestore
-        db.collection("userInfo")
-            .whereEqualTo("userID", userIdSingleton.userId)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
-                    // Firestore에서 가져온 나이 정보 입력
-                    infoAge.text = document.data.get("userAge").toString() + "세"
-                    sex = document.data.get("userSex").toString().toInt()
-                    when(sex) {
-                        0 -> infoSex.setText("여성")
-                        1 -> infoSex.setText("남성")
-                        2 -> infoSex.setText("정보가 없습니다. 추가해주세요!")
-                    }
-                    val userDisease = document.data.get("userDisease") as ArrayList<String>
-                    val userAllergic = document.data.get("userAllergic") as ArrayList<String>
-                    // Firestore에서 가져온 질환 정보 입력
-                    if (userDisease != null) {
-                        userDiseaseList.addAll(userDisease)
-                        for (diseaseItem in userDiseaseList) {
-                            val chip = Chip(this)
-                            chip.text = diseaseItem
-                            chip.setChipBackgroundColorResource(R.color.red)
-                            chip.setTextColor(Color.WHITE)
-                            diseaseChipGroup.addView(chip)
-                        }
-                    }
-                    Log.d("FIRESTORE", userDiseaseList.toString())
-                    // Firestore에서 가져온 알러지 정보 입력
-                    if (userAllergic != null) {
-                        userAllergyList.addAll(userAllergic)
-                        for (allergyItem in userAllergyList) {
-                            val chip = Chip(this)
-                            chip.text = allergyItem
-                            chip.setChipBackgroundColorResource(R.color.red)
-                            chip.setTextColor(Color.WHITE)
-                            allergicChipGroup.addView(chip)
-                        }
-                    }
-                    Log.d("FIRESTORE", userAllergic.toString())
+        // 사용자 정보 화면 표시 ---------------------------------------------
+        AppUser.info?.let {
+            // 나이 정보 표시
+            infoAge.text = it.age.toString() + "세"
+            // 성별 정보 표시
+            when(it.gender) {
+                0 -> infoSex.setText("여성")
+                1 -> infoSex.setText("남성")
+                2 -> infoSex.setText("정보가 없습니다. 추가해주세요!")
+            }
+            // 질환 정보 표시
+            it.disease?.let { diseaseArray ->
+                for (diseaseItem in diseaseArray) {
+                    val chip = Chip(this)
+                    chip.text = diseaseItem
+                    chip.setChipBackgroundColorResource(R.color.red)
+                    chip.setTextColor(Color.WHITE)
+                    diseaseChipGroup.addView(chip)
+                }
+
+            }
+            // 알러지 정보 표시
+            it.allergic?.let { allergyArray ->
+                for (allergyItem in allergyArray ) {
+                    val chip = Chip(this)
+                    chip.text = allergyItem
+                    chip.setChipBackgroundColorResource(R.color.red)
+                    chip.setTextColor(Color.WHITE)
+                    allergicChipGroup.addView(chip)
                 }
             }
-            .addOnFailureListener { exception ->
-                Log.w("FIRESTORE : ", "Error getting documents.", exception)
-            }
+        }?:run{ // 사용자 정보 null일 시 -> 처리 조건 상 이 분기는 아마 진입할 일이 없긴 할 것
+            // 나이 정보 표시
+            infoAge.text = "나이 정보 확인 실패"
+            // 성별 정보 표시
+            infoSex.text = "성별 정보 확인 실패"
+        }
+
+
         // 수정하기 버튼 클릭 시 작용
         userInfoChangeButton.setOnClickListener {
             val intent = Intent(this, UserInfoRegisterActivity::class.java)
@@ -269,8 +255,8 @@ class UserInfoActivity : AppCompatActivity() {
                     Toast.makeText(this@UserInfoActivity, "성공!", Toast.LENGTH_LONG).show()
                     val user = auth.currentUser
                     updateUI(user)
-                    userIdSingleton.userId = user!!.uid
-                    Log.d(TAG, userIdSingleton.userId.toString())
+                    AppUser.id = user!!.uid
+                    Log.d(TAG, AppUser.id.toString())
                     val intent = intent
                     finish()
                     startActivity(intent)

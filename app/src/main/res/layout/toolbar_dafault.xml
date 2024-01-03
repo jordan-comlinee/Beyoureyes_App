@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
         android:contentDescription="뒤로가기"
-        android:padding="10dp"
+        android:gravity="left"
         android:src="@drawable/arrow_back" />
 
     <!-- 제목 -->
@@ -26,5 +26,6 @@
         android:gravity="center"
         android:text="제목입니다"
         android:textColor="@color/black" />
+
 
 </androidx.appcompat.widget.Toolbar>

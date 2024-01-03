@@ -10,6 +10,10 @@ android {
     namespace = "com.example.beyoureyes"
     compileSdk = 33
 
+    viewBinding {
+        enable = true
+    }
+
     defaultConfig {
         applicationId = "com.example.beyoureyes"
         minSdk = 24

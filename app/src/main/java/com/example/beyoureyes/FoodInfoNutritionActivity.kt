@@ -17,6 +17,8 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import com.example.beyoureyes.databinding.ActivityFoodInfoNutritionBinding
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
@@ -31,30 +33,27 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
 
     private lateinit var textToSpeech: TextToSpeech
     private lateinit var speakButton: Button
-    private lateinit var personalButton: Button
-
     private val camera = Camera()
+    private lateinit var binding: ActivityFoodInfoNutritionBinding
 
-    val nutri = listOf("나트륨", "탄수화물", "ㄴ당류", "지방", "ㄴ포화지방", "콜레스테롤", "단백질")
+    val nutri = listOf("나트륨", "탄수화물", " ㄴ당류", "지방", " ㄴ포화지방", "콜레스테롤", "단백질")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_food_info_nutrition)
+        binding = ActivityFoodInfoNutritionBinding.inflate(layoutInflater) // Inflate the binding
+        setContentView(binding.root)
 
-        //toolBar
-        val toolBar = findViewById<Toolbar>(R.id.toolbarDefault)
-        val toolbarTitle = findViewById<TextView>(R.id.toolbarTitle)
-        val toolbarBackButton = findViewById<ImageButton>(R.id.toolbarBackBtn)
-
-        setSupportActionBar(toolBar)
-        //Toolbar에 앱 이름 표시 제거!!
+        // 툴바
+        setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        toolbarTitle.setText("영양 분석 결과")
-        toolbarBackButton.setOnClickListener {
+        binding.include.toolbarTitle.text = "영양 분석 결과"
+
+        binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-            //overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
+            overridePendingTransition(R.anim.horizon_exit, R.anim.horizon_enter)
         }
+
         // TextToSpeech 초기화
         textToSpeech = TextToSpeech(this) { status ->
             if (status == TextToSpeech.SUCCESS) {
@@ -83,12 +82,10 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         }
 
         // 버튼 초기화
-        speakButton = findViewById(R.id.button5)
-
-
+        speakButton = binding.buttonVoice
 
         // 칼로리 intent 하여 kcalTextView에 표시
-        val kcalText: TextView = findViewById(R.id.textView5)
+        val kcalText: TextView = binding.kcaltextview
         val modifiedKcalList = intent.getStringArrayListExtra("modifiedKcalListText")
         val Percent = intent.getStringArrayListExtra("PercentList")
 
@@ -96,63 +93,33 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             kcalText.text = modifiedKcalList.joinToString(", ") + " kcal"
         }
 
-        // 원형 차트 (영양성분 이름  + 해당 g) intent해서 표시
-        val chart = findViewById<PieChart>(R.id.pieChartScanSuccess)
-        chart.setUsePercentValues(true)
-        val entries = ArrayList<PieEntry>()
+        // 영양성분 정보 객체 생성
         // NutriActivity 에서 데이터 받기
         val moPercentList = intent.getStringArrayListExtra("modifiedPercentList")
         val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
+        val kcal = modifiedKcalList!!.get(0).toInt()
+        val nutriFactsInMilli = moPercentList?.map { it -> it.toInt() }
+        val nutriFacts = NutritionFacts(nutriFactsInMilli!!.toIntArray(), kcal)
 
-        // 단백질, 탄수화물, 지방
-        if (Percent != null) {
+        // 에너지 섭취 비율 원형 차트
+        val chart: PieChart = binding.pieChart
+        val energyChart = EnergyChart(chart)
+        nutriFacts.carbs?.let { carbs ->
+            nutriFacts.protein?.let { protein ->
+                nutriFacts.fat?.let { fat -> // 탄단지 객체 null safe 처리
 
-            entries.add(PieEntry(Percent[1].toFloat(), koreanCharacterList[1]))
-            entries.add(PieEntry(Percent[3].toFloat(), koreanCharacterList[3]))
-            entries.add(PieEntry(Percent[6].toFloat(), koreanCharacterList[6]))
+                    // 탄단지 에너지값 설정
+                    energyChart.setCaloreisFromMilliGram(
+                        carbs.getMilliGram(),
+                        protein.getMilliGram(),
+                        fat.getMilliGram()
+                    )
 
-        }
-        // 차트 색깔
-        val colors = listOf(
-            Color.parseColor("#C2FF00"),
-            Color.parseColor("#F1BC00"),
-            Color.parseColor("#FFC2E5")
-        )
-
-        val pieDataSet = PieDataSet(entries, "")
-        pieDataSet.apply {
-            // Piechart 속 파이들 색상 설정
-            setColors(colors)
-            // 값(백분율)에 대한 색상 설정
-            valueTextColor = Color.BLACK
-            // 값에 대한 크기 설정
-            valueTextSize = 20f
-        }
-
-        val pieData = PieData(pieDataSet)
-
-        // 값에 사용자 정의 형식(백분율 값 + "%") 설정
-        pieDataSet.valueFormatter = object : ValueFormatter() { // 값을 차트에 어떻게 표시할지
-            override fun getFormattedValue(value: Float): String {
-                return "${value.toInt()}%" // 값을 정수 형식으로 표시
+                    // 차트 표시 설정
+                    energyChart.setChart(this)
+                }
             }
         }
-
-        chart.apply {
-            data = pieData
-            description.isEnabled = false // 차트 설명 비활성화
-            isRotationEnabled = false // 차트 회전 활성화
-            legend.isEnabled = false // 하단 설명 비활성화
-            isDrawHoleEnabled = true // 가운데 빈 구멍 활성화 비활성화 여부
-            holeRadius = 20f // 가운데 빈 구멍 크기
-            transparentCircleRadius = 40f // 투명한 부분 크기
-            centerText = null // 가운데 텍스트 없앰
-            setEntryLabelColor(Color.BLACK) // label 색상
-            animateY(1400, Easing.EaseInOutQuad) // 1.4초 동안 애니메이션 설정
-            animate()
-        }
-
-        //chart.setEntryLabelTextSize(20f)
 
         // 버튼 눌렀을 때 TTS 실행
         speakButton.setOnClickListener {
@@ -189,76 +156,44 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             nutriTextView.text = "$nutriValue"
         }
 
-        val retryButton = findViewById<Button>(R.id.buttonRetry)
-
-        retryButton.setOnClickListener {
+        binding.buttonRetry.setOnClickListener {
             while(camera.start(this) == -1){
                 camera.start(this)
             }
         }
 
         // 맞춤 정보 버튼
-        val personalButton = findViewById<Button>(R.id.buttonPersonalized)
+        val personalButton = binding.buttonPersonalized
 
-        // Firebase에서 사용자 정보 가져오기
-        // Firebase 연결을 위한 설정값
-        val userIdClass = application as userId
-        val userId = userIdClass.userId
-        val db = Firebase.firestore
+        // 사용자 맞춤 서비스 제공 여부 검사(맞춤 정보 있는지)
+        // 기존 Firebase와의 통신 코드는 다 제거
+        AppUser.info?.let { // 사용자 정보 있을 시
 
-        // 유저 정보 받아오기
-        db.collection("userInfo")
-            .whereEqualTo("userID", userId)
-            .get()
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    val result = task.result
-                    var user:UserInfo? = null
+            val intent = Intent(this, FoodInfoNutritionPersonalizedActivity::class.java) //OCR 실패시 OCR 가이드라인으로 이동
+            // 식품 정보 전달 (영양정보 only)
+            intent.putExtra("totalKcal", modifiedKcalList?.get(0)?.toInt())
+            intent.putExtra("nutriFactsInMilliString",
+                ArrayList(moPercentList?.map {it.toInt()}))
+            // 이제 intent로 사용자 정보 전달할 필요 X
 
-                    // 유저 정보가 이미 존재하는 경우
-                    if (result != null && !result.isEmpty) {
-                        for (document in result) {
-                            Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
-                            user = UserInfo.parseFirebaseDoc(document)
-
-                            if (user!=null) {
-                                Log.d("FIRESTORE : ", "got UserInfo")
-                                break
-                            }
-                        }
-                    }
-
-                    user?.let { u -> // 사용자 정보 있을 시
-
-                        val intent = Intent(this, FoodInfoNutritionPersonalizedActivity::class.java)
-                        // 식품 정보 전달
-                        intent.putExtra("totalKcal", modifiedKcalList?.get(0)?.toInt())
-                        intent.putExtra("nutriFactsInMilliString",
-                            ArrayList(moPercentList?.map {it.toInt()}))
-                        // 사용자 정보 전달
-                        intent.putExtra("userAge", u.age)
-                        intent.putExtra("userSex", u.gender)
-                        intent.putExtra("userDisease", u.disease)
-                        intent.putExtra("userAllergic", u.allergic)
-
-                        personalButton.setOnClickListener {
-                            startActivity(intent)
-                            overridePendingTransition(R.anim.none, R.anim.none)
-                        }
-
-                    } ?: run {// 사용자 정보 없을 시
-                        personalButton.isEnabled = false // 버튼 비활성화
-                        personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
-                    }
-
-                } else {
-                    // 쿼리 중에 예외가 발생한 경우
-                    Log.d("FIRESTORE : ", "Error getting documents.", task.exception)
-                    personalButton.isEnabled = false // 버튼 비활성화
-                    personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
-
-                }
+            // 맞춤 정보 버튼 활성화
+            personalButton.setOnClickListener {
+                startActivity(intent)
+                overridePendingTransition(R.anim.none, R.anim.none)
             }
+        } ?: run {// 사용자 정보 없을 시
+            // 맞춤 정보 버튼 비활성화
+            personalButton.isEnabled = false // 버튼 비활성화
+            personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
+        }
+
+        //먹기 버튼
+        val eatButton = binding.buttoneat
+
+        val customDialog = CustomDialog(this)
+        eatButton.setOnClickListener {
+            customDialog.show()
+        }
 
     }
 

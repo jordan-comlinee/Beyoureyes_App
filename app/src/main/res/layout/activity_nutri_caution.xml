@@ -8,7 +8,7 @@
 
 
     <include
-        android:id="@+id/include2"
+        android:id="@+id/include"
         layout="@layout/toolbar_dafault" />
 
 
@@ -19,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2">
+        app:layout_constraintTop_toBottomOf="@+id/include">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,8 +33,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/title3"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:textColor="@color/black"
-                android:text="당신의 안식 1차 버전은\n다음 정보를 제공합니다." />
+                android:text="당신의 안식 1차 버전은 다음 정보를 제공합니다." />
 
             <TextView
                 android:id="@+id/textView2"
@@ -42,51 +44,61 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/text2"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:textColor="@color/highlight"
                 android:text="아래 유의 사항을 확인해주세요." />
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/nutricautiontextview1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/text1"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:textColor="@color/black"
                 android:text="1. 아래에 해당하는 7가지 외의 \n영양성분이 포함된 영양성분표는 인식되지 않습니다." />
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/cautiontextview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/text2"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:textColor="@color/highlight"
                 android:text="⚠ 나트륨, 탄수화물, 당류, 지방,\n포화지방, 콜레스테롤, 단백질" />
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/c2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/text1"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="60dp"
-                android:layout_marginLeft="60dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:textColor="@color/black"
                 android:text="2. 아래와 같은 (g당 + 총 내용량당) 영양성분표는 현재 제공하지 않습니다." />
 
             <ImageView
-                android:id="@+id/imageView24"
+                android:id="@+id/nutricautionimage1"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="60dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/nutricautionimage1" />
+
+            <ImageView
+                android:id="@+id/nutricautionimage2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:layout_marginBottom="100dp"
-                android:layout_marginLeft="60dp"
-                android:src="@drawable/example" />
+                android:src="@drawable/nutricautionimage2" />
 
 
 
@@ -109,7 +121,7 @@
         android:layout_height="60dp"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="다음"
+        android:text="다음 보기"
         style="@style/title3"
         android:background="@drawable/button_highlight"
         android:textColor="@color/white"
