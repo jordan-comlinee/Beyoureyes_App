@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.beyoureyes"
+    namespace = "com.dna.beyoureyes"
     compileSdk = 33
 
     viewBinding {
@@ -15,7 +15,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.beyoureyes"
+        applicationId = "com.dna.beyoureyes"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
