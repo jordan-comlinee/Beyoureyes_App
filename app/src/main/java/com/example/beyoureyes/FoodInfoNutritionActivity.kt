@@ -93,61 +93,32 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             kcalText.text = modifiedKcalList.joinToString(", ") + " kcal"
         }
 
-        // 원형 차트 (영양성분 이름  + 해당 g) intent해서 표시
-        val chart = binding.pieChart
-        chart.setUsePercentValues(true)
-        val entries = ArrayList<PieEntry>()
+        // 영양성분 정보 객체 생성
         // NutriActivity 에서 데이터 받기
         val moPercentList = intent.getStringArrayListExtra("modifiedPercentList")
         val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
+        val kcal = modifiedKcalList!!.get(0).toInt()
+        val nutriFactsInMilli = moPercentList?.map { it -> it.toInt() }
+        val nutriFacts = NutritionFacts(nutriFactsInMilli!!.toIntArray(), kcal)
 
-        // 단백질, 탄수화물, 지방
-        if (Percent != null) {
+        // 에너지 섭취 비율 원형 차트
+        val chart: PieChart = binding.pieChart
+        val energyChart = EnergyChart(chart)
+        nutriFacts.carbs?.let { carbs ->
+            nutriFacts.protein?.let { protein ->
+                nutriFacts.fat?.let { fat -> // 탄단지 객체 null safe 처리
 
-            entries.add(PieEntry(Percent[1].toFloat(), koreanCharacterList[1]))
-            entries.add(PieEntry(Percent[3].toFloat(), koreanCharacterList[3]))
-            entries.add(PieEntry(Percent[6].toFloat(), koreanCharacterList[6]))
+                    // 탄단지 에너지값 설정
+                    energyChart.setCaloreisFromMilliGram(
+                        carbs.getMilliGram(),
+                        protein.getMilliGram(),
+                        fat.getMilliGram()
+                    )
 
-        }
-        // 차트 색깔
-        val colors = listOf(
-            ContextCompat.getColor(this, R.color.chartgreen),
-            ContextCompat.getColor(this, R.color.chartyellow),
-            ContextCompat.getColor(this, R.color.chartpink)
-        )
-
-        val pieDataSet = PieDataSet(entries, "")
-        pieDataSet.apply {
-            // Piechart 속 파이들 색상 설정
-            setColors(colors)
-            // 값(백분율)에 대한 색상 설정
-            valueTextColor = Color.BLACK
-            // 값에 대한 크기 설정
-            valueTextSize = 30f
-        }
-
-        val pieData = PieData(pieDataSet)
-
-        // 값에 사용자 정의 형식(백분율 값 + "%") 설정
-        pieDataSet.valueFormatter = object : ValueFormatter() { // 값을 차트에 어떻게 표시할지
-            override fun getFormattedValue(value: Float): String {
-                return "${value.toInt()}%" // 값을 정수 형식으로 표시
+                    // 차트 표시 설정
+                    energyChart.setChart(this)
+                }
             }
-        }
-
-        chart.apply {
-            data = pieData
-            description.isEnabled = false // 차트 설명 비활성화
-            isRotationEnabled = false // 차트 회전 활성화
-            legend.isEnabled = false // 하단 설명 비활성화
-            isDrawHoleEnabled = true // 가운데 빈 구멍 활성화 비활성화 여부
-            holeRadius = 0f // 가운데 빈 구멍 크기
-            transparentCircleRadius = 0f // 투명한 부분 크기
-            centerText = null // 가운데 텍스트 없앰
-            setEntryLabelTextSize(20f) // label 글씨 크기
-            setEntryLabelColor(Color.BLACK) // label 색상
-            animateY(800, Easing.EaseInOutQuad) // 0.8초 동안 애니메이션 설정
-            animate()
         }
 
         // 버튼 눌렀을 때 TTS 실행

@@ -107,6 +107,55 @@ class LoadingActivity : AppCompatActivity() {
 
     }
 
+    private fun useTestInfo() {
+        // 추출 키워드 값 임의 설정
+        koreanCharactersList.clear()
+        koreanCharactersList.add("나트륨")
+        koreanCharactersList.add("탄수화물")
+        koreanCharactersList.add("당류")
+        koreanCharactersList.add("지방")
+        koreanCharactersList.add("트랜스지방")
+        koreanCharactersList.add("포화지방")
+        koreanCharactersList.add("콜레스테롤")
+        koreanCharactersList.add("단백질")
+
+
+
+        koreanCharactersListmodi = koreanCharactersList.distinct().toMutableList()
+        koreanCharactersListmodi = koreanCharactersListmodi.map {
+            it.replace(Regex("[^가-힣]"), "")
+        }.toMutableList()
+
+
+        // % 리스트 값 임의 설정
+        percentList.clear()
+        percentList.add("17") // 나트륨%
+        percentList.add("17") // 탄수화물%
+        percentList.add("9") // 당류%
+        percentList.add("20") // 지방%
+        percentList.add("19") // 포화지방%
+        percentList.add("5") // 콜레스테롤%
+        percentList.add("13") // 단백질%
+
+        // % -> g 리스트 값 설정
+        moPercentList = modiPercentList(percentList)
+        if (moPercentList.size == 0) {
+            Log.d("test", "moPercentList is empty")
+        }
+
+
+        // kcal 리스트 값 설정
+        kcalList.clear()
+        kcalList.add("343")
+
+
+        // 알레르기 값 설정
+        extractedWords.clear()
+        extractedWords.add("밀")
+        extractedWords.add("땅콩")
+        extractedWords.add("새우")
+    }
+
     private fun startFoodInfoAllActivity() {
         val intent = Intent(this, FoodInfoAllActivity::class.java)
         intent.putExtra("modifiedPercentList", ArrayList(moPercentList))

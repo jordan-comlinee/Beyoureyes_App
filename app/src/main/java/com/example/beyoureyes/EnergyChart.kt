@@ -124,7 +124,7 @@ class EnergyChart(private val chart : PieChart) {
             centerText = null // 가운데 텍스트 없앰
             setEntryLabelTextSize(20f) // label 글씨 크기
             setEntryLabelColor(Color.BLACK) // label 색상
-            animateY(800, Easing.EaseInOutQuad) // 0.8초 동안 애니메이션 설정
+            animateY(0, Easing.EaseInOutQuad) // 0.8초 동안 애니메이션 설정
             animate()
         }
     }
