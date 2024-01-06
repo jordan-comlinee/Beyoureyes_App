@@ -10,9 +10,9 @@
         <option name="gradleJvm" value="corretto-18" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/../../../../../OpenCV-android-sdk/sdk" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/../../../../opencv-4.8.1-android-sdk/OpenCV-android-sdk/sdk" />
           </set>
         </option>
       </GradleProjectSettings>

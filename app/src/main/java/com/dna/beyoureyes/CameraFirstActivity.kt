@@ -123,7 +123,7 @@ class CameraFirstActivity : AppCompatActivity()  {
                 photoFile?.also {
                     val photoURI: Uri = FileProvider.getUriForFile(
                         this,
-                        "com.example.beyoureyes.fileprovider",
+                        "com.dna.beyoureyes.fileprovider",
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
