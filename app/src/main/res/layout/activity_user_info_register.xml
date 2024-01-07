@@ -11,7 +11,8 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/toolbar_dafault" />
+        layout="@layout/toolbar_dafault"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 
     <ScrollView
