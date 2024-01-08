@@ -107,7 +107,7 @@ class HomeActivity : AppCompatActivity() {
         // 촬영하기 버튼
         filmButton.setOnClickListener {
             // val intent = Intent(this, CameraFirstActivity::class.java)
-            val intent = Intent(this, NutriCautionActivity::class.java)
+            val intent = Intent(this, LoadingActivity::class.java)
             startActivity(intent)
         }
         // 오늘 섭취한 영양소 확인하기 버튼

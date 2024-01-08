@@ -3,15 +3,31 @@ package com.dna.beyoureyes
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import com.dna.beyoureyes.databinding.ActivityFoodInfoNutritionBinding
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class FoodInfoNutritionActivity : AppCompatActivity() {
@@ -175,12 +191,155 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
         //먹기 버튼
         val eatButton = binding.buttoneat
 
-        val customDialog = CustomDialog(this)
-        eatButton.setOnClickListener {
-            customDialog.show()
-        }
+        //eatButton
+        eatButton.setOnClickListener{
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_intake, null)
+
+            val builder = AlertDialog.Builder(this@FoodInfoNutritionActivity)
+            var ratio : Double = 0.0
+            builder.setView(dialogView)
+            val alertDialog = builder.create()
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            val buttonAll : Button = dialogView.findViewById(R.id.buttonAll)
+            val buttonLot : Button = dialogView.findViewById(R.id.buttonLot)
+            val buttonHalf : Button = dialogView.findViewById(R.id.buttonHalf)
+            val buttonLittle : Button = dialogView.findViewById(R.id.buttonLittle)
+
+            val buttonBack : Button = dialogView.findViewById(R.id.buttonBack)
+            val buttonSend : Button = dialogView.findViewById(R.id.buttonSend)
+
+            val horizontalChartIntake : BarChart = dialogView.findViewById(R.id.horizontalChartIntake)
+
+            Log.d("nutriList", moPercentList.toString())
+            Log.d("nutriList", koreanCharacterList.toString())
+
+            buttonBack.setOnClickListener {
+                alertDialog.dismiss()
+            }
+
+            // 바 차트의 데이터 설정
+            val entries = arrayListOf<BarEntry>()
+            entries.add(BarEntry(0f, 0f))
+            applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
+
+            buttonAll.setOnClickListener {
+                ratio = 1.0
+                entries.add(BarEntry(0f, 100f))
+                applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
+                //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
+            }
+            buttonLot.setOnClickListener {
+                ratio = 0.75
+                entries.add(BarEntry(0f, 75f))
+                applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
+                //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
+            }
+            buttonHalf.setOnClickListener {
+                ratio = 0.5
+                entries.add(BarEntry(0f, 50f))
+                applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
+                //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
+            }
+            buttonLittle.setOnClickListener {
+                ratio = 0.25
+                entries.add(BarEntry(0f, 25f))
+                applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
+                //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
+            }
+
+            buttonSend.setOnClickListener {
+                if (moPercentList != null) {
+                    val nutriData: HashMap<String, Serializable> = hashMapOf(
+                        "userID" to AppUser.id!!,
+                        "date" to SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
+                        "calories" to modifiedKcalList!!.joinToString(", ").toInt() * ratio
+                    )
+                    for (i in koreanCharacterList.indices) {
+                        nutriData[koreanCharacterList[i]] = moPercentList[i].toInt() * ratio
+                    }
+
+
+                    //Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
+                    sendData(nutriData, "userIntakeNutrition")
+                    alertDialog.dismiss()
+                }
+            }
+
+            alertDialog.show()
+        }//eatButton
 
     }
+
+    private fun applyBarChart(barChart: BarChart, entries: List<BarEntry>, color: String, maximum: Float) {
+        // 바 차트의 데이터셋 생성
+        val dataSet = BarDataSet(entries, "My Data")
+        dataSet.color = Color.parseColor(color)
+
+        dataSet.setDrawValues(false);
+
+        // 바 차트의 X축 레이블 설정
+        val labels = arrayListOf<String>()
+        labels.add("Label 1")
+
+        // 바 차트의 X축, Y축 설정
+        val xAxis = barChart.xAxis
+        xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+        xAxis.setDrawGridLines(false)
+        xAxis.setPosition(XAxis.XAxisPosition.TOP_INSIDE)
+        xAxis.setEnabled(false)
+        xAxis.setDrawAxisLine(false)
+
+        val yLeft = barChart.axisLeft
+        //Set the minimum and maximum bar lengths as per the values that they represent
+        yLeft.axisMaximum = maximum
+        yLeft.axisMinimum = 0f
+        yLeft.isEnabled = false
+
+        // 바 차트의 데이터 설정
+        val data = BarData(dataSet)
+        barChart.data = data
+
+        // 바 차트의 다양한 설정 (예시)
+        //barChart.setOnChartValueSelectedListener(null) // 클릭 이벤트 비활성화
+        barChart.description.isEnabled = false  // 설명 삭제
+        barChart.setPinchZoom(false)
+        barChart.setDrawValueAboveBar(false) // 위에 값 표시 삭제
+        barChart.legend.isEnabled = false // 레전드 삭제
+        barChart.description.isEnabled = false // 차트의 설명 비활성화
+        barChart.setDrawGridBackground(false) // 그리드 배경 비활성화
+        barChart.axisLeft.isEnabled = false // 왼쪽 Y축 비활성화
+        barChart.axisRight.isEnabled = false // 오른쪽 Y축 비활성화
+        barChart.legend.isEnabled = false // 범례 비활성화
+        barChart.barData.barWidth = 100f // 바 차트 두께 설정 (1.0 이 디폴트)
+        barChart.isDoubleTapToZoomEnabled = false // 더블 클릭 시 비활성화
+        barChart.setPinchZoom(false)
+
+
+        barChart.animateY(1000)
+
+
+        // 레이아웃 파라미터 설정 (예시)
+        val layoutParams = barChart.layoutParams
+        layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+
+        // 바 차트 갱신
+        barChart.layoutParams = layoutParams
+        barChart.invalidate()
+    } // applyBarChart
+
+    private fun sendData(foodInfo: HashMap<String, Serializable>, collectionName: String){
+        val db = Firebase.firestore
+        db.collection(collectionName)
+            .add(foodInfo)
+            .addOnSuccessListener { documentReference ->
+                Log.d("REGISTERFIRESTORE :", "SUCCESS added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("REGISTERFIRESTORE :", "Error adding document", e)
+            }
+    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
