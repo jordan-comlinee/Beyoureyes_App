@@ -106,10 +106,13 @@ class FoodInfoAllergyPersonalizedActivity : AppCompatActivity() {
                 allergyList?.let { foodAllergy ->        // 식품 알러지 정보 꺼내기
                     val commonAllergens = userAllergy.intersect(foodAllergy)
                     if (commonAllergens.isNotEmpty()) {
-                        val allergyMsg = "해당 식품에는 당신이 유의해야 할 ${commonAllergens.joinToString()}이 함유되어 있습니다."
+                        val allergyMsg = "당신의 맞춤별 영양 정보를 분석해드리겠습니다. 해당 식품에는 당신이 유의해야 할 ${commonAllergens.joinToString()}이 함유되어 있습니다. 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시찍기 버튼을 눌러주세요" +
+                                " 또한 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
                         speak(allergyMsg)
                     } else {
-                        speak("해당 식품에는 당신의 알러지 성분이 함유되어 있지 않습니다.")
+                        speak("당신의 맞춤별 영양 정보를 분석해드리겠습니다. 해당 식품에는 당신의 알러지 성분이 함유되어 있지 않습니다." +
+                                " 영양 성분 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시찍기 버튼을 눌러주세요." +
+                                " 또한 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요.")
                     }
                 }
             }

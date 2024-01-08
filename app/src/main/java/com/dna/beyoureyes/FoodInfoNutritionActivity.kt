@@ -108,7 +108,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
 
         // 버튼 눌렀을 때 TTS 실행
         speakButton.setOnClickListener {
-            val calorieText = "칼로리는 $modifiedKcalList 입니다."
+            val calorieText = "칼로리는 $modifiedKcalList kcal 입니다."
             val nutrientsText = buildString {
                 for (i in koreanCharacterList.indices) {
                     append("${koreanCharacterList[i]}은 ${Percent?.get(i)}%")
@@ -118,7 +118,9 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
                 }
             }
 
-            val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 일일 권장량 당 $nutrientsText 입니다. 알레르기 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요."
+            val textToSpeak = "영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 1일 영양성분 기준치 당 $nutrientsText 입니다. 알레르기 정보는 인식되지 않았습니다. " +
+                    " 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요." +
+                    " 또한 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
 
             speak(textToSpeak)
         }
