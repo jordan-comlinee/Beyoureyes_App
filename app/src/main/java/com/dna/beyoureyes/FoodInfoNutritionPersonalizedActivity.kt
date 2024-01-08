@@ -152,7 +152,7 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
         // 버튼 초기화
         speakButton = binding.buttonVoice
 
-        // 버튼 눌렀을 때 TTS 실행 -> 수정 예정 -> 여기서 칼로리는 제공하지 않아도되지 않을까???-> 회의 시간에 애기!!
+        // 버튼 눌렀을 때 TTS 실행
         speakButton.setOnClickListener {
             val calorieText = "칼로리는 ${totalKcal}kcal 입니다."
             val nutrientsText = buildString {
@@ -167,7 +167,7 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
                 }
             }
 
-            val textToSpeak = "당신의 맞춤별 영양 정보를 분석해드리겠습니다. 해당식품의 $calorieText 또한 영양 성분 정보는 당신의 일일 권장량 당 $nutrientsText 입니다." +
+            val textToSpeak = "당신의 맞춤별 영양 정보를 분석해드리겠습니다. 해당 식품의 $calorieText 또한 영양 성분 정보는 당신의 일일 권장량 당 $nutrientsText 입니다." +
                     " 알레르기 정보는 인식되지 않았습니다. 추가적인 정보를 원하시면 화면에 다시 찍기 버튼을 눌러주세요. " +
                     "또한 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
             speak(textToSpeak)

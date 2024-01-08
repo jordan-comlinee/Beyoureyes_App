@@ -100,7 +100,7 @@ class FoodInfoAllergyPersonalizedActivity : AppCompatActivity() {
         // 버튼 초기화
         speakButton = binding.buttonVoice
 
-        // 버튼 눌렀을 때 TTS 실행 -> 수정 예정
+        // 버튼 눌렀을 때 TTS 실행
         speakButton.setOnClickListener {
             AppUser.info?.allergic?.let { userAllergy -> // 사용자 알러지 정보 꺼내기
                 allergyList?.let { foodAllergy ->        // 식품 알러지 정보 꺼내기
