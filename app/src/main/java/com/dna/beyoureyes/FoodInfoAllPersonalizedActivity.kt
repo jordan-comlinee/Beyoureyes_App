@@ -13,6 +13,7 @@ import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.dna.beyoureyes.databinding.ActivityFoodInfoAllPersonalizedBinding
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
@@ -244,25 +245,61 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
 
 
             buttonAll.setOnClickListener {
+                buttonAll.setBackgroundResource(R.drawable.button_highlight)
+                buttonAll.setTextColor(ContextCompat.getColor(this, R.color.white))
+                buttonLot.setBackgroundResource(R.drawable.button_default)
+                buttonLot.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonHalf.setBackgroundResource(R.drawable.button_default)
+                buttonHalf.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLittle.setBackgroundResource(R.drawable.button_default)
+                buttonLittle.setTextColor(ContextCompat.getColor(this, R.color.black))
                 ratio = 1.0
+                if (entries.isNotEmpty()) entries.clear()
                 entries.add(BarEntry(0f, 100f))
                 applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
                 //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonLot.setOnClickListener {
+                buttonAll.setBackgroundResource(R.drawable.button_default)
+                buttonAll.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLot.setBackgroundResource(R.drawable.button_highlight)
+                buttonLot.setTextColor(ContextCompat.getColor(this, R.color.white))
+                buttonHalf.setBackgroundResource(R.drawable.button_default)
+                buttonHalf.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLittle.setBackgroundResource(R.drawable.button_default)
+                buttonLittle.setTextColor(ContextCompat.getColor(this, R.color.black))
                 ratio = 0.75
+                if (entries.isNotEmpty()) entries.clear()
                 entries.add(BarEntry(0f, 75f))
                 applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
                 //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonHalf.setOnClickListener {
+                buttonAll.setBackgroundResource(R.drawable.button_default)
+                buttonAll.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLot.setBackgroundResource(R.drawable.button_default)
+                buttonLot.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonHalf.setBackgroundResource(R.drawable.button_highlight)
+                buttonHalf.setTextColor(ContextCompat.getColor(this, R.color.white))
+                buttonLittle.setBackgroundResource(R.drawable.button_default)
+                buttonLittle.setTextColor(ContextCompat.getColor(this, R.color.black))
                 ratio = 0.5
+                if (entries.isNotEmpty()) entries.clear()
                 entries.add(BarEntry(0f, 50f))
                 applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
                 //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonLittle.setOnClickListener {
+                buttonAll.setBackgroundResource(R.drawable.button_default)
+                buttonAll.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLot.setBackgroundResource(R.drawable.button_default)
+                buttonLot.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonHalf.setBackgroundResource(R.drawable.button_default)
+                buttonHalf.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLittle.setBackgroundResource(R.drawable.button_highlight)
+                buttonLittle.setTextColor(ContextCompat.getColor(this, R.color.white))
                 ratio = 0.25
+                if (entries.isNotEmpty()) entries.clear()
                 entries.add(BarEntry(0f, 25f))
                 applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
                 //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
