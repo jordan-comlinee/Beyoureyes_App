@@ -19,7 +19,8 @@
         android:visibility="invisible"/>
     <include
         android:id="@+id/include"
-        layout="@layout/toolbar_noicon" />
+        layout="@layout/toolbar_noicon"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 
     <TextView

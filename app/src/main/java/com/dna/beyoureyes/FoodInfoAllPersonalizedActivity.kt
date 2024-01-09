@@ -175,7 +175,7 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
 
         // 버튼 눌렀을 때 TTS 실행 -> 수정예정
         speakButton.setOnClickListener {
-            val calorieText = "칼로리는 ${totalKcal}kcal 입니다."
+            val calorieText = "해당 식품의 칼로리는 ${totalKcal} kcal 입니다."
             val nutrientsText = buildString {
                 for (i in lineViewsList.indices) {
                     val nutrientName = lineViewsList[i].labelTextView.text.toString().removePrefix("ㄴ")
@@ -201,8 +201,8 @@ class FoodInfoAllPersonalizedActivity : AppCompatActivity() {
 
 
             val textToSpeak =
-                "당신의 맞춤별 영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 당신의 일일 권장량 $nutrientsText 입니다." +
-                        " 해당 식품의 모든 정보를 확인하고 싶으시면 모든 정보 확인하기 버튼을 클릭해주세요. 또한 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
+                "당신의 맞춤별 영양 정보를 분석해드리겠습니다. $allergyText $calorieText 또한 영양 성분 정보는 당신의 일일 권장량 당 $nutrientsText 입니다." +
+                        " 해당 식품 섭취 시 먹기 버튼을 클릭하고 먹은 양의 정보를 알려주세요."
             speak(textToSpeak)
         }
 

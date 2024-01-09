@@ -185,7 +185,7 @@ class TodayIntakeActivity : AppCompatActivity() {
 
                     //////////////////////////////////////////////////////////
 
-                    // 버튼 눌렀을 때 TTS 실행 -> 영양성분 순서 다시 확인 필요 및 % 맞는지 확인 !
+                    // 버튼 눌렀을 때 TTS 실행
                     speakButton.setOnClickListener {
                         val textToSpeak = "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text}" +
                                 "나트륨은 ${totalIntake.natrium?.getMilliGram()}mg, " +
