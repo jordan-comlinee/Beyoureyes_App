@@ -17,6 +17,9 @@
         <item name="windowNoTitle">true</item>
         <!--상태바 없애기-->
         <item name="android:windowFullscreen">true</item>
+
+        <item name="windowActionBar">false</item>
+
     </style>
 
 </resources>
