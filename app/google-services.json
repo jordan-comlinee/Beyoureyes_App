@@ -8,9 +8,38 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:39610226410:android:e346d80fa34a9388ec6993",
+        "mobilesdk_app_id": "1:39610226410:android:ac956efcffcb2a21ec6993",
         "android_client_info": {
           "package_name": "com.dna.beyoureyes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39610226410-ole4b27oudmh6098eko824kldgn1rodu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWEROIVKU2AfaQyrrRtaSSxuak_nJ8YhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39610226410-ole4b27oudmh6098eko824kldgn1rodu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39610226410:android:e346d80fa34a9388ec6993",
+        "android_client_info": {
+          "package_name": "com.example.beyoureyes"
         }
       },
       "oauth_client": [
@@ -18,7 +47,7 @@
           "client_id": "39610226410-poi4c8cki6crklhes39dvc3kd41nnblj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.dna.beyoureyes",
+            "package_name": "com.example.beyoureyes",
             "certificate_hash": "8fc8204ef90b7d18d505f008c0a4853fc4431c44"
           }
         },
@@ -26,7 +55,7 @@
           "client_id": "39610226410-qcs7as5q3jurlaqdk7gj5kilec2tj6u8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.dna.beyoureyes",
+            "package_name": "com.example.beyoureyes",
             "certificate_hash": "43b7c5d8ab11f0b6d0ad2e92fa0fdaf9ae8195ee"
           }
         },
