@@ -446,7 +446,7 @@ class LoadingActivity : AppCompatActivity() {
 }
 
 
-// % 를 이용하여 g으로 계산  -> mg으로 수정했는데 소영이한테 확인해보기!
+// % 를 이용하여 g으로 계산
 private fun modiPercentList(percentList: List<String>): List<String> {
     if (percentList.size != 7) {
         // 퍼센트 리스트의 길이가 7이 아니면 빈 리스트를 반환
@@ -454,7 +454,7 @@ private fun modiPercentList(percentList: List<String>): List<String> {
     }
 
     val modifiedList = percentList.mapIndexed { index, percent ->
-       // 선행하는 0을 제거
+        // 선행하는 0을 제거
         val cleanedPercent = percent.trimStart('0').toDoubleOrNull() ?: 0.0
 
         val modifiedPercent = when (index) {
