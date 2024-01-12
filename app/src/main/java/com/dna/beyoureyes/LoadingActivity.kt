@@ -454,10 +454,9 @@ private fun modiPercentList(percentList: List<String>): List<String> {
     }
 
     val modifiedList = percentList.mapIndexed { index, percent ->
-        // 선행하는 0을 제거하고 double로 변환합니다.
+       // 선행하는 0을 제거
         val cleanedPercent = percent.trimStart('0').toDoubleOrNull() ?: 0.0
 
-        // 각 인덱스에 따라 수정된 퍼센트 값을 계산합니다.
         val modifiedPercent = when (index) {
             0 -> ((cleanedPercent * 0.01 * 2000).toInt()).toString()
             1 -> ((cleanedPercent * 0.01 * 324 * 1000).toInt()).toString()
