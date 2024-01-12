@@ -21,4 +21,3 @@ include(":app")
 
 include(":opencv")
 project(":opencv").projectDir = File("C:\\Users\\sojin\\Downloads\\OpenCV-android-sdk\\sdk") // Change location!!!!
-

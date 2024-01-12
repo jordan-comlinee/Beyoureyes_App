@@ -215,7 +215,7 @@ class LoadingActivity : AppCompatActivity() {
 
     private fun isValidData(): Boolean { // 퍼센트와 칼로리 유효성 판단
 
-        return percentList.size == 7 && kcalList.size == 1 && percentList.all { it.isNotEmpty() } && kcalList.all { it.isNotEmpty() } && koreanCharactersListmodi.all { it.isNotEmpty() }
+        return percentList.size == 7 && kcalList.size == 1 && percentList.all { it.isNotEmpty() } && kcalList.all { it.isNotEmpty() } && koreanCharactersListmodi.all { it.isNotEmpty() } && moPercentList.size == 7
     }
 
     private fun isValidData_alergy(): Boolean { // 알레르기 유효성 판단
@@ -454,16 +454,19 @@ private fun modiPercentList(percentList: List<String>): List<String> {
     }
 
     val modifiedList = percentList.mapIndexed { index, percent ->
-        val modifiedPercent = when (index) {
-            0 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 2000).toInt().toString()
-            1 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 324 * 1000).toInt().toString()
-            2 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 100 * 1000).toInt().toString()
-            3 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 54 * 1000).toInt().toString()
-            4 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 15 * 1000).toInt().toString()
-            5 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 300).toInt().toString()
-            6 -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 55 * 1000).toInt().toString()
+        // 선행하는 0을 제거하고 double로 변환합니다.
+        val cleanedPercent = percent.trimStart('0').toDoubleOrNull() ?: 0.0
 
-            else -> ((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 2000).toInt().toString() // 그냥 한 값
+        // 각 인덱스에 따라 수정된 퍼센트 값을 계산합니다.
+        val modifiedPercent = when (index) {
+            0 -> ((cleanedPercent * 0.01 * 2000).toInt()).toString()
+            1 -> ((cleanedPercent * 0.01 * 324 * 1000).toInt()).toString()
+            2 -> ((cleanedPercent * 0.01 * 100 * 1000).toInt()).toString()
+            3 -> ((cleanedPercent * 0.01 * 54 * 1000).toInt()).toString()
+            4 -> ((cleanedPercent * 0.01 * 15 * 1000).toInt()).toString()
+            5 -> ((cleanedPercent * 0.01 * 300).toInt()).toString()
+            6 -> ((cleanedPercent * 0.01 * 55 * 1000).toInt()).toString()
+            else -> ((cleanedPercent * 0.01 * 2000).toInt()).toString() // 기본값
         }
         modifiedPercent
     }

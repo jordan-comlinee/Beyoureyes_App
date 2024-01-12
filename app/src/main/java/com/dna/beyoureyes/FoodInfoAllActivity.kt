@@ -1,17 +1,34 @@
 package com.dna.beyoureyes
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.dna.beyoureyes.databinding.ActivityFoodInfoAllBinding
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class FoodInfoAllActivity : AppCompatActivity() {
@@ -180,7 +197,6 @@ class FoodInfoAllActivity : AppCompatActivity() {
         }
 
         //eatButton
-/*
         eatButton.setOnClickListener{
             val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_intake, null)
 
@@ -200,6 +216,9 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
             val horizontalChartIntake : BarChart = dialogView.findViewById(R.id.horizontalChartIntake)
 
+            Log.d("nutriList", moPercentList.toString())
+            Log.d("nutriList", koreanCharacterList.toString())
+
             buttonBack.setOnClickListener {
                 alertDialog.dismiss()
             }
@@ -209,61 +228,89 @@ class FoodInfoAllActivity : AppCompatActivity() {
             entries.add(BarEntry(0f, 0f))
             applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
 
-            moPercentList?.add("1")
-            moPercentList?.add("2")
-            moPercentList?.add("3")
-
-
             buttonAll.setOnClickListener {
+                buttonAll.setBackgroundResource(R.drawable.button_highlight)
+                buttonAll.setTextColor(ContextCompat.getColor(this, R.color.white))
+                buttonLot.setBackgroundResource(R.drawable.button_default)
+                buttonLot.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonHalf.setBackgroundResource(R.drawable.button_default)
+                buttonHalf.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLittle.setBackgroundResource(R.drawable.button_default)
+                buttonLittle.setTextColor(ContextCompat.getColor(this, R.color.black))
                 ratio = 1.0
+                if (entries.isNotEmpty()) entries.clear()
                 entries.add(BarEntry(0f, 100f))
                 applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
-                Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonLot.setOnClickListener {
+                buttonAll.setBackgroundResource(R.drawable.button_default)
+                buttonAll.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLot.setBackgroundResource(R.drawable.button_highlight)
+                buttonLot.setTextColor(ContextCompat.getColor(this, R.color.white))
+                buttonHalf.setBackgroundResource(R.drawable.button_default)
+                buttonHalf.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLittle.setBackgroundResource(R.drawable.button_default)
+                buttonLittle.setTextColor(ContextCompat.getColor(this, R.color.black))
                 ratio = 0.75
+                if (entries.isNotEmpty()) entries.clear()
                 entries.add(BarEntry(0f, 75f))
                 applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
-                Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonHalf.setOnClickListener {
+                buttonAll.setBackgroundResource(R.drawable.button_default)
+                buttonAll.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLot.setBackgroundResource(R.drawable.button_default)
+                buttonLot.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonHalf.setBackgroundResource(R.drawable.button_highlight)
+                buttonHalf.setTextColor(ContextCompat.getColor(this, R.color.white))
+                buttonLittle.setBackgroundResource(R.drawable.button_default)
+                buttonLittle.setTextColor(ContextCompat.getColor(this, R.color.black))
                 ratio = 0.5
+                if (entries.isNotEmpty()) entries.clear()
                 entries.add(BarEntry(0f, 50f))
                 applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
-                Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
             buttonLittle.setOnClickListener {
+                buttonAll.setBackgroundResource(R.drawable.button_default)
+                buttonAll.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLot.setBackgroundResource(R.drawable.button_default)
+                buttonLot.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonHalf.setBackgroundResource(R.drawable.button_default)
+                buttonHalf.setTextColor(ContextCompat.getColor(this, R.color.black))
+                buttonLittle.setBackgroundResource(R.drawable.button_highlight)
+                buttonLittle.setTextColor(ContextCompat.getColor(this, R.color.white))
                 ratio = 0.25
+                if (entries.isNotEmpty()) entries.clear()
                 entries.add(BarEntry(0f, 25f))
                 applyBarChart(horizontalChartIntake, entries, "#FF0000", 100f)
-                Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
+                //Toast.makeText(this@FoodInfoAllActivity, ratio.toString(), Toast.LENGTH_LONG).show()
             }
 
             buttonSend.setOnClickListener {
                 if (moPercentList != null) {
-                    // "나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질"
-                    val sendData = moPercentList.map { it.toFloat() * ratio }
-
-                    val nutriData = hashMapOf(
-                        "calories" to modifiedKcalList?.joinToString(", "),
-                        "natrium" to sendData[0],
-                        "carbs" to sendData[1],
-                        "sugar" to sendData[2],
-                        "fat" to sendData[3],
-                        "saturatedFat" to sendData[4],
-                        "cholesterol" to sendData[5],
-                        "protein" to sendData[6]
+                    val nutriData: HashMap<String, Serializable> = hashMapOf(
+                        "userID" to AppUser.id!!,
+                        "date" to SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
+                        "calories" to modifiedKcalList!!.joinToString(", ").toInt() * ratio
                     )
+                    for (i in koreanCharacterList.indices) {
+                        nutriData[koreanCharacterList[i]] = moPercentList[i].toInt() * ratio
+                    }
 
-                    Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
-                    //sendData(nutriData, "userIntakeNutrition")
+
+                    //Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
+                    sendData(nutriData, "userIntakeNutrition")
+                    alertDialog.dismiss()
                 }
             }
 
             alertDialog.show()
-        }//alertDialog
+        }//eatButton
 
-*/
+
         // personal Button
         personalButton = binding.buttonPersonalized
 
@@ -291,7 +338,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
         }
 
     } //onCreate
-/*
+
     private fun applyBarChart(barChart: BarChart, entries: List<BarEntry>, color: String, maximum: Float) {
         // 바 차트의 데이터셋 생성
         val dataSet = BarDataSet(entries, "My Data")
@@ -344,11 +391,6 @@ class FoodInfoAllActivity : AppCompatActivity() {
         val layoutParams = barChart.layoutParams
         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
 
-
-
-        // 배경에 둥근 모서리 적용 (예시)
-        //barChart.setBackgroundResource(R.drawable.rounded_corner_horizontal_barchart)
-
         // 바 차트 갱신
         barChart.layoutParams = layoutParams
         barChart.invalidate()
@@ -365,7 +407,7 @@ class FoodInfoAllActivity : AppCompatActivity() {
                 Log.w("REGISTERFIRESTORE :", "Error adding document", e)
             }
     }
-*/
+
 
     override fun onDestroy() {
         // TTS 해제
@@ -376,4 +418,5 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
         super.onDestroy()
     }
+
 }

@@ -101,7 +101,7 @@ class Camera {
                 photoFile?.also {
                     val photoURI: Uri = FileProvider.getUriForFile(
                         activity,
-                        "com.example.beyoureyes.fileprovider",
+                        "com.dna.beyoureyes.fileprovider",
                         it
                     )
                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)

@@ -132,7 +132,6 @@
         android:layout_height="64sp"
         android:layout_weight="1"
         android:layout_marginEnd="6sp"
-        android:background="@drawable/button_highlight"
         android:fontFamily="@font/pretendard700" />
 
     <!--<androidx.appcompat.widget.AppCompatButton
