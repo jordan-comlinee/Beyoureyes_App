@@ -1,5 +1,6 @@
 package com.dna.beyoureyes
 
+import TTSManager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -21,7 +22,7 @@ import org.threeten.bp.format.DateTimeFormatter
 
 class TodayIntakeActivity : AppCompatActivity() {
 
-    private lateinit var textToSpeech: TextToSpeech
+    private lateinit var ttsManager: TTSManager
     private lateinit var speakButton: Button
     private lateinit var binding: ActivityTodayIntakeBinding
 
@@ -42,33 +43,6 @@ class TodayIntakeActivity : AppCompatActivity() {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         }
-
-        // TextToSpeech 초기화
-        textToSpeech = TextToSpeech(this) { status ->
-            if (status == TextToSpeech.SUCCESS) {
-                val result = textToSpeech.setLanguage(Locale.KOREAN)
-
-                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Log.e("TTS", "Language is not supported or missing data")
-                } else {
-                    // TTS 초기화 성공
-                    Log.d("TTS", "TextToSpeech initialization successful")
-                }
-            } else {
-                Log.e("TTS", "TextToSpeech initialization failed")
-            }
-        }
-        fun speak(text: String) {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                val params = Bundle()
-                params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "")
-                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, params, "UniqueID")
-            } else {
-                // LOLLIPOP 이하의 버전에서는 UtteranceId를 지원하지 않음
-                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null)
-            }
-        }
-
 
         // Firebase 연결을 위한 설정값
         val db = Firebase.firestore
@@ -124,10 +98,12 @@ class TodayIntakeActivity : AppCompatActivity() {
                 if (result.isEmpty) { // 쿼리 결과 없을 때(오늘 섭취량 기록 아직 없음)
                     energyChart.hide() // 차트 숨김
                     energyReviewText.showNoDataMsg(this)
-
-                    speakButton.setOnClickListener {
-                        val textToSpeech = "오늘의 섭취량 기록이 없습니다. 분석 결과를 제공받기 위해서 기록을 남겨보세요."
-                        speak(textToSpeech)
+                    // TTSManager 초기화 완료되었을때
+                    ttsManager = TTSManager(this) {
+                        speakButton.setOnClickListener {
+                            val textToSpeech = "오늘의 섭취량 기록이 없습니다. 분석 결과를 제공받기 위해서 기록을 남겨보세요."
+                            ttsManager.speak(textToSpeech)
+                        }
                     }
 
                 } else { // 쿼리 결과 있을 때
@@ -184,18 +160,21 @@ class TodayIntakeActivity : AppCompatActivity() {
                     totalIntake.chol?.let {chol -> choPer.setText("${chol.getMilliGram()}mg")}
 
                     //////////////////////////////////////////////////////////
-
-                    // 버튼 눌렀을 때 TTS 실행
-                    speakButton.setOnClickListener {
-                        val textToSpeak = "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text}" +
-                                "나트륨은 ${totalIntake.natrium?.getMilliGram()}mg, " +
-                                "탄수화물은  ${totalIntake.carbs?.getGram()}g, " +
-                                "당류는 ${totalIntake.sugar?.getGram()}g, " +
-                                "지방은 ${totalIntake.fat?.getGram()}g, " +
-                                "포화지방은 ${totalIntake.satFat?.getGram()}g, " +
-                                "콜레스테롤은  ${totalIntake.chol?.getMilliGram()}mg, " +
-                                "단백질은${totalIntake.protein?.getGram()}g 입니다. "
-                        speak(textToSpeak)
+                    // TTSManager 초기화 완료되었을때
+                    ttsManager = TTSManager(this) {
+                        // 버튼 눌렀을 때 TTS 실행
+                        speakButton.setOnClickListener {
+                            val textToSpeak =
+                                "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text}" +
+                                        "나트륨은 ${totalIntake.natrium?.getMilliGram()}mg, " +
+                                        "탄수화물은  ${totalIntake.carbs?.getGram()}g, " +
+                                        "당류는 ${totalIntake.sugar?.getGram()}g, " +
+                                        "지방은 ${totalIntake.fat?.getGram()}g, " +
+                                        "포화지방은 ${totalIntake.satFat?.getGram()}g, " +
+                                        "콜레스테롤은  ${totalIntake.chol?.getMilliGram()}mg, " +
+                                        "단백질은${totalIntake.protein?.getGram()}g 입니다. "
+                            ttsManager.speak(textToSpeak)
+                        }
                     }
 
                 }
@@ -211,12 +190,7 @@ class TodayIntakeActivity : AppCompatActivity() {
 
     }
     override fun onDestroy() {
-        // TTS 해제
-        if (textToSpeech.isSpeaking) {
-            textToSpeech.stop()
-        }
-        textToSpeech.shutdown()
-
+        ttsManager.shutdown()
         super.onDestroy()
 
     }
