@@ -7,8 +7,9 @@
     tools:context=".CameraFirstActivity">
 
     <include
-        android:id="@+id/include2"
-        layout="@layout/toolbar_dafault" />
+        android:id="@+id/include"
+        layout="@layout/toolbar_dafault"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
 
     <ScrollView
@@ -18,7 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2">
+        app:layout_constraintTop_toBottomOf="@+id/include">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -32,6 +33,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/title3"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:textColor="@color/black"
                 android:text="사진을 촬영하면\n식품 정보를 분석해드립니다!" />
 
@@ -41,27 +44,72 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 style="@style/text2"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:textColor="@color/highlight"
                 android:text="아래 유의 사항에 맞게 촬영해주세요." />
+            <TextView
+                android:id="@+id/camerafirsttextview1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text1"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:textColor="@color/black"
+                android:text="1. 물체를 사물과 잘 구별되는 배경에 놓고 촬영해주세요." />
 
             <ImageView
-                android:id="@+id/imageView24"
+                android:id="@+id/camerafirstimage1"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:src="@drawable/guideline1" />
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/camerafirstimage1" />
+
+            <TextView
+                android:id="@+id/camerafirsttextview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text1"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:text="2. 초점을 잘 맞춰서 촬영해주세요." />
 
             <ImageView
-                android:id="@+id/imageView25"
+                android:id="@+id/camerafirstimage2"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
-                android:src="@drawable/guideline2" />
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/camerafirstimage2" />
+            <TextView
+                android:id="@+id/camerafirsttextview3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text1"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:text="3. 글자가 잘 보이도록 가까이 찍되, 전체 내용을 다 담을 수 있도록 촬영해주세요." />
 
             <ImageView
-                android:id="@+id/imageView26"
+                android:id="@+id/camerafirstimage3"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginBottom="70dp"
-                android:src="@drawable/guideline3" />
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/camerafirstimage3" />
 
         </LinearLayout>
     </ScrollView>

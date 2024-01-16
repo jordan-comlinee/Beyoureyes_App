@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:39610226410:android:ac956efcffcb2a21ec6993",
+        "android_client_info": {
+          "package_name": "com.dna.beyoureyes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39610226410-ole4b27oudmh6098eko824kldgn1rodu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWEROIVKU2AfaQyrrRtaSSxuak_nJ8YhI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39610226410-ole4b27oudmh6098eko824kldgn1rodu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:39610226410:android:e346d80fa34a9388ec6993",
         "android_client_info": {
           "package_name": "com.example.beyoureyes"

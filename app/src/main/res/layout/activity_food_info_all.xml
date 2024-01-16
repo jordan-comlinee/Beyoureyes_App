@@ -15,7 +15,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <!-- 2. 스크롤 영역 -->
     <ScrollView
@@ -46,7 +47,7 @@
 
             <!-- 차트 -->
             <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChartScanSuccess"
+                android:id="@+id/pieChart"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_marginHorizontal="50dp"
@@ -64,7 +65,7 @@
 
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/kcal1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="3sp"
@@ -75,7 +76,7 @@
                     style="@style/text1"/>
 
                 <TextView
-                    android:id="@+id/textView5"
+                    android:id="@+id/kcaltextview"
                     style="@style/title3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -85,7 +86,7 @@
                     android:textColor="@color/red" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/kcal2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="3sp"
@@ -320,7 +321,7 @@
 
             <!-- 알레르기 -->
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/labelAllergy"
                 android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
@@ -332,7 +333,7 @@
                 style="@style/title3"  />
 
             <com.google.android.material.chip.ChipGroup
-                android:id="@+id/allergyChipGroup1"
+                android:id="@+id/allergyChipGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -396,7 +397,7 @@
                 />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/eatButton"
+                android:id="@+id/buttoneat"
                 android:layout_width="wrap_content"
                 android:layout_height="64sp"
                 android:layout_marginLeft="5dp"

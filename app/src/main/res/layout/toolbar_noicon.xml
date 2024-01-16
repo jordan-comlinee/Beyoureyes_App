@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="제목입니다"
+        android:text="사진 분석 중.."
         android:textColor="@color/black"
         style="@style/title2"/>
 
