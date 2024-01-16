@@ -48,6 +48,7 @@ class UserInfoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
+        Log.d(TAG, AppUser.id.toString()+"   AGAIN")
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -108,9 +109,6 @@ class UserInfoActivity : AppCompatActivity() {
                 }
             }
         }?:run{ // 사용자 정보 null일 시 -> 처리 조건 상 이 분기는 아마 진입할 일이 없긴 할 것
-            Toast.makeText(this@UserInfoActivity, AppUser.id, Toast.LENGTH_LONG).show()
-            Toast.makeText(this@UserInfoActivity, AppUser.info?.age.toString()+AppUser.info?.gender.toString(), Toast.LENGTH_LONG).show()
-            Toast.makeText(this@UserInfoActivity, AppUser.info?.disease.toString()+AppUser.info?.allergic.toString(), Toast.LENGTH_LONG).show()
             // 나이 정보 표시
             infoAge.text = "나이 정보 확인 실패"
             // 성별 정보 표시
@@ -151,6 +149,71 @@ class UserInfoActivity : AppCompatActivity() {
         updateUI(currentUser)
     }
 
+    // 로그인 결과 처리 메서드
+    /*
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("GOOGLE : ", "onActivityResult")
+        val googleCredential = oneTapClient.getSignInCredentialFromIntent(data)
+        val idToken = googleCredential.googleIdToken
+        when {
+            idToken != null -> {
+                // Got an ID token from Google. Use it to authenticate
+                // with Firebase.
+                val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
+                auth.signInWithCredential(firebaseCredential)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("GOOGLE : ", "signInWithCredential:success")
+                            val user = auth.currentUser
+                            updateUI(user)
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("GOOGLE : ", "signInWithCredential:failure", task.exception)
+                            updateUI(null)
+                        }
+                    }
+            }
+
+            else -> {
+                // Shouldn't happen.
+                Log.d("GOOGLE : ", "No ID token!")
+            }
+        }
+    } // onActivityResult
+
+    // [START auth_with_google]
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("GOOGLE : ", "signInWithCredential:success")
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("GOOGLE : ", "signInWithCredential:failure", task.exception)
+                    updateUI(null)
+                }
+            }
+    }
+    // [END auth_with_google]
+
+    // [START signin]
+    private fun signIn() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+    // [END signin]
+
+    companion object {
+        private const val RC_SIGN_IN = 9001
+    }
+    */
+
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
@@ -167,10 +230,9 @@ class UserInfoActivity : AppCompatActivity() {
                 Log.w(TAG, "Google sign in failed", e)
             }
         } else {
-            Log.d(TAG, "onActivityResult: resultCode = $resultCode, requestCode = $requestCode")
+            Log.d(TAG, "onActivityResult: resultCode = $resultCode")
         }
     }
-
 
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
@@ -182,7 +244,7 @@ class UserInfoActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     updateUI(user)
                     AppUser.id = user!!.uid
-                    Log.d(TAG, user!!.uid)
+                    Log.d(TAG, AppUser.id.toString())
                     val intent = intent
                     finish()
                     startActivity(intent)
