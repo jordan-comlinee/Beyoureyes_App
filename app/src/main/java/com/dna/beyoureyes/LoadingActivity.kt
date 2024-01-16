@@ -102,7 +102,6 @@ class LoadingActivity : AppCompatActivity() {
 
 
         handler.postDelayed({
-            useTestInfo()
             resultbtn.performClick() // 버튼을 자동으로 클릭
         }, 4000) // 4초
 

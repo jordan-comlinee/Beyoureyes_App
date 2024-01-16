@@ -18,6 +18,8 @@ import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneOffset
 
 import org.threeten.bp.format.DateTimeFormatter
+import java.text.SimpleDateFormat
+import java.util.Date
 
 class TodayIntakeActivity : AppCompatActivity() {
 
@@ -117,7 +119,7 @@ class TodayIntakeActivity : AppCompatActivity() {
 
         db.collection("userIntakeNutrition")
             .whereEqualTo("userID", AppUser.id)
-            .whereGreaterThanOrEqualTo("date", startOfToday) // 오늘 날짜 해당하는 것만
+            .whereEqualTo("date", SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date())) // 오늘 날짜 해당하는 것만
             .get()
             .addOnSuccessListener { result ->
 
