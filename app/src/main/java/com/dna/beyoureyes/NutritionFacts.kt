@@ -109,31 +109,37 @@ class NutritionFacts() {
 
     fun setNutritionValues(nutritionMap: Map<String, Any?>) {
         // firebaseDB 필드명 수정 시 아래 nutritionMap의 키값명 수정 필요!!(동일하게)
-        anyToInt(nutritionMap["natrium"])?.let {
+        anyToInt(nutritionMap["나트륨"])?.let {
             this.natrium = Nutrition(it, UnitOfMass.MILLIGRAM)
         }
-        anyToInt(nutritionMap["carbs"])?.let {
+        anyToInt(nutritionMap["탄수화물"])?.let {
             this.carbs = Nutrition(it, UnitOfMass.GRAM)
         }
-        anyToInt(nutritionMap["sugar"])?.let {
+        anyToInt(nutritionMap["당류"])?.let {
             this.sugar = Nutrition(it, UnitOfMass.GRAM)
         }
-        anyToInt(nutritionMap["protein"])?.let {
+        anyToInt(nutritionMap["단백질"])?.let {
             this.protein = Nutrition(it, UnitOfMass.GRAM)
         }
-        anyToInt(nutritionMap["fat"])?.let {
+        anyToInt(nutritionMap["지방"])?.let {
             this.fat = Nutrition(it, UnitOfMass.GRAM)
         }
-        anyToInt(nutritionMap["saturatedFat"])?.let {
+        anyToInt(nutritionMap["포화지방"])?.let {
             this.satFat = Nutrition(it, UnitOfMass.GRAM)
         }
-        anyToInt(nutritionMap["cholesterol"])?.let {
+        anyToInt(nutritionMap["콜레스테롤"])?.let {
             this.chol = Nutrition(it, UnitOfMass.MILLIGRAM)
         }
     }
 
     fun setEnergyValue(energy: Int) {
         this.energy = energy
+    }
+
+    fun setEnergyValue(energy: Any) {
+        anyToInt(energy)?.let {
+            this.energy = it
+        }
     }
 
     // =========================================================================
