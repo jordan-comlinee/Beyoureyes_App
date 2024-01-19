@@ -136,31 +136,15 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/buttonVoice"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="64sp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-
-                android:layout_weight="1"
                 android:background="@drawable/button_highlight"
                 android:textColor="@color/white"
                 android:gravity="center"
                 android:text="설명듣기"
 
-                style="@style/title3"
-                />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttoneat"
-                android:layout_width="wrap_content"
-                android:layout_height="64sp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/button_highlight"
-                android:gravity="center"
-                android:text="먹기"
-                android:textColor="@color/white"
                 style="@style/title3"
                 />
         </LinearLayout>

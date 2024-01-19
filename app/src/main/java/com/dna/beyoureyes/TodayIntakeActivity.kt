@@ -85,13 +85,12 @@ class TodayIntakeActivity : AppCompatActivity() {
 
         // 2. Firebase DB로부터 사용자 데이터 쿼리
         // 오늘 날짜(의 시작)를 firebase timestamp 형식으로 변경(쿼리를 위해)
-        val today = current.toLocalDate().atStartOfDay()
-        val startOfToday = Timestamp(today.toEpochSecond(ZoneOffset.UTC), today.nano)
-        Log.d("TODAYINTAKE", "${current} => ${startOfToday.toDate()}")
+        val formatterForDB = DateTimeFormatter.ofPattern("yyyyMMdd")
+        val today = current.format((formatterForDB))
 
         db.collection("userIntakeNutrition")
             .whereEqualTo("userID", AppUser.id)
-            .whereGreaterThanOrEqualTo("date", startOfToday) // 오늘 날짜 해당하는 것만
+            .whereGreaterThanOrEqualTo("date", today) // 오늘 날짜 해당하는 것만
             .get()
             .addOnSuccessListener { result ->
 
@@ -113,13 +112,13 @@ class TodayIntakeActivity : AppCompatActivity() {
                     for (document in result) {
                         // 섭취량 합계 연산
                         Log.d("TODAYINTAKE", "${document.id} => ${document.data}")
-                        val nutritionMap = document.data["nutrition"] as? Map<String, Any?>
-                        val calories = document.data.get("calories") as Long
+                        val nutritionMap = document.data as? Map<String, Any?>
+                        val calories = document.data.get("calories") as Any
 
                         var intake = NutritionFacts()
 
                         if (calories != null) {
-                            intake.setEnergyValue(calories.toInt())
+                            intake.setEnergyValue(calories)
                         }
                         if (nutritionMap != null) {
                             intake.setNutritionValues(nutritionMap)
