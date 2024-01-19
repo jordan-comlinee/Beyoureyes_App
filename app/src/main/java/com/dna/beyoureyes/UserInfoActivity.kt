@@ -1,12 +1,22 @@
 package com.dna.beyoureyes
 
+import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
+import com.dna.beyoureyes.databinding.ActivityAlertDialogDefaultBinding
 import com.dna.beyoureyes.databinding.ActivityUserInfoBinding
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.Identity
@@ -16,6 +26,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -48,6 +59,7 @@ class UserInfoActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
+        Log.d(TAG, AppUser.id.toString()+"   AGAIN")
         auth = Firebase.auth
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -65,7 +77,7 @@ class UserInfoActivity : AppCompatActivity() {
 
         val userInfoChangeButton = binding.userInfoChangeButton
         val googleConnectButton = binding.googleConnectButton
-        
+
         // 툴바
         setSupportActionBar(binding.include.toolbarDefault)
         supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -91,6 +103,22 @@ class UserInfoActivity : AppCompatActivity() {
                 for (diseaseItem in diseaseArray) {
                     val chip = Chip(this)
                     chip.text = diseaseItem
+                    // Chip 뷰의 크기 및 여백 설정
+                    // 원하는 폰트 파일을 res/font 디렉토리에 추가한 후 R.font.custom_font로 참조
+                    val customTypeface = ResourcesCompat.getFont(this, R.font.pretendard600)
+
+                    // 폰트 설정
+                    chip.typeface = customTypeface
+                    val params = ChipGroup.LayoutParams(
+                        250, // 넓이 80
+                        150  // 높이 50
+                    )
+                    params.setMargins(8, 8, 8, 8) // 여백을 8로
+                    chip.layoutParams = params
+                    // 글씨 크기
+                    chip.textSize = 24f
+                    // 가운데 정렬
+                    chip.textAlignment = View.TEXT_ALIGNMENT_CENTER
                     chip.setChipBackgroundColorResource(R.color.red)
                     chip.setTextColor(Color.WHITE)
                     diseaseChipGroup.addView(chip)
@@ -102,15 +130,28 @@ class UserInfoActivity : AppCompatActivity() {
                 for (allergyItem in allergyArray ) {
                     val chip = Chip(this)
                     chip.text = allergyItem
+                    // 원하는 폰트 파일을 res/font 디렉토리에 추가한 후 R.font.custom_font로 참조
+                    val customTypeface = ResourcesCompat.getFont(this, R.font.pretendard600)
+
+                    // 폰트 설정
+                    chip.typeface = customTypeface
+                    // Chip 뷰의 크기 및 여백 설정
+                    val params = ChipGroup.LayoutParams(
+                        250, // 넓이 80
+                        150  // 높이 50
+                    )
+                    params.setMargins(8, 8, 8, 8) // 여백을 8로
+                    chip.layoutParams = params
+                    // 글씨 크기
+                    chip.textSize = 24f
+                    // 가운데 정렬
+                    chip.textAlignment = View.TEXT_ALIGNMENT_CENTER
                     chip.setChipBackgroundColorResource(R.color.red)
                     chip.setTextColor(Color.WHITE)
                     allergicChipGroup.addView(chip)
                 }
             }
         }?:run{ // 사용자 정보 null일 시 -> 처리 조건 상 이 분기는 아마 진입할 일이 없긴 할 것
-            Toast.makeText(this@UserInfoActivity, AppUser.id, Toast.LENGTH_LONG).show()
-            Toast.makeText(this@UserInfoActivity, AppUser.info?.age.toString()+AppUser.info?.gender.toString(), Toast.LENGTH_LONG).show()
-            Toast.makeText(this@UserInfoActivity, AppUser.info?.disease.toString()+AppUser.info?.allergic.toString(), Toast.LENGTH_LONG).show()
             // 나이 정보 표시
             infoAge.text = "나이 정보 확인 실패"
             // 성별 정보 표시
@@ -122,6 +163,48 @@ class UserInfoActivity : AppCompatActivity() {
         userInfoChangeButton.setOnClickListener {
             val intent = Intent(this, UserInfoRegisterActivity::class.java)
             startActivity(intent)
+        }
+        if(auth.currentUser!!.isEmailVerified) {
+            googleConnectButton.isVisible = false
+            binding.googleLogoutButton.isVisible = true
+        }
+        else {
+            googleConnectButton.isVisible = true
+            binding.googleLogoutButton.isVisible = false
+        }
+        // 로그아웃 버튼 클릭 시
+        binding.googleLogoutButton.setOnClickListener{
+            val dialogView =
+                LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_login, null)
+
+            val alertDialogBuilder = AlertDialog.Builder(this)
+            val alertDialogBinding = ActivityAlertDialogDefaultBinding.inflate(layoutInflater)
+            alertDialogBuilder.setView(alertDialogBinding.root)
+
+            val alertDialog = alertDialogBuilder.create()
+
+            alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+            alertDialogBinding.rightBtn.setOnClickListener {
+                Firebase.auth.signOut()
+                // finish 후 다른 Activity 뜨지 않도록 함
+                moveTaskToBack(true)
+                // 현재 액티비티 종료
+                finish()
+                // 모든 루트 액티비티 종료
+                finishAffinity()
+                // 인텐트 애니메이션 종료
+                overridePendingTransition(0, 0)
+            }
+
+            alertDialogBinding.leftBtn.setOnClickListener {
+                alertDialog.dismiss()
+            }
+
+            alertDialogBinding.title.text = "로그아웃"
+            alertDialogBinding.text.text = "로그아웃하시겠어요?\n로그아웃하시면 어플리케이션이 종료됩니다."
+
+            alertDialog.show()
         }
         // Google 로그인 버튼 클릭 이벤트 처리
         googleConnectButton.setOnClickListener {
@@ -151,6 +234,71 @@ class UserInfoActivity : AppCompatActivity() {
         updateUI(currentUser)
     }
 
+    // 로그인 결과 처리 메서드
+    /*
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.d("GOOGLE : ", "onActivityResult")
+        val googleCredential = oneTapClient.getSignInCredentialFromIntent(data)
+        val idToken = googleCredential.googleIdToken
+        when {
+            idToken != null -> {
+                // Got an ID token from Google. Use it to authenticate
+                // with Firebase.
+                val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
+                auth.signInWithCredential(firebaseCredential)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("GOOGLE : ", "signInWithCredential:success")
+                            val user = auth.currentUser
+                            updateUI(user)
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w("GOOGLE : ", "signInWithCredential:failure", task.exception)
+                            updateUI(null)
+                        }
+                    }
+            }
+
+            else -> {
+                // Shouldn't happen.
+                Log.d("GOOGLE : ", "No ID token!")
+            }
+        }
+    } // onActivityResult
+
+    // [START auth_with_google]
+    private fun firebaseAuthWithGoogle(idToken: String) {
+        val credential = GoogleAuthProvider.getCredential(idToken, null)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Log.d("GOOGLE : ", "signInWithCredential:success")
+                    val user = auth.currentUser
+                    updateUI(user)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Log.w("GOOGLE : ", "signInWithCredential:failure", task.exception)
+                    updateUI(null)
+                }
+            }
+    }
+    // [END auth_with_google]
+
+    // [START signin]
+    private fun signIn() {
+        val signInIntent = googleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+    // [END signin]
+
+    companion object {
+        private const val RC_SIGN_IN = 9001
+    }
+    */
+
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
@@ -167,10 +315,9 @@ class UserInfoActivity : AppCompatActivity() {
                 Log.w(TAG, "Google sign in failed", e)
             }
         } else {
-            Log.d(TAG, "onActivityResult: resultCode = $resultCode, requestCode = $requestCode")
+            Log.d(TAG, "onActivityResult: resultCode = $resultCode")
         }
     }
-
 
     private fun firebaseAuthWithGoogle(idToken: String) {
         val credential = GoogleAuthProvider.getCredential(idToken, null)
@@ -178,11 +325,10 @@ class UserInfoActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
-                    Toast.makeText(this@UserInfoActivity, "성공!", Toast.LENGTH_LONG).show()
                     val user = auth.currentUser
                     updateUI(user)
                     AppUser.id = user!!.uid
-                    Log.d(TAG, user!!.uid)
+                    Log.d(TAG, AppUser.id.toString())
                     val intent = intent
                     finish()
                     startActivity(intent)
@@ -200,6 +346,14 @@ class UserInfoActivity : AppCompatActivity() {
         private const val RC_SIGN_IN = 9001
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(this@UserInfoActivity, HomeActivity::class.java)
+        startActivity(intent)
+        if(isFinishing()){
+            overridePendingTransition(R.anim.none, R.anim.horizon_exit)
+        }
+
+    }
 
 
 }
