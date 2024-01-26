@@ -370,7 +370,8 @@ class LoadingActivity : AppCompatActivity() {
         val percentMatchResults = percentRegex.findAll(lineText)
         for (percentMatchResult in percentMatchResults) {
             val (percentNumber) = percentMatchResult.destructured
-            percentList.add(percentNumber)
+            val cleanedPercent = percentNumber.trimStart('0') //선행하는 0을 제거
+            percentList.add(cleanedPercent)
         }
     }
 
