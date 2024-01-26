@@ -277,6 +277,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
 
                     //Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
                     sendData(nutriData, "userIntakeNutrition")
+
                     alertDialog.dismiss()
                 }
             }
