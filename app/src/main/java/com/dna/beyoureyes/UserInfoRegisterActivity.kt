@@ -191,6 +191,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                                 sendData(userInfo, "userInfo")
                                 userDiseaseList.clear()
                                 userAllergyList.clear()
+                                Log.d("REGISTERFIRESTORE : ", "DELETE1")
 
                                 val intent = Intent(this, UserInfoActivity::class.java)
                                 startActivity(intent)
@@ -213,7 +214,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                             sendData(userInfo, "userInfo")
                             userDiseaseList.clear()
                             userAllergyList.clear()
-
+                            Log.d("REGISTERFIRESTORE : ", "DELETE2")
                             val intent = Intent(this, UserInfoActivity::class.java)
                             startActivity(intent)
                         }

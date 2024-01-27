@@ -30,6 +30,8 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)
+
         //openCV
         OpenCVLoader.initDebug()
 
@@ -80,6 +82,7 @@ class HomeActivity : AppCompatActivity() {
                 }
         } else { // 사용자 id 자체가 없는 경우? 오류
             Log.d("HOMEFIRESTORE : ", "Error getting documents.")
+            Log.d("HOME : ", AppUser.id!!)
             Toast.makeText(this@HomeActivity, "userId not exist", Toast.LENGTH_LONG).show()
         }
 

@@ -21,4 +21,6 @@
     <color name="chartgrey">#E1E1E1</color>
     <color name="grey">#777777</color>
 
+    <color name="highlight_pressed">#FF7070</color>
+
 </resources>
