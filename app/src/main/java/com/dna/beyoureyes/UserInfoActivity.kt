@@ -31,6 +31,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 val diseaseKoreanList : List<String> = listOf("고혈압", "고지혈증", "당뇨")
@@ -325,13 +326,51 @@ class UserInfoActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Log.d(TAG, "signInWithCredential:success")
+                    Log.d("USERINFO UPDATE : ", "${AppUser.id} => ${AppUser.info!!.age}")
                     val user = auth.currentUser
                     updateUI(user)
                     AppUser.id = user!!.uid
-                    Log.d(TAG, AppUser.id.toString())
-                    val intent = intent
-                    finish()
-                    startActivity(intent)
+                    if (AppUser.id != null) {
+                        // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
+                        val db = Firebase.firestore
+                        // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
+                        db.collection("userInfo")
+                            .whereEqualTo("userID", AppUser.id)
+                            .get()
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    val result = task.result
+                                    // 유저 정보가 이미 존재하는 경우
+                                    if (result != null && !result.isEmpty) {
+                                        for (document in result) {
+                                            Log.d("USERINFO UPDATE : ", "${document.id} => ${document.data}")
+
+                                            // Firebase 문서에서 사용자 정보 파싱하여 UserInfo 객체 생성
+                                            val user = UserInfo.parseFirebaseDoc(document)
+
+                                            // 싱글톤 객체 유저 정보 업뎃
+                                            if (user != null) {
+                                                AppUser.info = user
+                                                Log.d("USERINFO UPDATE2 : ", "${AppUser.id} => ${AppUser.info!!.age}")
+                                                val intent = intent
+                                                finish()
+                                                startActivity(intent)
+                                                break
+                                            }
+                                        }
+                                    } // 싱글톤 객체 사용으로 불필요해진 else 절 삭제
+                                } else {
+                                    // 쿼리 중에 예외가 발생한 경우
+                                    // 쿼리 실패의 경우 인터넷 연결 상태와도 연관이 있으므로
+                                    // 추후 대응 필요성을 고려해 else문 분기 유지
+                                    Log.d("USERINFO UPDATE : : ", "Error getting documents.", task.exception)
+                                }
+                            }
+                    } else { // 사용자 id 자체가 없는 경우? 오류
+                        Log.d("USERINFO UPDATE : : ", "Error getting documents.")
+                        Log.d("USERINFO UPDATE : : ", AppUser.id!!)
+                        Toast.makeText(this@UserInfoActivity, "userId not exist", Toast.LENGTH_LONG).show()
+                    }
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
                 }
