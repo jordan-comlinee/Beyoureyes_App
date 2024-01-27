@@ -26,7 +26,6 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
     private val camera = Camera()
     private lateinit var binding: ActivityFoodInfoAllergyBinding
 
-
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

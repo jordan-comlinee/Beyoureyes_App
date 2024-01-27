@@ -35,7 +35,6 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
         //val userInfoRegisterTitle = findViewById<TextView>(R.id.userInfoRegisterTitle)
 
-
         val age : EditText = binding.editAge
 
         val sexSwitch : Switch = binding.sexSwitch
