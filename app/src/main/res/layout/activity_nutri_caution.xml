@@ -30,14 +30,14 @@
 
             <TextView
                 android:id="@+id/textView1"
+                style="@style/title3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                style="@style/title3"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:textColor="@color/black"
-                android:text="당신의 안식 1차 버전은 다음 정보를 제공합니다." />
+                android:gravity="center"
+                android:text="당신의 안식 1차 버전은 \n다음 정보를 제공합니다."
+                android:textColor="@color/black" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -49,8 +49,9 @@
                 android:layout_marginRight="50dp"
                 android:textColor="@color/highlight"
                 android:text="아래 유의 사항을 확인해주세요." />
+
             <TextView
-                android:id="@+id/nutricautiontextview1"
+                android:id="@+id/text1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -59,7 +60,29 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:textColor="@color/black"
-                android:text="1. 아래에 해당하는 7가지 외의 \n영양성분이 포함된 영양성분표는 인식되지 않습니다." />
+                android:text="1. 다음의 알레르기 정보를 인식하여 제공합니다." />
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/nutricautionimage_allergy" />
+
+            <TextView
+                android:id="@+id/text2"
+                style="@style/text1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
+                android:gravity="center"
+                android:text="2. 총 7가지 영양성분 정보를 제공합니다."
+                android:textColor="@color/black" />
+
             <TextView
                 android:id="@+id/cautiontextview"
                 android:layout_width="match_parent"
@@ -69,8 +92,20 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
+                android:textColor="@color/green"
+                android:text="✅ 나트륨, 탄수화물, 당류, 지방,\n포화지방, 콜레스테롤, 단백질" />
+
+            <TextView
+                android:id="@+id/cautiontextview2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                style="@style/text2"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
                 android:textColor="@color/highlight"
-                android:text="⚠ 나트륨, 탄수화물, 당류, 지방,\n포화지방, 콜레스테롤, 단백질" />
+                android:text="⚠ 이외 다른 성분이 포함된 영양성분표는\n 현재 버전에선 지원되지 않습니다." />
             <TextView
                 android:id="@+id/c2"
                 android:layout_width="match_parent"
@@ -81,7 +116,8 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:textColor="@color/black"
-                android:text="2. 아래와 같은 (g당 + 총 내용량당) 영양성분표는 현재 제공하지 않습니다." />
+                android:text="3. 1회 제공량과 총 제공량을 분리하여 표시하는 영양성분표는 현재 버전에선 지원되지 않습니다."/>
+
 
             <ImageView
                 android:id="@+id/nutricautionimage1"
