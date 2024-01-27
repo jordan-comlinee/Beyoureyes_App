@@ -277,6 +277,7 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
 
                     //Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
                     sendData(nutriData, "userIntakeNutrition")
+
                     alertDialog.dismiss()
                 }
             }
@@ -284,6 +285,13 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
             alertDialog.show()
         }//eatButton
 
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        finish()
     }
 
     private fun applyBarChart(barChart: BarChart, entries: List<BarEntry>, color: String, maximum: Float) {

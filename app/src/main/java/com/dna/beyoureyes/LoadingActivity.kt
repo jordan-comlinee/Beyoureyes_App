@@ -23,9 +23,6 @@ class LoadingActivity : AppCompatActivity() {
 
     private val extractedWords = mutableSetOf<String>()
 
-
-    private lateinit var textView: TextView // 텍스트 뷰 선언
-
     private lateinit var resultbtn: Button
 
 
@@ -50,7 +47,7 @@ class LoadingActivity : AppCompatActivity() {
         binding = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        textView = findViewById(R.id.textView) // test 하기 위해.. 삭제예정
+//        textView = findViewById(R.id.textView) // test 하기 위해.. 삭제예정
 
         resultbtn = binding.resultbtn
 
@@ -76,7 +73,7 @@ class LoadingActivity : AppCompatActivity() {
 
         resultbtn.setOnClickListener {
 
-            textView.append(moPercentList.toString())
+//            textView.append(moPercentList.toString())
 
             val isValidData = isValidData()
             val isValidAllergyData = isValidData_alergy()
@@ -196,7 +193,7 @@ class LoadingActivity : AppCompatActivity() {
         val targetKeywords = listOf("나트", "탄수화", "당류", "지방", "트랜스", "포화", "콜레스", "단백질")
 
 
-        textView.append(keywordList.toString())
+//        textView.append(keywordList.toString())
 
         var targetIndex = 0
         for (keyword in keywordList) {
@@ -206,7 +203,7 @@ class LoadingActivity : AppCompatActivity() {
             }
 
             if (targetIndex == targetKeywords.size) {
-                textView.append("true")
+//                textView.append("true")
                 return true
             }
         }
@@ -293,7 +290,7 @@ class LoadingActivity : AppCompatActivity() {
                     val allRecognizedWords = result.text
                     val extractedText = extractedWords.joinToString(", ")
                     runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
-                        textView.append("감지된 텍스트: $extractedText\n")
+//                        textView.append("감지된 텍스트: $extractedText\n")
                         // textView.append("모든 인식된 텍스트: $allRecognizedWords\n")
                     }
                     for (block in result.textBlocks) {
@@ -334,8 +331,8 @@ class LoadingActivity : AppCompatActivity() {
                     koreanCharactersListmodi = koreanCharactersList.distinct().toMutableList()
                     koreanCharactersListmodi = koreanCharactersListmodi.map { it.replace(Regex("[^가-힣]"), "") }.toMutableList()
                     runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
-                        textView.append("$koreanCharactersListmodi\n")
-                        textView.append("$percentList\n")
+//                        textView.append("$koreanCharactersListmodi\n")
+//                        textView.append("$percentList\n")
                     }
 
                 }
