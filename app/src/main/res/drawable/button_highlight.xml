@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
-    <solid android:color="@color/highlight" />
-    <corners android:radius="30dp" />
-
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true"> <!-- 버튼 활성화 시 -->
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+            <solid android:color="@color/highlight" />
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+    <item android:state_enabled="false"> <!-- 버튼 비활성화 시 -->
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+            <solid android:color="@color/grey" />
+            <corners android:radius="30dp" />
+        </shape>
+    </item>
+</selector>

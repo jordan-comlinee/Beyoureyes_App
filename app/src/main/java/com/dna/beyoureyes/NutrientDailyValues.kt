@@ -14,11 +14,11 @@ enum class Status(val colorRID: Int) {
 }
 
 // 섭취량이 기준치 미달인지 초과인지 분류하고 그에 따른 평가를 구분하기 위한 enum 객체
-enum class IntakeRange(val status: Status) {
-    LACK(Status.WARNING),       // 기준치 미달(경고)
-    LESS(Status.CAUTION),       // 기준치 약간 미달(주의)
-    ENOUGH(Status.SATISFIED),   // 기준치 충족(양호)
-    OVER(Status.WARNING)        // 기준치 초과(경고)
+enum class IntakeRange(val status: Status, val msg: String) {
+    LACK(Status.WARNING, "섭취량이 많이 부족해요."),       // 기준치 미달(경고)
+    LESS(Status.CAUTION, "섭취량이 조금 부족해요."),       // 기준치 약간 미달(주의)
+    ENOUGH(Status.SATISFIED, "적정 섭취량을 충족했어요."),   // 기준치 충족(양호)
+    OVER(Status.WARNING, "적정 섭취량을 초과했어요.")        // 기준치 초과(경고)
 }
 
 //========================================================================

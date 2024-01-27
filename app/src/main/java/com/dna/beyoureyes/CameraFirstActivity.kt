@@ -30,9 +30,7 @@ class CameraFirstActivity : AppCompatActivity()  {
 
         // 카메라
         binding.buttoncamera.setOnClickListener {
-            while(camera.start(this) == -1){
-                camera.start(this)
-            }
+            camera.start(this)
         }
 
         //openCV
