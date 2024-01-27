@@ -215,6 +215,7 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     intakeBars.setAll(this, totalIntake, userDVs)
 
                     // 초과, 적정, 부족 상태 판단
+                    /*
                     val naStatus = evaluateIntakeStatus(convertColorIntToRgb(nat.getBarColor() ?: 0))
                     val carboStatus = evaluateIntakeStatus(convertColorIntToRgb(carbo.getBarColor() ?: 0))
                     val sugarStatus = evaluateIntakeStatus(convertColorIntToRgb(sugar.getBarColor() ?: 0))
@@ -222,6 +223,7 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     val fatStatus = evaluateIntakeStatus(convertColorIntToRgb(fat.getBarColor() ?: 0))
                     val satfatStatus = evaluateIntakeStatus(convertColorIntToRgb(satfat.getBarColor() ?: 0))
                     val choleStatus = evaluateIntakeStatus(convertColorIntToRgb(chole.getBarColor() ?: 0))
+
 
                     // TTS 호출 여부 판단
                     fun getReviewText(): String {
@@ -233,6 +235,7 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     }
 
                     val reviewText = getReviewText()
+
 
                     // TTSManager 초기화 완료되었을때
                     ttsManager = TTSManager(this) {
@@ -255,6 +258,8 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                 intakeBars.hide(this, userDVs)
 
             }
+
+
 
     }
 

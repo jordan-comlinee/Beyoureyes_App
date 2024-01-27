@@ -172,7 +172,7 @@ class EnergyReview(
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 
-        energyDV?.let {energyDV ->  // 일일 권장량 기준 있을 때만 전용 문구 및 색상 구분 설정
+        energyDV?.let { energyDV ->  // 일일 권장량 기준 있을 때만 전용 문구 및 색상 구분 설정
             var sigColor = 0 // 총 칼로리 및 섭취량 평가 포인트 색상
             when(energyIntake) {
                 in 0..< energyDV -> { // 적정 범위 미만

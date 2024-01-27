@@ -58,7 +58,8 @@ class UserInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUserInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
+
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
         Log.d(TAG, AppUser.id.toString()+"   AGAIN")
         auth = Firebase.auth
@@ -154,9 +155,9 @@ class UserInfoActivity : AppCompatActivity() {
             }
         }?:run{ // 사용자 정보 null일 시 -> 처리 조건 상 이 분기는 아마 진입할 일이 없긴 할 것
             // 나이 정보 표시
-            infoAge.text = "나이 정보 확인 실패"
+            infoAge.text = "-"
             // 성별 정보 표시
-            infoSex.text = "성별 정보 확인 실패"
+            infoSex.text = "-"
         }
 
 
@@ -223,7 +224,6 @@ class UserInfoActivity : AppCompatActivity() {
 
     } // onCreate
     // [START on_start_check_user]
-
     override fun onBackPressed() {
         val intent = Intent(this, HomeActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)

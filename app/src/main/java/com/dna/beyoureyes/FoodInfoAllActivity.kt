@@ -319,6 +319,13 @@ class FoodInfoAllActivity : AppCompatActivity() {
 
     }
 
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        finish()
+    }
+
     private fun applyBarChart(barChart: BarChart, entries: List<BarEntry>, color: String, maximum: Float) {
         // 바 차트의 데이터셋 생성
         val dataSet = BarDataSet(entries, "My Data")
@@ -393,13 +400,3 @@ class FoodInfoAllActivity : AppCompatActivity() {
         ttsManager.shutdown()
         super.onDestroy()
     }
-
-    override fun onBackPressed() {
-        val intent = Intent(this, HomeActivity::class.java)
-        startActivity(intent)
-        if(isFinishing()){
-            overridePendingTransition(R.anim.none, R.anim.horizon_exit)
-        }
-    }
-
-}ds

@@ -48,12 +48,12 @@ class SplashActivity : AppCompatActivity() {
             AppUser.id = userId
             Log.d("GOOGLE : ", AppUser.id.toString()+"  INIT")
             //Toast.makeText(this@SplashActivity, userId, Toast.LENGTH_LONG).show()
-            Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
+            Handler().postDelayed({ startActivity(Intent(this, AppFirstActivity::class.java)) }, 3 * 1000)
         }
         else { // 최초 접속
             //Toast.makeText(this@SplashActivity, "가입안한 유저", Toast.LENGTH_LONG).show()
             signInAnonymously()
-            Handler().postDelayed({ startActivity(Intent(this, HomeActivity::class.java)) }, 3 * 1000)
+            Handler().postDelayed({ startActivity(Intent(this, AppFirstActivity::class.java)) }, 3 * 1000)
         }
         updateUI(currentUser)
 
