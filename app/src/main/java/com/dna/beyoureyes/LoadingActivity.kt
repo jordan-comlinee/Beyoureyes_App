@@ -63,7 +63,8 @@ class LoadingActivity : AppCompatActivity() {
             val f = File(filePath)
             val bitmap = BitmapFactory.decodeFile(filePath)
             if (bitmap != null) {
-                detectTextInBitmap(bitmap) // 필터링 알고리즘
+                //detectTextInBitmap(bitmap) // 필터링 알고리즘
+                useTestInfo()
             } else {
                 Log.e("bitmap", "Bitmap is null") // 비트맵이 null일 때
             }
@@ -97,7 +98,6 @@ class LoadingActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
-
         }
 
 
