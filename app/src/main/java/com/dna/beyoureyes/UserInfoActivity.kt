@@ -238,71 +238,6 @@ class UserInfoActivity : AppCompatActivity() {
         updateUI(currentUser)
     }
 
-    // 로그인 결과 처리 메서드
-    /*
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Log.d("GOOGLE : ", "onActivityResult")
-        val googleCredential = oneTapClient.getSignInCredentialFromIntent(data)
-        val idToken = googleCredential.googleIdToken
-        when {
-            idToken != null -> {
-                // Got an ID token from Google. Use it to authenticate
-                // with Firebase.
-                val firebaseCredential = GoogleAuthProvider.getCredential(idToken, null)
-                auth.signInWithCredential(firebaseCredential)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("GOOGLE : ", "signInWithCredential:success")
-                            val user = auth.currentUser
-                            updateUI(user)
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("GOOGLE : ", "signInWithCredential:failure", task.exception)
-                            updateUI(null)
-                        }
-                    }
-            }
-
-            else -> {
-                // Shouldn't happen.
-                Log.d("GOOGLE : ", "No ID token!")
-            }
-        }
-    } // onActivityResult
-
-    // [START auth_with_google]
-    private fun firebaseAuthWithGoogle(idToken: String) {
-        val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("GOOGLE : ", "signInWithCredential:success")
-                    val user = auth.currentUser
-                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("GOOGLE : ", "signInWithCredential:failure", task.exception)
-                    updateUI(null)
-                }
-            }
-    }
-    // [END auth_with_google]
-
-    // [START signin]
-    private fun signIn() {
-        val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
-    }
-    // [END signin]
-
-    companion object {
-        private const val RC_SIGN_IN = 9001
-    }
-    */
-
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
@@ -387,15 +322,5 @@ class UserInfoActivity : AppCompatActivity() {
         private const val TAG = "GOOGLE : "
         private const val RC_SIGN_IN = 9001
     }
-
-    override fun onBackPressed() {
-        val intent = Intent(this@UserInfoActivity, HomeActivity::class.java)
-        startActivity(intent)
-        if(isFinishing()){
-            overridePendingTransition(R.anim.none, R.anim.horizon_exit)
-        }
-
-    }
-
 
 }

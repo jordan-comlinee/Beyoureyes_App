@@ -49,25 +49,6 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
         // 버튼 초기화
         speakButton = binding.buttonVoice
 
-        fun convertColorIntToRgb(colorInt: Int): Triple<Int, Int, Int> {
-            val red = colorInt shr 16 and 0xFF
-            val green = colorInt shr 8 and 0xFF
-            val blue = colorInt and 0xFF
-            return Triple(red, green, blue)
-        }
-
-        fun evaluateIntakeStatus(rgb: Triple<Int, Int, Int>): String {
-            val (red, green, blue) = rgb
-
-            return when {
-                red > 200 && green > 150 && blue < 50 -> "적정량 부족" // (241, 188, 0)
-                red > 50 && green > 200 && blue < 50 -> "적정량 안정" // (52, 202, 0)
-                red > 200 && green < 50 && blue < 50 -> "적정량 초과" // (255, 0, 0)
-                else -> "알 수 없음"
-            }
-        }
-
-
         // Firebase 연결을 위한 설정값
         val db = Firebase.firestore
 
@@ -213,17 +194,6 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
                     // 2.4. 총 섭취량 화면 표시 - 성분별 섭취량 바
                     intakeBars.setAll(this, totalIntake, userDVs)
-
-                    // 초과, 적정, 부족 상태 판단
-                    /*
-                    val naStatus = evaluateIntakeStatus(convertColorIntToRgb(nat.getBarColor() ?: 0))
-                    val carboStatus = evaluateIntakeStatus(convertColorIntToRgb(carbo.getBarColor() ?: 0))
-                    val sugarStatus = evaluateIntakeStatus(convertColorIntToRgb(sugar.getBarColor() ?: 0))
-                    val proteinStatus = evaluateIntakeStatus(convertColorIntToRgb(protein.getBarColor() ?: 0))
-                    val fatStatus = evaluateIntakeStatus(convertColorIntToRgb(fat.getBarColor() ?: 0))
-                    val satfatStatus = evaluateIntakeStatus(convertColorIntToRgb(satfat.getBarColor() ?: 0))
-                    val choleStatus = evaluateIntakeStatus(convertColorIntToRgb(chole.getBarColor() ?: 0))
-
 
                     // TTS 호출 여부 판단
                     fun getReviewText(): String {
