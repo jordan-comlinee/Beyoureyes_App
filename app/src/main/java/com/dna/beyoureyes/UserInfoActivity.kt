@@ -187,15 +187,11 @@ class UserInfoActivity : AppCompatActivity() {
             alertDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
             alertDialogBinding.rightBtn.setOnClickListener {
-                Firebase.auth.signOut()
-                // finish 후 다른 Activity 뜨지 않도록 함
-                moveTaskToBack(true)
-                // 현재 액티비티 종료
-                finish()
-                // 모든 루트 액티비티 종료
-                finishAffinity()
-                // 인텐트 애니메이션 종료
-                overridePendingTransition(0, 0)
+                //Firebase.auth.signOut()
+                //moveTaskToBack(true)  // finish 후 다른 Activity 뜨지 않도록 함
+                //finish()  // 현재 액티비티 종료
+                //finishAffinity()  // 모든 루트 액티비티 종료
+                //overridePendingTransition(0, 0)   // 인텐트 애니메이션 종료
             }
 
             alertDialogBinding.leftBtn.setOnClickListener {
@@ -205,7 +201,7 @@ class UserInfoActivity : AppCompatActivity() {
             alertDialogBinding.title.text = "로그아웃"
             alertDialogBinding.text.text = "로그아웃하시겠어요?\n로그아웃하시면 어플리케이션이 종료됩니다."
 
-            alertDialog.show()
+            //alertDialog.show()
         }
         // Google 로그인 버튼 클릭 이벤트 처리
         googleConnectButton.setOnClickListener {

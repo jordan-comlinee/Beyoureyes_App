@@ -134,7 +134,7 @@
         android:layout_marginStart="6sp"
         android:background="@drawable/button_grey"
         android:fontFamily="@font/pretendard700"
-        android:text="로그아웃"
+        android:text="연동완료"
         android:textColor="@color/white"
         android:textSize="24sp" />
 
