@@ -399,4 +399,11 @@ class FoodInfoNutritionActivity : AppCompatActivity() {
 
         super.onDestroy()
     }
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        if(isFinishing()){
+            overridePendingTransition(R.anim.none, R.anim.horizon_exit)
+        }
+    }
 }

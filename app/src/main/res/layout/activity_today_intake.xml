@@ -319,7 +319,7 @@
             android:layout_height="64sp"
             android:layout_marginStart="6sp"
             android:layout_weight="1"
-            android:background="@drawable/button_highlight"
+            android:background="@drawable/button_highlight_selector"
             android:fontFamily="@font/pretendard700"
             android:text="설명듣기"
             android:textColor="@color/white"

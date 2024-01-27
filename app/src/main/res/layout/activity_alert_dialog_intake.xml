@@ -41,35 +41,35 @@
             <View
                 android:id="@+id/view1"
                 android:layout_width="wrap_content"
-                android:layout_height="111dp"
+                android:layout_height="112dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/intake_bar_shape"/>
+                android:background="@drawable/graph_view"/>
             <View
                 android:id="@+id/view2"
                 android:layout_width="wrap_content"
-                android:layout_height="111dp"
+                android:layout_height="112dp"
                 android:layout_marginTop="126dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/intake_bar_shape"/>
+                android:background="@drawable/graph_view"/>
             <View
                 android:id="@+id/view3"
                 android:layout_width="wrap_content"
-                android:layout_height="111dp"
+                android:layout_height="112dp"
                 android:layout_marginTop="237dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/intake_bar_shape"/>
+                android:background="@drawable/graph_view"/>
             <View
                 android:id="@+id/view4"
                 android:layout_width="wrap_content"
-                android:layout_height="111dp"
+                android:layout_height="112dp"
                 android:layout_marginTop="348dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginEnd="15dp"
-                android:background="@drawable/intake_bar_shape"/>
+                android:background="@drawable/graph_view"/>
 
         </FrameLayout>
 
@@ -86,7 +86,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="24sp"
                 android:layout_weight="1"
-                android:background="@drawable/button_default"
+                android:background="@drawable/button_default_selector"
                 android:text="다 먹음"
                 android:textColor="@color/black" />
 
@@ -97,7 +97,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="24sp"
                 android:layout_weight="1"
-                android:background="@drawable/button_default"
+                android:background="@drawable/button_default_selector"
                 android:text="많이 먹음"
                 android:textColor="@color/black" />
 
@@ -108,7 +108,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="24sp"
                 android:layout_weight="1"
-                android:background="@drawable/button_default"
+                android:background="@drawable/button_default_selector"
                 android:text="반 먹음"
                 android:textColor="@color/black" />
 
@@ -119,7 +119,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="24sp"
                 android:layout_weight="1"
-                android:background="@drawable/button_default"
+                android:background="@drawable/button_default_selector"
                 android:text="적게 먹음"
                 android:textColor="@color/black" />
 
@@ -143,7 +143,7 @@
             android:layout_marginEnd="12sp"
             android:layout_weight="1"
             android:text="뒤로가기"
-            android:background="@drawable/button_black"
+            android:background="@drawable/button_black_selector"
             android:textColor="@color/white"
             style="@style/title3"/>
 
@@ -156,7 +156,7 @@
             android:layout_marginEnd="24sp"
             android:layout_weight="1"
             android:text="완료하기"
-            android:background="@drawable/button_black"
+            android:background="@drawable/button_black_selector"
             android:textColor="@color/white"
             style="@style/title3"/>
     </LinearLayout>
