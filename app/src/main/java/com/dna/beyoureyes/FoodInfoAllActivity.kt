@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.dna.beyoureyes.databinding.ActivityFoodInfoAllBinding
@@ -281,6 +282,9 @@ class FoodInfoAllActivity : AppCompatActivity() {
                     //Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
                     sendData(nutriData, "userIntakeNutrition")
                     alertDialog.dismiss()
+                    Toast.makeText(this@FoodInfoAllActivity, "먹은 양이 저장되었어요.", Toast.LENGTH_LONG).show()
+                    val intent = Intent(this, HomeActivity::class.java)
+                    startActivity(intent)
                 }
             }
 
@@ -396,5 +400,3 @@ class FoodInfoAllActivity : AppCompatActivity() {
         ttsManager.shutdown()
         super.onDestroy()
     }
-
-}

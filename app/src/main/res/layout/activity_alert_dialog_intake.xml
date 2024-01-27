@@ -149,16 +149,16 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonSend"
+            style="@style/title3"
             android:layout_width="match_parent"
             android:layout_height="64sp"
             android:layout_gravity="center"
             android:layout_marginStart="12sp"
             android:layout_marginEnd="24sp"
             android:layout_weight="1"
-            android:text="완료하기"
             android:background="@drawable/button_black_selector"
-            android:textColor="@color/white"
-            style="@style/title3"/>
+            android:text="먹었어요"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 
