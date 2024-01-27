@@ -93,7 +93,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:textColor="@color/green"
-                android:text="✅ 나트륨, 탄수화물, 당류, 지방,\n포화지방, 콜레스테롤, 단백질" />
+                android:text="✔ 나트륨, 탄수화물, 당류, 지방,\n포화지방, 콜레스테롤, 단백질" />
 
             <TextView
                 android:id="@+id/cautiontextview2"
