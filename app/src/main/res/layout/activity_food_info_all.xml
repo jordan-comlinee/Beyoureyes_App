@@ -25,10 +25,36 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <!-- 알레르기 -->
+            <TextView
+                android:id="@+id/labelAllergy"
+                android:layout_width="250dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/aller_round"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text="식품 알러지 정보"
+                style="@style/title3"  />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/allergyChipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                app:chipSpacingHorizontal="12dp"
+                app:singleLine="false">
+
+            </com.google.android.material.chip.ChipGroup>
 
 
             <!-- 식품의 영양정보 -->
@@ -44,16 +70,6 @@
                 android:textColor="@color/black"
                 android:text="식품 영양성분 정보"
                 style="@style/title3" />
-
-            <!-- 차트 -->
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginVertical="30dp"
-                android:layout_gravity="center"
-                android:layout_weight="0.3" />
 
             <!-- 총 칼로리 -->
             <LinearLayout
@@ -318,31 +334,25 @@
 
 
             </LinearLayout>
-
-            <!-- 알레르기 -->
-            <TextView
-                android:id="@+id/labelAllergy"
-                android:layout_width="250dp"
-                android:layout_height="50dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/aller_round"
-                android:gravity="center"
-                android:textColor="@color/black"
-                android:text="식품 알러지 정보"
-                style="@style/title3"  />
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/allergyChipGroup"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="180dp"
-                app:chipSpacingHorizontal="12dp"
-                app:singleLine="false">
+                android:layout_marginBottom="200dp">
 
-            </com.google.android.material.chip.ChipGroup>
+                <!-- 차트 -->
+                <com.github.mikephil.charting.charts.PieChart
+                    android:id="@+id/pieChart"
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginVertical="30dp"
+                    android:layout_marginBottom="400dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+
+
+
 
         </LinearLayout>
     </ScrollView>

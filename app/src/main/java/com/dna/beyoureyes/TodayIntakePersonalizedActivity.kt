@@ -1,5 +1,6 @@
 package com.dna.beyoureyes
 
+import TTSManager
 import android.content.Intent
 
 import android.os.Bundle
@@ -25,7 +26,7 @@ import java.util.Locale
 
 class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
-    private lateinit var textToSpeech: TextToSpeech
+    private lateinit var ttsManager: TTSManager
     private lateinit var speakButton: Button
     private lateinit var binding: ActivityTodayIntakePersonalizedBinding
 
@@ -43,33 +44,6 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
         binding.include.toolbarBackBtn.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-        }
-
-        // TextToSpeech 초기화
-        textToSpeech = TextToSpeech(this) { status ->
-            if (status == TextToSpeech.SUCCESS) {
-                val result = textToSpeech.setLanguage(Locale.KOREAN)
-
-                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Log.e("TTS", "Language is not supported or missing data")
-                } else {
-                    // TTS 초기화 성공
-                    Log.d("TTS", "TextToSpeech initialization successful")
-                }
-            } else {
-                Log.e("TTS", "TextToSpeech initialization failed")
-            }
-        }
-
-        fun speak(text: String) {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                val params = Bundle()
-                params.putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "")
-                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, params, "UniqueID")
-            } else {
-                // LOLLIPOP 이하의 버전에서는 UtteranceId를 지원하지 않음
-                textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null)
-            }
         }
 
         // 버튼 초기화
@@ -169,8 +143,8 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
         // 2. Firebase DB로부터 사용자 데이터 쿼리
         // 오늘 날짜(의 시작)를 firebase timestamp 형식으로 변경(쿼리를 위해)
-        val today = current.toLocalDate().atStartOfDay()
-        val startOfToday = Timestamp(today.toEpochSecond(ZoneOffset.UTC), today.nano)
+        val formatterForDB = DateTimeFormatter.ofPattern("yyyyMMdd")
+        val today = current.format((formatterForDB))
 
         // 사용자 맞춤 권장량 구하기
         val userDVs = AppUser.info?.getDailyValues()
@@ -178,7 +152,7 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
         // DB에서 총 섭취량 가져오기
         db.collection("userIntakeNutrition")
             .whereEqualTo("userID", AppUser.id)
-            .whereGreaterThanOrEqualTo("date", startOfToday) // 오늘 날짜 해당하는 것만
+            .whereGreaterThanOrEqualTo("date", today) // 오늘 날짜 해당하는 것만
             .get()
             .addOnSuccessListener { result ->
 
@@ -186,10 +160,12 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     energyChart.hide() // 차트 숨김
                     energyReviewText.showNoDataMsg(this)
                     intakeBars.hide(this, userDVs)
-
-                    speakButton.setOnClickListener {
-                        val textToSpeech = "오늘의 섭취량 기록이 없습니다. 분석 결과를 제공받기 위해서 기록을 남겨보세요."
-                        speak(textToSpeech)
+                    // TTSManager 초기화 완료되었을때
+                    ttsManager = TTSManager(this) {
+                        speakButton.setOnClickListener {
+                            val textToSpeech = "오늘의 섭취량 기록이 없습니다. 분석 결과를 제공받기 위해서 기록을 남겨보세요."
+                            ttsManager.speak(textToSpeech)
+                        }
                     }
 
                 } else { // 쿼리 결과 있을 때
@@ -199,13 +175,13 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     // 섭취량 합계 연산
                     for (document in result) {
                         Log.d("TODAYINTAKE", "${document.id} => ${document.data}")
-                        val nutritionMap = document.data["nutrition"] as? Map<String, Any?>
-                        val calories = document.data.get("calories") as Long
+                        val nutritionMap = document.data as? Map<String, Any?>
+                        val calories = document.data.get("calories") as Any
 
                         var intake = NutritionFacts()
 
                         if (calories != null) {
-                            intake.setEnergyValue(calories.toInt())
+                            intake.setEnergyValue(calories)
                         }
                         if (nutritionMap != null) {
                             intake.setNutritionValues(nutritionMap)
@@ -247,10 +223,24 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     val satfatStatus = evaluateIntakeStatus(convertColorIntToRgb(satfat.getBarColor() ?: 0))
                     val choleStatus = evaluateIntakeStatus(convertColorIntToRgb(chole.getBarColor() ?: 0))
 
-                    speakButton.setOnClickListener {
-                        val textToSpeech = "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text} 또한 오늘 섭취한 나트륨은 ${naStatus}, 탄수화물은 ${carboStatus}, " +
-                                "당류는 ${sugarStatus}, 지방은 ${fatStatus}, 포화지방은 ${satfatStatus}, 콜레스테롤은 ${choleStatus} , 단백질은 ${proteinStatus} 입니다."
-                        speak(textToSpeech)
+                    // TTS 호출 여부 판단
+                    fun getReviewText(): String {
+                        return if (!lackIntakeReviewTextView.text.startsWith("ㅇㅇ")) {
+                            lackIntakeReviewTextView.text.toString()
+                        } else {
+                            overIntakeReviewTextView.text.toString()
+                        }
+                    }
+
+                    val reviewText = getReviewText()
+
+                    // TTSManager 초기화 완료되었을때
+                    ttsManager = TTSManager(this) {
+                        speakButton.setOnClickListener {
+                            val textToSpeech =
+                                "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text} 또한 오늘은" + reviewText
+                            ttsManager.speak(textToSpeech)
+                        }
                     }
 
                 }
@@ -266,17 +256,10 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
             }
 
-
-
     }
 
     override fun onDestroy() {
-        // TTS 해제
-        if (textToSpeech.isSpeaking) {
-            textToSpeech.stop()
-        }
-        textToSpeech.shutdown()
-
+        ttsManager.shutdown()
         super.onDestroy()
 
     }

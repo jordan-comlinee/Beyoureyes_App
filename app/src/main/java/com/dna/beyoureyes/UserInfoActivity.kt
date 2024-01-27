@@ -58,7 +58,7 @@ class UserInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUserInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
         Log.d(TAG, AppUser.id.toString()+"   AGAIN")
         auth = Firebase.auth
@@ -223,6 +223,13 @@ class UserInfoActivity : AppCompatActivity() {
 
     } // onCreate
     // [START on_start_check_user]
+
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        finish()
+    }
     override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
