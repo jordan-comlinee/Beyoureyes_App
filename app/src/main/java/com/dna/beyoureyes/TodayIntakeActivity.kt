@@ -193,4 +193,10 @@ class TodayIntakeActivity : AppCompatActivity() {
         super.onDestroy()
 
     }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+    }
+
 }

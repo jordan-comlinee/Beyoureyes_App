@@ -224,23 +224,24 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     val satfatStatus = evaluateIntakeStatus(convertColorIntToRgb(satfat.getBarColor() ?: 0))
                     val choleStatus = evaluateIntakeStatus(convertColorIntToRgb(chole.getBarColor() ?: 0))
 
-                     */
 
-                    val naStatus = userDVs?.natrium?.getIntakeStatus(totalIntake.natrium!!.getMilliGram())?.msg
-                    val carboStatus = userDVs?.carbs?.getIntakeStatus(totalIntake.carbs!!.getMilliGram())?.msg
-                    val sugarStatus = userDVs?.sugar?.getIntakeStatus(totalIntake.sugar!!.getMilliGram())?.msg
-                    val proteinStatus = userDVs?.protein?.getIntakeStatus(totalIntake.protein!!.getMilliGram())?.msg
-                    val fatStatus = userDVs?.fat?.getIntakeStatus(totalIntake.fat!!.getMilliGram())?.msg
-                    val satfatStatus = userDVs?.satFat?.getIntakeStatus(totalIntake.satFat!!.getMilliGram())?.msg
-                    val choleStatus = userDVs?.chol?.getIntakeStatus(totalIntake.chol!!.getMilliGram())?.msg
+                    // TTS 호출 여부 판단
+                    fun getReviewText(): String {
+                        return if (!lackIntakeReviewTextView.text.startsWith("ㅇㅇ")) {
+                            lackIntakeReviewTextView.text.toString()
+                        } else {
+                            overIntakeReviewTextView.text.toString()
+                        }
+                    }
+
+                    val reviewText = getReviewText()
 
 
                     // TTSManager 초기화 완료되었을때
                     ttsManager = TTSManager(this) {
                         speakButton.setOnClickListener {
                             val textToSpeech =
-                                "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text} 또한 오늘 섭취한 나트륨은 ${naStatus}, 탄수화물은 ${carboStatus}, " +
-                                        "당류는 ${sugarStatus}, 지방은 ${fatStatus}, 포화지방은 ${satfatStatus}, 콜레스테롤은 ${choleStatus} , 단백질은 ${proteinStatus}"
+                                "${dateText.text}의 섭취량 기록을 분석해드리겠습니다.${totalCalorieTextView.text} 또한 오늘은" + reviewText
                             ttsManager.speak(textToSpeech)
                         }
                     }
@@ -258,14 +259,17 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
             }
 
-
-
     }
 
     override fun onDestroy() {
         ttsManager.shutdown()
         super.onDestroy()
 
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
     }
 
 }

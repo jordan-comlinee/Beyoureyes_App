@@ -118,6 +118,7 @@
   </ScrollView>
 
   <LinearLayout
+      android:id="@+id/userInfoBottomLinear"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
@@ -125,6 +126,17 @@
       android:layout_marginLeft="16sp"
       android:layout_marginRight="16sp">
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/googleLogoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="64sp"
+        android:layout_weight="1"
+        android:layout_marginStart="6sp"
+        android:background="@drawable/button_grey"
+        android:fontFamily="@font/pretendard700"
+        android:text="연동완료"
+        android:textColor="@color/white"
+        android:textSize="24sp" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleConnectButton"
@@ -152,7 +164,7 @@
         android:layout_height="64sp"
         android:layout_weight="1"
         android:layout_marginStart="6sp"
-        android:background="@drawable/button_highlight"
+        android:background="@drawable/button_highlight_selector"
         android:fontFamily="@font/pretendard700"
         android:text="수정하기"
         android:textColor="@color/white"

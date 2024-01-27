@@ -83,7 +83,7 @@
             android:layout_height="60dp"
             android:layout_gravity="center"
             style="@style/title3"
-            android:background="@drawable/button_highlight"
+            android:background="@drawable/button_highlight_selector"
             android:textColor="@color/white"
             android:backgroundTint="@color/highlight"
             android:text="다시 찍기" />

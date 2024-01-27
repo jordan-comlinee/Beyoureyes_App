@@ -13,6 +13,7 @@ class NutriCautionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)
         binding = ActivityNutriCautionBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
