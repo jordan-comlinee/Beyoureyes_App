@@ -256,6 +256,8 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
 
             }
 
+
+
     }
 
     override fun onDestroy() {

@@ -26,6 +26,7 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
     private val camera = Camera()
     private lateinit var binding: ActivityFoodInfoAllergyBinding
 
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -113,6 +114,13 @@ class FoodInfoAllergyActivity : AppCompatActivity() {
             personalButton.setBackgroundResource(R.drawable.button_grey) // 비활성화 drawable 추가함
         }
 
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        startActivity(intent)
+        finish()
     }
 
 
