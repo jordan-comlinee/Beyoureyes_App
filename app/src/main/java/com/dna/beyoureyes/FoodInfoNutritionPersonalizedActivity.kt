@@ -172,10 +172,6 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
         }
 
         //eatButton
-        val modifiedKcalList = intArrayOf(300)
-        val moPercentList = intArrayOf(1, 2, 3)
-        val koreanCharacterList = arrayOf("1", "2", "3")
-
         binding.buttoneat.setOnClickListener{
             val dialogView = LayoutInflater.from(this).inflate(R.layout.activity_alert_dialog_intake, null)
 
@@ -194,9 +190,6 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
             val buttonSend : Button = dialogView.findViewById(R.id.buttonSend)
 
             val horizontalChartIntake : BarChart = dialogView.findViewById(R.id.horizontalChartIntake)
-
-            Log.d("nutriList", moPercentList.toString())
-            Log.d("nutriList", koreanCharacterList.toString())
 
             buttonBack.setOnClickListener {
                 alertDialog.dismiss()
@@ -270,16 +263,23 @@ class FoodInfoNutritionPersonalizedActivity : AppCompatActivity() {
             }
 
             buttonSend.setOnClickListener {
-                if (moPercentList != null) {
+                if (nutriFacts != null) {
+                    val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
                     val nutriData: HashMap<String, Serializable> = hashMapOf(
                         "userID" to AppUser.id!!,
                         "date" to SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
-                        "calories" to modifiedKcalList!!.joinToString(", ").toInt() * ratio
                     )
-                    for (i in koreanCharacterList.indices) {
-                        nutriData[koreanCharacterList[i]] = moPercentList[i].toInt() * ratio
+
+                    nutriFacts.energy?.let {
+                        nutriData["calories"] = it * ratio
                     }
 
+                    for (i in koreanCharacterList.indices) {
+                        val milli = nutriFacts.getMilligramByNutriLabel(koreanCharacterList[i])
+                        if (milli != -1) {
+                            nutriData[koreanCharacterList[i]] = milli  * ratio
+                        }
+                    }
 
                     //Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
                     sendData(nutriData, "userIntakeNutrition")

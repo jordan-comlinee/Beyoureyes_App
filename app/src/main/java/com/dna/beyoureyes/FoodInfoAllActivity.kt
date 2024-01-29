@@ -282,16 +282,23 @@ class FoodInfoAllActivity : AppCompatActivity() {
             }
 
             buttonSend.setOnClickListener {
-                if (moPercentList != null) {
+                if (nutriFacts != null) {
+                    val koreanCharacterList = listOf("나트륨", "탄수화물", "당류", "지방", "포화지방", "콜레스테롤", "단백질")
                     val nutriData: HashMap<String, Serializable> = hashMapOf(
                         "userID" to AppUser.id!!,
                         "date" to SimpleDateFormat("yyyyMMdd", Locale.getDefault()).format(Date()),
-                        "calories" to modifiedKcalList!!.joinToString(", ").toInt() * ratio
                     )
-                    for (i in koreanCharacterList.indices) {
-                        nutriData[koreanCharacterList[i]] = moPercentList[i].toInt() * ratio
+
+                    nutriFacts.energy?.let {
+                        nutriData["calories"] = it * ratio
                     }
 
+                    for (i in koreanCharacterList.indices) {
+                        val milli = nutriFacts.getMilligramByNutriLabel(koreanCharacterList[i])
+                        if (milli != -1) {
+                            nutriData[koreanCharacterList[i]] = milli  * ratio
+                        }
+                    }
 
                     //Toast.makeText(this@FoodInfoAllActivity, sendData.toString(), Toast.LENGTH_LONG).show()
                     sendData(nutriData, "userIntakeNutrition")
