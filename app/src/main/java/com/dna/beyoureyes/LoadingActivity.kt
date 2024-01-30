@@ -219,13 +219,19 @@ class LoadingActivity : AppCompatActivity() {
         return extractedWords.isNotEmpty()
     }
 
-    private fun isValidData_per(): Boolean { // 퍼센트가 100% 이상일 때 false 반환 -> OCR 인식 오류 방지 위해
+    private fun isValidData_per(): Boolean {
+        // 퍼센트가 100% 이상이거나 리스트가 비어 있을 때 false 반환 -> OCR 인식 오류 방지 위해
         for (percent in percentList) {
-            if (percent.toInt() >= 100) {
+            try {
+                if (percent.toInt() >= 100) {
+                    return false
+                }
+            } catch (e: NumberFormatException) {
+                // 숫자로 변환할 수 없는 경우에 대한 예외 처리
                 return false
             }
         }
-        return true
+        return percentList.isNotEmpty()
     }
 
     // 알림 다이얼로그 표시 함수
