@@ -196,11 +196,17 @@ class TodayIntakePersonalizedActivity : AppCompatActivity() {
                     intakeBars.setAll(this, totalIntake, userDVs)
 
                     // TTS 호출 여부 판단
+                    // TTS 호출 여부 판단
                     fun getReviewText(): String {
-                        return if (!lackIntakeReviewTextView.text.startsWith("ㅇㅇ")) {
-                            lackIntakeReviewTextView.text.toString()
-                        } else {
-                            overIntakeReviewTextView.text.toString()
+                        val lackIntakeText = lackIntakeReviewTextView.text.toString()
+                        val overIntakeText = overIntakeReviewTextView.text.toString()
+
+                        return when {
+                            !lackIntakeText.startsWith("ㅇㅇ") && !overIntakeText.startsWith("ㅇㅇ") ->
+                                lackIntakeText + overIntakeText
+                            !lackIntakeText.startsWith("ㅇㅇ") -> lackIntakeText
+                            !overIntakeText.startsWith("ㅇㅇ") -> overIntakeText
+                            else -> overIntakeText + lackIntakeText
                         }
                     }
 

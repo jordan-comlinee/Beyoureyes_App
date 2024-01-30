@@ -86,8 +86,8 @@ class UserInfoRegisterActivity : AppCompatActivity() {
 
         val diseaseChips = arrayOf(chip0, chip1, chip2)
         val allergyChips = arrayOf(chip00, chip01, chip02, chip03, chip04, chip05, chip06, chip07,
-                                    chip08, chip09, chip10, chip11, chip12, chip13, chip14, chip15,
-                                    chip16, chip17, chip18, chip19, chip20)
+            chip08, chip09, chip10, chip11, chip12, chip13, chip14, chip15,
+            chip16, chip17, chip18, chip19, chip20)
 
 
 
@@ -192,7 +192,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                                 sendData(userInfo, "userInfo")
                                 userDiseaseList.clear()
                                 userAllergyList.clear()
-                                Log.d("REGISTERFIRESTORE : ", "DELETE1")
+                                Log.d("FIRESTORE : ", "DELETE1")
 
                                 val intent = Intent(this, UserInfoActivity::class.java)
                                 startActivity(intent)
@@ -237,10 +237,10 @@ class UserInfoRegisterActivity : AppCompatActivity() {
         db.collection(collectionName)
             .add(userInfo)
             .addOnSuccessListener { documentReference ->
-                Log.d("REGISTERFIRESTORE :", "SUCCESS added with ID: ${documentReference.id}")
+                Log.d("FIRESTORE :", "SUCCESS added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
-                Log.w("REGISTERFIRESTORE :", "Error adding document", e)
+                Log.w("FIRESTORE :", "Error adding document", e)
             }
     }
 
