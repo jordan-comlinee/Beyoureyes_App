@@ -24,7 +24,7 @@ class LoadingActivity : AppCompatActivity() {
     private val extractedWords = mutableSetOf<String>()
 
     private lateinit var resultbtn: Button
-
+//    private lateinit var textView: TextView
 
     private val textRecognizer = TextRecognition.getClient(
         KoreanTextRecognizerOptions.Builder().build()
@@ -47,7 +47,7 @@ class LoadingActivity : AppCompatActivity() {
         binding = ActivityLoadingBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        textView = findViewById(R.id.textView) // test 하기 위해.. 삭제예정
+        //textView = findViewById(R.id.textView) // test 하기 위해.. 삭제예정
 
         resultbtn = binding.resultbtn
 
@@ -72,7 +72,7 @@ class LoadingActivity : AppCompatActivity() {
 
         resultbtn.setOnClickListener {
 
-//            textView.append(moPercentList.toString())
+            //textView.append(moPercentList.toString())
 
             val isValidData = isValidData()
             val isValidAllergyData = isValidData_alergy()
@@ -191,7 +191,7 @@ class LoadingActivity : AppCompatActivity() {
         val targetKeywords = listOf("나트", "탄수화", "당류", "지방", "트랜스", "포화", "콜레스", "단백질")
 
 
-//        textView.append(keywordList.toString())
+        //textView.append(keywordList.toString())
 
         var targetIndex = 0
         for (keyword in keywordList) {
@@ -201,7 +201,7 @@ class LoadingActivity : AppCompatActivity() {
             }
 
             if (targetIndex == targetKeywords.size) {
-//                textView.append("true")
+                //textView.append("true")
                 return true
             }
         }
@@ -219,13 +219,19 @@ class LoadingActivity : AppCompatActivity() {
         return extractedWords.isNotEmpty()
     }
 
-    private fun isValidData_per(): Boolean { // 퍼센트가 100% 이상일 때 false 반환 -> OCR 인식 오류 방지 위해
+    private fun isValidData_per(): Boolean {
+        // 퍼센트가 100% 이상이거나 리스트가 비어 있을 때 false 반환 -> OCR 인식 오류 방지 위해
         for (percent in percentList) {
-            if (percent.toInt() >= 100) {
+            try {
+                if (percent.toInt() >= 100) {
+                    return false
+                }
+            } catch (e: NumberFormatException) {
+                // 숫자로 변환할 수 없는 경우에 대한 예외 처리
                 return false
             }
         }
-        return true
+        return percentList.isNotEmpty()
     }
 
     // 알림 다이얼로그 표시 함수
@@ -288,7 +294,7 @@ class LoadingActivity : AppCompatActivity() {
                     val allRecognizedWords = result.text
                     val extractedText = extractedWords.joinToString(", ")
                     runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
-//                        textView.append("감지된 텍스트: $extractedText\n")
+                        //textView.append("감지된 텍스트: $extractedText\n")
                         // textView.append("모든 인식된 텍스트: $allRecognizedWords\n")
                     }
                     for (block in result.textBlocks) {
@@ -306,9 +312,9 @@ class LoadingActivity : AppCompatActivity() {
                             }
                             val lineText = line.text
                             val lineInfo = "라인 텍스트: $lineText" // 전체 인식한 라인 텍스트 출력
-//                            runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
-//                                textView.append("$lineInfo\n")
-//                            }
+                            runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
+                                //                           textView.append("$lineInfo\n")
+                            }
 
                             // "숫자 g" 형태 확인
                             extractNumberG(lineText)
@@ -329,8 +335,8 @@ class LoadingActivity : AppCompatActivity() {
                     koreanCharactersListmodi = koreanCharactersList.distinct().toMutableList()
                     koreanCharactersListmodi = koreanCharactersListmodi.map { it.replace(Regex("[^가-힣]"), "") }.toMutableList()
                     runOnUiThread { // OCR 결과 학인 위해.. 나중에 제거할 예정
-//                        textView.append("$koreanCharactersListmodi\n")
-//                        textView.append("$percentList\n")
+                        //                       textView.append("$koreanCharactersListmodi\n")
+                        //textView.append("$percentList\n")
                     }
 
                 }
@@ -366,8 +372,8 @@ class LoadingActivity : AppCompatActivity() {
         val percentMatchResults = percentRegex.findAll(lineText)
         for (percentMatchResult in percentMatchResults) {
             val (percentNumber) = percentMatchResult.destructured
-            val cleanedPercent = percentNumber.trimStart('0') //선행하는 0을 제거
-            percentList.add(cleanedPercent)
+            val intValue = (percentNumber.toIntOrNull() ?: 0).toString()
+            percentList.add(intValue)
         }
     }
 
@@ -443,7 +449,7 @@ class LoadingActivity : AppCompatActivity() {
 }
 
 
-// % 를 이용하여 g으로 계산
+// % 를 이용하여 mg으로 계산
 private fun modiPercentList(percentList: List<String>): List<String> {
     if (percentList.size != 7) {
         // 퍼센트 리스트의 길이가 7이 아니면 빈 리스트를 반환
@@ -452,17 +458,17 @@ private fun modiPercentList(percentList: List<String>): List<String> {
 
     val modifiedList = percentList.mapIndexed { index, percent ->
         // 선행하는 0을 제거
-        val cleanedPercent = percent.trimStart('0').toDoubleOrNull() ?: 0.0
+        //val cleanedPercent = percent.trimStart('0').toDoubleOrNull() ?: 0.0
 
         val modifiedPercent = when (index) {
-            0 -> ((cleanedPercent * 0.01 * 2000).toInt()).toString()
-            1 -> ((cleanedPercent * 0.01 * 324 * 1000).toInt()).toString()
-            2 -> ((cleanedPercent * 0.01 * 100 * 1000).toInt()).toString()
-            3 -> ((cleanedPercent * 0.01 * 54 * 1000).toInt()).toString()
-            4 -> ((cleanedPercent * 0.01 * 15 * 1000).toInt()).toString()
-            5 -> ((cleanedPercent * 0.01 * 300).toInt()).toString()
-            6 -> ((cleanedPercent * 0.01 * 55 * 1000).toInt()).toString()
-            else -> ((cleanedPercent * 0.01 * 2000).toInt()).toString() // 기본값
+            0 -> (((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 2000).toInt()).toString()
+            1 -> (((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 324 * 1000).toInt()).toString()
+            2 -> (((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 100 * 1000).toInt()).toString()
+            3 -> (((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 54 * 1000).toInt()).toString()
+            4 -> (((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 15 * 1000).toInt()).toString()
+            5 -> (((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 300).toInt()).toString()
+            6 -> (((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 55 * 1000).toInt()).toString()
+            else -> (((percent.toDoubleOrNull() ?: 0.0) * 0.01 * 2000).toInt()).toString() // 기본값
         }
         modifiedPercent
     }
