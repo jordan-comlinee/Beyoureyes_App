@@ -72,6 +72,7 @@ class NutritionFacts() {
             "지방" -> return fat?.getMilliGram() ?: 0
             "포화지방" -> return satFat?.getMilliGram() ?: 0
             "콜레스테롤" -> return chol?.getMilliGram() ?: 0
+            "단백질" -> return protein?.getMilliGram() ?: 0
             else -> return -1
         }
     }
@@ -84,6 +85,7 @@ class NutritionFacts() {
             "지방" -> return fat?.getGram() ?: 0
             "포화지방" -> return satFat?.getGram() ?: 0
             "콜레스테롤" -> return chol?.getGram() ?: 0
+            "단백질" -> return protein?.getMilliGram() ?: 0
             else -> return -1
         }
     }
