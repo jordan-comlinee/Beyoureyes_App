@@ -175,13 +175,6 @@ class UserInfoActivity : AppCompatActivity() {
             googleConnectButton.isVisible = true
             binding.googleLogoutButton.isVisible = false
         }
-
-        // 앱 공개용 임시로 구글 연동 버튼 숨기기
-        binding.googleLogoutButton.visibility = View.GONE
-        binding.googleConnectButton.visibility = View.GONE
-
-
-        /*
         // 로그아웃 버튼 클릭 시
         binding.googleLogoutButton.setOnClickListener{
             val dialogView =
@@ -213,7 +206,6 @@ class UserInfoActivity : AppCompatActivity() {
             //alertDialog.show()
         }
         // Google 로그인 버튼 클릭 이벤트 처리
-
         googleConnectButton.setOnClickListener {
             // 로그인 요청
             Log.d("GOOGLE : ", "이벤트 시작")
@@ -229,9 +221,7 @@ class UserInfoActivity : AppCompatActivity() {
                 .build()
             Log.d("GOOGLE : ", "이벤트 수행중?")
             signIn()
-
-
-        }*/
+        }
 
     } // onCreate
     // [START on_start_check_user]
