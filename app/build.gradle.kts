@@ -18,8 +18,8 @@ android {
         applicationId = "com.dna.beyoureyes"
         minSdk = 24
         targetSdk = 33
-        versionCode = 5
-        versionName = "1.4"
+        versionCode = 9
+        versionName = "1.9"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

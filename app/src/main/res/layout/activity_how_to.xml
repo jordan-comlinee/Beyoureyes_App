@@ -52,7 +52,7 @@
 
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/button_highlight"
+            android:background="@drawable/button_highlight_selector"
             android:gravity="center"
             android:text="이전"
 
@@ -66,7 +66,7 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@drawable/button_highlight"
+            android:background="@drawable/button_highlight_selector"
             android:gravity="center"
             android:text="다음"
             android:textColor="@color/white" />

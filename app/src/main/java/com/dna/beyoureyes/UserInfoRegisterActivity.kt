@@ -192,7 +192,7 @@ class UserInfoRegisterActivity : AppCompatActivity() {
                                 sendData(userInfo, "userInfo")
                                 userDiseaseList.clear()
                                 userAllergyList.clear()
-                                Log.d("REGISTERFIRESTORE : ", "DELETE1")
+                                Log.d("FIRESTORE : ", "DELETE1")
 
                                 val intent = Intent(this, UserInfoActivity::class.java)
                                 startActivity(intent)
@@ -237,10 +237,10 @@ class UserInfoRegisterActivity : AppCompatActivity() {
         db.collection(collectionName)
             .add(userInfo)
             .addOnSuccessListener { documentReference ->
-                Log.d("REGISTERFIRESTORE :", "SUCCESS added with ID: ${documentReference.id}")
+                Log.d("FIRESTORE :", "SUCCESS added with ID: ${documentReference.id}")
             }
             .addOnFailureListener { e ->
-                Log.w("REGISTERFIRESTORE :", "Error adding document", e)
+                Log.w("FIRESTORE :", "Error adding document", e)
             }
     }
 

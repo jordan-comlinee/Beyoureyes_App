@@ -33,6 +33,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.io.Serializable
 
 val diseaseKoreanList : List<String> = listOf("고혈압", "고지혈증", "당뇨")
 val allergyKoreanList : List<String> = listOf("메밀", "밀", "콩", "호두", "땅콩", "복숭아", "토마토", "돼지고기", "난류", "우유", "닭고기", "쇠고기", "새우", "고등어", "홍합", "전복", "굴", "조개류", "게", "오징어", "아황산")
@@ -58,7 +59,6 @@ class UserInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUserInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         overridePendingTransition(R.anim.horizon_enter, R.anim.horizon_exit)    // 화면 전환 시 애니메이션
         Log.d(TAG, AppUser.id.toString()+"   AGAIN")
@@ -92,6 +92,7 @@ class UserInfoActivity : AppCompatActivity() {
 
         // 사용자 정보 화면 표시 ---------------------------------------------
         AppUser.info?.let {
+            Log.d("USERINFO : ", "${AppUser.id}")
             // 나이 정보 표시
             infoAge.text = it.age.toString() + "세"
             // 성별 정보 표시
@@ -267,51 +268,68 @@ class UserInfoActivity : AppCompatActivity() {
                     Log.d("USERINFO UPDATE : ", "${AppUser.id} => ${AppUser.info!!.age}")
                     val user = auth.currentUser
                     updateUI(user)
-                    AppUser.id = user!!.uid
-                    if (AppUser.id != null) {
-                        // 안드로이드 파이어베이스 - 파이어 스토어에 임의의 정보 저장
-                        val db = Firebase.firestore
-                        // 유저 정보 받아오기 - userId가 일치하는 경우에만!!
-                        db.collection("userInfo")
-                            .whereEqualTo("userID", AppUser.id)
-                            .get()
-                            .addOnCompleteListener { task ->
-                                if (task.isSuccessful) {
-                                    val result = task.result
-                                    // 유저 정보가 이미 존재하는 경우
-                                    if (result != null && !result.isEmpty) {
-                                        for (document in result) {
-                                            Log.d("USERINFO UPDATE : ", "${document.id} => ${document.data}")
+                    Log.d("USERINFO UPDATE : ", "${AppUser.id} => ${user!!.uid}")
 
-                                            // Firebase 문서에서 사용자 정보 파싱하여 UserInfo 객체 생성
-                                            val user = UserInfo.parseFirebaseDoc(document)
+                    // 안드로이드 파이어베이스에서 google 연동 정보 있는 지 확인함
+                    val db = Firebase.firestore
+                    // google 계정 uid가 포함된 데이터가 있는 지 확인, 있으면 그거 그대로 불러오고, 없으면 기존 싱긅톤 객체에 있던 데이터를 send함
+                    db.collection("userInfo")
+                        .whereEqualTo("userID", user.uid)
+                        .get()
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                val result = task.result
+                                // 유저 정보가 firebase에 존재하는 경우
+                                if (result != null && !result.isEmpty) {
+                                    for (document in result) {
+                                        Log.d("FIRESTORE : ", "${document.id} => ${document.data}")
 
-                                            // 싱글톤 객체 유저 정보 업뎃
-                                            if (user != null) {
-                                                AppUser.info = user
-                                                Log.d("USERINFO UPDATE2 : ", "${AppUser.id} => ${AppUser.info!!.age}")
-                                                val intent = intent
-                                                finish()
-                                                startActivity(intent)
-                                                break
-                                            }
-                                        }
-                                    } // 싱글톤 객체 사용으로 불필요해진 else 절 삭제
-                                } else {
-                                    // 쿼리 중에 예외가 발생한 경우
-                                    // 쿼리 실패의 경우 인터넷 연결 상태와도 연관이 있으므로
-                                    // 추후 대응 필요성을 고려해 else문 분기 유지
-                                    Log.d("USERINFO UPDATE : : ", "Error getting documents.", task.exception)
+                                        // Firebase 문서에서 사용자 정보 파싱하여 UserInfo 객체 생성
+                                        val user = UserInfo.parseFirebaseDoc(document)
+
+                                        AppUser.id = auth.currentUser!!.uid
+                                        AppUser.info?.age = user!!.age
+                                        AppUser.info?.gender = user!!.gender
+                                        AppUser.info = user
+                                        val intent = intent
+                                        finish()
+                                        startActivity(intent)
+
+                                    }
+                                } // 만약 유저 정보가 firebase에 존재하지 않는 경우
+                                else{
+                                    // 싱글톤 객체 유저 정보 업뎃
+                                    if (user != null) {
+                                        AppUser.id = user.uid
+                                        Log.d("USERINFO UPDATE2 : ", "${AppUser.id} => ${AppUser.info!!.age}")
+                                        val userInfo = hashMapOf(
+                                            "userID" to AppUser.id!!,
+                                            "userAge" to AppUser.info!!.age,
+                                            "userSex" to AppUser.info!!.gender,
+                                            "userDisease" to AppUser.info?.disease.let { ArrayList(it) },
+                                            "userAllergic" to AppUser.info?.allergic.let { ArrayList(it) }
+                                        )
+                                        sendData(userInfo, "userInfo")
+                                        val intent = intent
+                                        finish()
+                                        startActivity(intent)
+                                    }
                                 }
+                            } else {
+                                // 쿼리 중에 예외가 발생한 경우
+                                // 쿼리 실패의 경우 인터넷 연결 상태와도 연관이 있으므로
+                                // 추후 대응 필요성을 고려해 else문 분기 유지
+                                Log.d("HOMEFIRESTORE : ", "Error getting documents.", task.exception)
                             }
-                    } else { // 사용자 id 자체가 없는 경우? 오류
-                        Log.d("USERINFO UPDATE : : ", "Error getting documents.")
-                        Log.d("USERINFO UPDATE : : ", AppUser.id!!)
-                        Toast.makeText(this@UserInfoActivity, "userId not exist", Toast.LENGTH_LONG).show()
-                    }
+                        }
+
+
                 } else {
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-                }
+                }//if(task.isSuccessful)
+
+                Log.d("USERINFO UPDATE2 : ", "${AppUser.id} => ${AppUser.info!!.age}")
+
             }
     }
 
@@ -322,5 +340,40 @@ class UserInfoActivity : AppCompatActivity() {
         private const val TAG = "GOOGLE : "
         private const val RC_SIGN_IN = 9001
     }
+
+    private fun sendData(userInfo : HashMap<String, Serializable>, collectionName : String){
+        val db = Firebase.firestore
+        db.collection(collectionName)
+            .add(userInfo)
+            .addOnSuccessListener { documentReference ->
+                Log.d("REGISTERFIRESTORE :", "SUCCESS added with ID: ${documentReference.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("REGISTERFIRESTORE :", "Error adding document", e)
+            }
+    }
+    private fun deleteData(userId: String, collectionName: String, onSuccess: () -> Unit) {
+        val firestore = Firebase.firestore
+        firestore.collection(collectionName)
+            .whereEqualTo("userID", userId)
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                for (document in querySnapshot) {
+                    // 찾은 문서를 삭제
+                    firestore.collection(collectionName)
+                        .document(document.id)
+                        .delete()
+                        .addOnCompleteListener {
+                            Log.d("REGISTERFIRESTORE : ", "DELETE SUCCESS")
+                            // 삭제 완료 시 onSuccess 호출
+                            onSuccess()
+                        }
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("REGISTERFIRESTORE : ", "Error deleting documents.", exception)
+            }
+    }
+
 
 }
