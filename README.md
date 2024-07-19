@@ -3,7 +3,7 @@
 
 <a href='https://play.google.com/store/apps/details?id=com.dna.beyoureyes'><img width=200 src='https://github.com/user-attachments/assets/104cbdb2-32af-47e9-a19e-7318df29ff73'/></a>
 
-[시연 영상 보러가기](youtu.be/xgSsosK0irA) 
+[시연 영상 보러가기](https://www.youtube.com/watch?v=xgSsosK0irA) 
  
 <br>
 
