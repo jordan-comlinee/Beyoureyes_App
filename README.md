@@ -35,4 +35,4 @@
 | 문지영 | 이수진 | 이소영 |
 | --- | --- | --- |
 | [moon0900](https://github.com/moon0900) | [Soojin-Lee-01](https://github.com/Soojin-Lee-01) | [jordan-comlinee](https://github.com/jordan-comlinee) | 
-| Front-End | Back-End | Back-End | Front-End |
+| Android | Android | Android |
