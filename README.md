@@ -37,6 +37,7 @@
 
 ## 🍰Structure
 ![structure](https://github.com/user-attachments/assets/28f54a05-595e-4966-ab57-581246e5ccb1)
+![BYE_wireframe](https://github.com/user-attachments/assets/6fe9f398-44a8-41f2-ac6d-14367bbe3734)
 
 ## 🧀 ERD
 ![ERD](https://github.com/user-attachments/assets/883b8742-dbdc-4715-8be1-c66b60d0f661)
